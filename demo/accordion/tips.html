@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <link href="../../css/core.css" rel="stylesheet" type="text/css" />
+    <link href="../../css/tips.css" rel="stylesheet" type="text/css" />
+    <link href="../../css/icons.css" rel="stylesheet" type="text/css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+</head>
+<style>
+    .underline {border-bottom: 1px solid red;cursor: pointer;}
+</style>
+<body>
+    <div style="margin: 100px;">
+        <p>The research found that voles bred to lack functioning receptors for oxytocin were still able to form strong pairs, produce young and nurse -- all behaviours previously believed to depend on the hormone.</p>
+        <p>Prairie voles are one of the few mammals that mate for life, and are often used to study social behaviours like pair-forming in animals.</p>
+            <p><span onmouseover="showTips(this)" onmouseleave="hideTips()" msg="This is a message from Author" class="tips">In past studies</span>, voles given drugs that stopped oxytocin being processed no longer formed pairs, and mothers failed to produce milk for their young.</p>
+                <p>Psychiatrist Devanand Manoli and neurobiologist <span msg="He is a programmer" onmouseover="showTips(this)" class="tips">Nirao Shah</span> produced genetically altered prairie voles without working oxytocin receptors, and then observed how the mutant male and female voles behaved.</p>
+
+            <div id="mytips" class="l-verify-tip">
+            <div class="l-verify-tip-corner"></div>           
+            <div class="l-verify-tip-content">
+                This is a message from Author
+            </div>
+            </div>
+        
+    </div>
+
+    
+    <script>
+
+        function showTips(e) {
+            var left = $(e).offset().left + $(e).width();
+            var top = $(e).offset().top;
+            var msg = $(e).attr("msg");    
+            $("#mytips").css("left",left + "px");
+            $("#mytips").css("top",top + "px");
+            $("#mytips").find('.l-verify-tip-content').text(msg);
+            $("#mytips").show();            
+        }
+
+        function hideTips() {
+            $("#mytips").hide();           
+        }
+
+    </script>
+</body>
+</html>

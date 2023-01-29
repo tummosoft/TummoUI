@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <link href="../../css/core.css" rel="stylesheet" type="text/css" />
+    <link href="../../css/combobox.css" rel="stylesheet" type="text/css" />    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+</head>
+<style>
+    
+</style>
+<body style="background-color:grey;">
+    <div style="margin: 100px;">
+        <div id="info">Observe the platform icon's motion direction when there is up and down hover on options.</div>
+        <i class='bx bx-chevron-down' ></i>
+        <div class="combobox-wrapper">
+            <div class="combo-text">
+                <input type="text" class="combo-input" value="Apple choices">                    
+                
+                <div class="combo-button">
+                    
+                </div>
+            </div>
+            <div class="combobox-menu">
+            <ul class="combo-item">  
+                <li><img src="https://img.icons8.com/offices/512/flag-of-afghanistan.png"> Afghanistan</li>
+                <li><img src="https://img.icons8.com/offices/512/albania.png"> Albania</li>
+                <li><img src="https://img.icons8.com/office/512/algeria.png"> Algeria</li>
+                <div class="combo-line"></div>
+                <li><img src="https://img.icons8.com/office/512/andorra--v2.png"> Andorra</li>
+                <li><img src="https://img.icons8.com/office/512/antigua-and-barbuda.png"> Antigua and Barbuda</li>
+             </ul>
+          </div>
+        </div>
+    </div>
+    
+    <script>
+const customSelect = document.querySelector('.custom-select');
+const select = customSelect.querySelector('select');
+const selectTrigger = customSelect.querySelector('.custom-select__trigger');
+
+select.addEventListener('change', () => {
+  selectTrigger.textContent = select.value;
+});
+
+selectTrigger.addEventListener('click', () => {
+  select.focus();
+});
+    </script>
+</body>
+</html>

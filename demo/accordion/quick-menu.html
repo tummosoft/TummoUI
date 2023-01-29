@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <link href="../../css/core.css" rel="stylesheet" type="text/css" />
+    <link href="../../css/menu-quick.css" rel="stylesheet" type="text/css" />    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+</head>
+<style>
+    
+</style>
+<body style="background-color:grey;">
+    <div style="margin: 100px;">
+        <div id="info">Observe the platform icon's motion direction when there is up and down hover on options.</div>
+        <div class="sticky-quick-menu">
+        <div class="menu-quick">
+            <div class="menu-quick-expand"></div>
+            <div class="menu-quick-item">                
+                    <div class="child-item" onmouseleave="quickMenuHideEffect(this)" onmouseover="hoverEffect(this)">    
+                        <div class="hover-effect"></div>                                           
+                    <a class="quick-col" href="#">                                            
+                        <img class="quick-icon" src="https://img.icons8.com/fluency/512/node-js.png">
+                        Node.js
+                    </a>                    
+                    
+                    </div>
+                    <div class="child-item" onmouseleave="quickMenuHideEffect(this)" onmouseover="hoverEffect(this)">
+                        <div class="hover-effect"></div>  
+                        <a class="quick-col" href="">
+                            <img class="quick-icon" src="https://img.icons8.com/fluency/512/c-plus-plus-logo.png">
+                            C++
+                        </a>                    
+                    </div>
+                    <div class="child-item" onmouseleave="quickMenuHideEffect(this)" onmouseover="hoverEffect(this)">
+                        <div class="hover-effect"></div>  
+                        <a class="quick-col" href="">
+                            <img class="quick-icon" src="https://img.icons8.com/color/512/c-sharp-logo-2.png">
+                            C#
+                        </a>                    
+                    </div>
+            </div>
+        </div>
+     </div>
+    </div>
+    
+    <script>
+    let working = false;    
+
+    function hoverEffect(e) {              
+        if (working == false) {           
+            var width = $(e).width();
+            var size = 0;
+            var ele = $(e).find(".hover-effect");
+            var id;
+            ele.show();
+           
+            id = setInterval(frame, 5);
+            function frame() {
+                size = size + 0.9;
+                ele.css("width", size + "px");
+                ele.css("height", size + "px");
+                if (size > 70) {
+                    clearInterval(id);                    
+                    ele.hide();                    
+                    $(e).addClass("menu-quick-waiting");
+                }
+            }
+            working = true;            
+        }
+    }
+
+    function quickMenuHideEffect(e) {
+        removeEffect();        
+    }
+      
+    function removeEffect() {
+        var ele = [];
+        var success = false;
+         ele = $('.menu-quick-item').find(".child-item");
+         for (var i=0; i < ele.length; i++) {
+            $(ele[i]).removeClass("menu-quick-waiting");
+            success = true;
+        }
+        if (success == true) {
+            working = false;
+        }
+    }
+
+    function checkingStatus() {        
+        removeEffect();        
+    }
+
+    $(document).on("click", function() {
+        
+        checkingStatus();
+    });
+    </script>
+</body>
+</html>

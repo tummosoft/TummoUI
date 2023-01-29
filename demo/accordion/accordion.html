@@ -1,0 +1,88 @@
+﻿<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <link href="../../css/core.css" rel="stylesheet" type="text/css" />
+    <link href="../../css/accordion.css" rel="stylesheet" type="text/css" />
+    <link href="../../css/icons.css" rel="stylesheet" type="text/css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+<!-- https://boxicons.com/usage -->
+
+</head>
+<body style="background-color:gray;">
+    <div id="accordion1" class="l-accordion-panel" style="margin: 50px;width: 200px;">
+        <div id="group1">
+            <div class="l-accordion-header l-accordion-header-hasicon">
+                <div onclick="accordion_click('0')" id="acco-bt0" status="open" class="l-accordion-toggle l-accordion-toggle-open"></div>
+                <div class="l-accordion-header-inner">
+                    <i class='bx bxs-cloud-upload'></i><span class="acc-item">Upload Today</span>
+
+                </div>
+            </div>
+            <div class="l-accordion-content">
+                <ul>
+                    <li><a href="#">Photoshop CS 2023</a></li>
+                    <li><a href="#">Corel Draw 2023</a></li>
+                    <li><a href="#">Microsoft Office 365</a></li>
+                </ul>
+            </div>
+        </div>        
+        <div id="group2">
+            <div class="l-accordion-header l-accordion-header-hasicon">
+                <div onclick="accordion_click('1')" id="acco-bt1" status="close" class="l-accordion-toggle l-accordion-toggle-close"></div>
+                <div class="l-accordion-header-inner">
+                    <i class='bx bxs-cloud-download'></i><span class="acc-item">Download Today</span>
+
+                </div>
+            </div>
+            <div class="l-accordion-content">
+                <ul>
+                    <li><a href="#">Photoshop CS 2023</a></li>
+                    <li><a href="#">Corel Draw 2023</a></li>
+                    <li><a href="#">Microsoft Office 365</a></li>
+                </ul>
+            </div>
+        </div>      
+       
+    </div>
+
+    
+    <script>
+        var ele = document.getElementsByClassName('l-accordion-content');
+        ele[0].style.display = 'block';
+
+        function accordion_click(id) {
+            var x = document.getElementById('acco-bt' + id);
+            var status = x.getAttribute("status");
+            
+            if (status === 'open') {
+                x.classList.remove('l-accordion-toggle-open');            
+                x.classList.add('l-accordion-toggle-close');
+                var ele = document.getElementsByClassName('l-accordion-content');
+                ele[id].style.display = 'none';
+                x.setAttribute("status", "close");                 
+            } else {
+                x.classList.remove('l-accordion-toggle-close');            
+                x.classList.add('l-accordion-toggle-open');
+                var ele = document.getElementsByClassName('l-accordion-content');
+                ele[id].style.display = 'block';
+                x.setAttribute("status", "open"); 
+            }
+        }
+
+        function accordion_item_lick(id) {
+            b4j_raiseEvent(this.id + "_select", {});
+        }
+
+        //var x = document.getElementById('accordion1');
+        //x.querySelector(".l-accordion-toggle-open").classList.replace('l-accordion-toggle-open', 'l-accordion-toggle-close');
+        
+    </script>
+</body>
+</html>
