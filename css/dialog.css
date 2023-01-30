@@ -1,7 +1,7 @@
 .tummo-dialog {position: absolute; width: 350px;background: var(--jl-gradient);margin: auto;    
     top: 0; left: 0; bottom: 0; right: 0;border: 1px solid var(--jl-border-color);
     display: flex; flex-direction: column;
-    border-radius: var(--radius-core);overflow:hidden; }
+    border-radius: var(--radius-core);overflow:hidden;display: none;}
 .tummo-dialog-title {width: 100%;height: var(--size-large);background: var(--jl-gradient);display: flex;flex-direction: row; border-bottom: var(--jl-border-color);padding-left: 2px;padding-right: 5px ;align-items: center;vertical-align: middle;padding-top: 5px;}
 .dialog-title-icon {position: relative; width: 25px;margin-right: 5px;width: 30px;}
 .dialog-title-text {position: relative; color: var(--jl-text-color);font-size: var(--size3);align-items: center;vertical-align:middle;font-weight: bold;}

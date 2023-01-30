@@ -21,7 +21,7 @@
     --jl-text-color: rgba(0,0,0,.84);
     --jl-text-light: rgba(0,0,0,.68);
     --jl-text-gray: rgba(0,0,0,.6);
-    --jl-text-gray-lightest: rgba(0,0,0,.5);
+    --jl-text-gray-lightest: rgb(7, 7, 8);
     --jl-border-color: 1px solid #DCDFE6;
     --jl-border-color-light: rgba(0,0,0,.05);
     --jl-background-gray: #f5f7fd;

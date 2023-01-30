@@ -9,6 +9,7 @@
     <link href="../css/core.css" rel="stylesheet" type="text/css" />
     <link href="../css/button.css" rel="stylesheet" type="text/css" />   
     <link href="../css/dialog.css" rel="stylesheet" type="text/css" />      
+    <link href="../css/animation.css" rel="stylesheet" type="text/css" />  
     <script src="../js/button.js"></script>
     <script src="../js/drag.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -23,12 +24,13 @@
 <body style="background-color:grey;">
     <div style="margin: 100px;">
         <div id="info">Observe the platform icon's motion direction when there is up and down hover on options.</div>
-       
-        <div class="tummo-dialog info">
+        <div style="margin-top: 50px;"></div>
+        <button onclick="openDialog()" class="tummo-btn tummo-btn-light btn-medium">Click here to open dialog</button>
+        <div class="tummo-dialog info dialog-slide-up">
            <div class="tummo-dialog-title">
                 <div class="dialog-title-icon"><img src="https://img.icons8.com/external-victoruler-linear-colour-victoruler/512/external-information-medical-victoruler-linear-colour-victoruler.png"></div>
                 <div class="dialog-title-text">Infomation</div>
-                <div class="dialog-title-close"> 
+                <div class="dialog-title-close" onclick="closeDialog(this)"> 
                     <div class="tummo-btn-round tummo-btn-light circle-small" onmouseleave="quickMenuHideEffect(this)"  onmouseover="btnHoverEffect(this)"><i class='bx bx-x'></i></div>
                 </div>                  
            </div>
@@ -36,7 +38,7 @@
             <p>A free platform for download vector icons in SVG, PNG, EPS, AI & PSD format. All of our icon packs are completely free for commercial & personal use under</p>
             </div>
         <div class="tummo-dialog-bottom">                
-            <div class="tummo-btn tummo-btn-light btn-small" onmouseleave="quickMenuHideEffect(this)"  onmouseover="btnHoverEffect(this)">
+            <div class="tummo-btn tummo-btn-light btn-small" onclick="btnClose(this)" onmouseleave="quickMenuHideEffect(this)"  onmouseover="btnHoverEffect(this)">
                 <span class="hover-effect"></span>
                 Close
             </div>                
@@ -46,6 +48,28 @@
     
     <script>       
         dragElement('.info');
+        
+        function closeDialog(e) {
+            $(document).find('.tummo-dialog').fadeOut(2000);            
+        }
+
+        function btnClose(e) {
+            var pr = findParent(e, '.tummo-dialog');
+            console.log(pr);
+        }
+
+        function findParent(element, parentSelector) {
+            var parent = $(element).parent();
+            while (!parent.is(parentSelector) && parent.length) {
+                parent = parent.parent();
+                closeDialog(parent);
+            }
+            return parent.length ? parent : null;
+        }
+
+        function openDialog() {
+            $(document).find('.tummo-dialog').fadeIn(3000).show(); 
+        }
     </script>
 </body>
 </html>

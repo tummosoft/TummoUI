@@ -60,8 +60,8 @@
     background: var(--jl-gradient-header);
     overflow: hidden;
     cursor: pointer;
-    border-top: 1px solid var(--jl-border-color);
-    border-bottom: 1px solid var(--jl-border-color);
+    border-top: 1px solid var(--jl-border-color-light);
+    border-bottom: 1px solid var(--jl-border-color-light);
 }
 .l-accordion-header::after {border-bottom: 0px solid;}
 

@@ -64,14 +64,16 @@
             if (status === 'open') {
                 x.classList.remove('l-accordion-toggle-open');            
                 x.classList.add('l-accordion-toggle-close');
-                var ele = document.getElementsByClassName('l-accordion-content');
-                ele[id].style.display = 'none';
+                //var ele = document.getElementsByClassName('l-accordion-content');
+                $(ele[id]).slideUp(500);
+                //ele[id].style.display = 'none';
                 x.setAttribute("status", "close");                 
             } else {
                 x.classList.remove('l-accordion-toggle-close');            
                 x.classList.add('l-accordion-toggle-open');
-                var ele = document.getElementsByClassName('l-accordion-content');
-                ele[id].style.display = 'block';
+                //var ele = document.getElementsByClassName('l-accordion-content');
+                //ele[id].style.display = 'block';
+                $(ele[id]).slideDown(500);
                 x.setAttribute("status", "open"); 
             }
         }
