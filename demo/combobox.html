@@ -4,8 +4,8 @@
 <head>
     <meta charset="utf-8" />
     <title></title>
-    <link href="../../css/core.css" rel="stylesheet" type="text/css" />
-    <link href="../../css/combobox.css" rel="stylesheet" type="text/css" />    
+    <link href="../css/core.css" rel="stylesheet" type="text/css" />
+    <link href="../css/combobox.css" rel="stylesheet" type="text/css" />    
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
@@ -26,7 +26,7 @@
                 </div>
             </div> 
             <div id="item-id124" class="combobox-menu">
-                <ul class="combo-item scrollbar">  
+                <ul class="combo-item scrollbar" onscroll="checkscroll(this)">  
                     <li id="op1-id124" onclick="cboItemClick(this)"><img src="https://img.icons8.com/offices/512/flag-of-afghanistan.png"> Afghanistan</li>
                     <li id="op2-id124" onclick="cboItemClick(this)"><img src="https://img.icons8.com/offices/512/albania.png"> Albania</li>
                     <li id="op3-id124" onclick="cboItemClick(this)"><img src="https://img.icons8.com/office/512/algeria.png"> Algeria</li>
@@ -42,12 +42,32 @@
                 </ul>
               </div>          
         </div>
-        
+        <div class="combobox-wrapper">
+            <div id="box-id125" class="combo-text">
+                <input id="text-id125" type="text" class="combo-input" value="Apple choices">                    
+                <div id="id125" onclick="cboButtonClick(this)" class="combo-button">                    
+                </div>
+            </div> 
+            <div id="item-id125" class="combobox-menu">
+                <ul class="combo-item scrollbar" onscroll="checkscroll(this)">  
+                    <li id="op1-id125" onclick="cboItemClick(this)"><img src="https://img.icons8.com/offices/512/flag-of-afghanistan.png"> Afghanistan</li>
+                    <li id="op2-id125" onclick="cboItemClick(this)"><img src="https://img.icons8.com/offices/512/albania.png"> Albania</li>
+                    <li id="op3-id125" onclick="cboItemClick(this)"><img src="https://img.icons8.com/office/512/algeria.png"> Algeria</li>
+                    <div class="combo-line"></div>
+                    <li><img src="https://img.icons8.com/office/512/andorra--v2.png"> Andorra</li>
+                    <li><img src="https://img.icons8.com/office/512/antigua-and-barbuda.png"> Antigua and Barbuda</li>
+                    <li><img src="https://img.icons8.com/offices/512/flag-of-afghanistan.png"> Afghanistan</li>
+                    <li><img src="https://img.icons8.com/offices/512/albania.png"> Albania</li>
+                    <li><img src="https://img.icons8.com/office/512/algeria.png"> Algeria</li>
+                    <div class="combo-line"></div>
+                    <li><img src="https://img.icons8.com/office/512/andorra--v2.png"> Andorra</li>
+                    <li><img src="https://img.icons8.com/office/512/antigua-and-barbuda.png"> Antigua and Barbuda</li>
+                </ul>
+              </div>          
+        </div>
     </div>
     
     <script>
-        const wd = $('#item-id124').width() + 25;
-        $('#box-id124').css("width",wd);
         
         function cboItemClick(id) {
             const vituarlID = id.id;
@@ -55,12 +75,10 @@
             const newID = '#text-' + spID[1];            
             const boxID = '#box-' + spID[1];
             $(boxID).removeClass('hover-border');
-
-            $(newID).val($(id).text());
-            
+            $(newID).val($(id).text());            
             const popupID = '#item-' + spID[1]; 
             cboHide(popupID);
-            
+            event_item_click(id);            
         }
 
         function cboButtonClick(ele) {            
@@ -68,7 +86,8 @@
             const boxID = '#box-' + ele.id;
             $(boxID).addClass('hover-border');
             cboHide(realID);
-                      
+            event_Expand_click(realID);     
+            
         }
 
         function cboHide(realID) {
@@ -77,6 +96,36 @@
             } else {
                 $(realID).show().fadeIn(200);
             }  
+        }
+
+        var lastScrollTop = 0;
+
+        function checkscroll(e) {            
+            var st = e.scrollTop;
+            if (st > lastScrollTop) {
+                event_cbo_item_scroll_down('down');
+                lastScrollTop = st;
+            } else if (st < lastScrollTop) {
+                event_cbo_item_scroll_up('up');
+                lastScrollTop = st;
+            }
+   
+        }
+        
+        function event_Expand_click(cboID) {
+            console.log(cboID);
+        }
+
+        function event_item_click(itemID) {
+            console.log(itemID.id);
+        }
+
+        function event_cbo_item_scroll_down(sts) {
+            console.log(sts);
+        }
+
+        function event_cbo_item_scroll_up(sts) {
+            console.log(sts);
         }
     </script>
 </body>

@@ -1,0 +1,56 @@
+.tummo-btn {
+    align-items: center;
+    border: none;
+    border-radius: var(--radius-core);
+    color: #fff;
+    cursor: pointer;
+    display: inline-flex;
+    flex-direction: row;
+    font-size: 14px;
+    justify-content: center;
+    line-height: 14px;
+    min-height: 30px;
+    min-width: 30px;
+    padding: 5px 7px;
+    position: relative;
+    text-align: left;
+    text-align: center;
+    transition: background-color .5s,opacity 1s;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    vertical-align: middle;
+    overflow: hidden;
+}
+.tummo-btn .hover-effect {     
+    background: var(--jl-hover-bg);
+    opacity: 25%;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    width: 0px;
+    height: 0px;
+    border-radius: 50%;          
+    position: absolute;    
+    z-index: 900; 
+    display: none;           
+}
+.tummo-btn-primary {
+    background-color: var(--jl-main-color);
+    color: var(--jl-color-white);
+    z-index: 1;
+}
+.tummo-btn-light {
+    background-color: var(--jl-background-gray-light);
+    box-shadow: var(--shadown-black);
+    color: var(--jl-text-color);
+    z-index: 1;
+}
+.on-hover {background: var(--jl-hover-bg);color: var(--jl-text-color);}
+.disabled {background: var(--jl-border-color-light); cursor: not-allowed;
+    z-index: 0;color: var(--primary-color);border: 1px solid var(--primary-color);}
+.tummo-btn-group {margin-top: var(--top-element) ; position: relative; display: flex; flex-direction: row; gap: 10px;}
+.tummo-btn-group-image {margin-top:var(--top-element);display: table;display: table-row;gap:0;border-radius: var(--radius-core);background: var(--jl-gradient);overflow: hidden;}
+.non-radius * {border-radius: 0px;}

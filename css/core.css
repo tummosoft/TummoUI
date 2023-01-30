@@ -42,12 +42,11 @@
     --size-icon: 20px;
     --shadown-black: 0 2px 12px 0 rgb(0 0 0 / 10%);
     --radius-core: 5px;    
+    --top-element: 10px;
+    --size-base: 26px;
+    --size-medium: 30px;
     
 }
-svg:hover {
-    fill: red;
-  }
-  
 body {font-family: Segoe UI, Segoe UI Midlevel, Segoe WP, Arial, sans-serif;font-size: var(--size4);}
 a {text-decoration: none;color: var(--jl-main-color);}
 .scrollbar
@@ -57,19 +56,37 @@ a {text-decoration: none;color: var(--jl-main-color);}
   cursor: -webkit-grab; cursor: grab;
   border-radius: var(--radius-core);
 }
-.scrollbar::-webkit-scrollbar
+::-webkit-scrollbar
 {
 	width: 10px;
   border-radius: var(--radius-core);
-	background-color: #F5F5F5;
+	background-color: var(--jl-background-gray);
 }
-.scrollbar::-webkit-scrollbar-track
+::-webkit-scrollbar-track
 {
 	-webkit-box-shadow: inset 0 0 3px rgba(0,0,0,0.3);	  
 	background-color: var(--jl-gradient);
 }
-.scrollbar::-webkit-scrollbar-thumb
+::-webkit-scrollbar-thumb
 {
 	border-radius: var(--radius-core);
 	background-color: var(--jl-border-color);	
+}
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555; 
 }

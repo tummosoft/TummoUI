@@ -1,0 +1,115 @@
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <link href="../css/core.css" rel="stylesheet" type="text/css" />
+    <link href="../css/button.css" rel="stylesheet" type="text/css" />    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+</head>
+<style>
+    
+</style>
+<body style="background-color:grey;">
+    <div style="margin: 100px;">
+        <div id="info">Observe the platform icon's motion direction when there is up and down hover on options.</div>
+        <div class="tummo-btn tummo-btn-primary" onmouseleave="quickMenuHideEffect(this)"  onmouseover="btnHoverEffect(this)">
+            <span class="hover-effect"></span>
+            Click here
+        </div>
+        <div class="tummo-btn tummo-btn-light" onmouseleave="quickMenuHideEffect(this)"  onmouseover="btnHoverEffect(this)">
+            <span class="hover-effect"></span>
+            Click here
+        </div>
+        <h3>Group button</h3>
+        <div class="tummo-btn-group">
+            <div class="tummo-btn tummo-btn-primary disabled" onmouseleave="quickMenuHideEffect(this)"  onmouseover="btnHoverEffect(this)">
+                <span class="hover-effect"></span>
+                Disabled Button
+            </div>
+            <div class="tummo-btn tummo-btn-light" onmouseleave="quickMenuHideEffect(this)"  onmouseover="btnHoverEffect(this)">
+                <span class="hover-effect"></span>
+                Click here
+            </div>
+        </div>
+        <h3>Image button</h3>
+        <div class="tummo-btn-group-image non-radius">
+            <div class="tummo-btn tummo-btn-primary" onmouseleave="quickMenuHideEffect(this)"  onmouseover="btnHoverEffect(this)">
+                <span class="hover-effect"></span>
+                <i class='bx bxl-apple'></i>
+            </div>
+            <div class="tummo-btn tummo-btn-light" onmouseleave="quickMenuHideEffect(this)"  onmouseover="btnHoverEffect(this)">
+                <span class="hover-effect"></span>
+                <i class='bx bxl-microsoft' ></i>
+            </div>
+            <div class="tummo-btn tummo-btn-light" onmouseleave="quickMenuHideEffect(this)"  onmouseover="btnHoverEffect(this)">
+                <span class="hover-effect"></span>
+                <i class='bx bxl-adobe' ></i>
+            </div>
+        </div>
+        
+    </div>
+    
+    <script>
+       let working = false;    
+
+function btnHoverEffect(e) {              
+    if (working == false) { 
+        var checkEnable = $(e).hasClass('disabled');        
+        if (checkEnable == false) {
+            hoverEffect(e);
+        }     
+    }
+}
+
+function hoverEffect(e) {
+    var size = 0;
+    var ele = $(e).find(".hover-effect");
+        var id;
+        ele.show();
+        var width = $(e).width();
+        id = setInterval(frame, 5);
+        function frame() {
+            size = size + 0.9;
+            ele.css("width", size + "px");
+            ele.css("height", size + "px");
+            if (size > 70) {
+                clearInterval(id);                    
+                ele.hide();                    
+                $(e).addClass("on-hover");
+            }
+        }
+        working = true;     
+}
+
+function quickMenuHideEffect(e) {
+        removeEffect();        
+    }
+      
+    function removeEffect() {
+        var ele = [];
+        var success = false;
+         ele = $('.tummo-btn');
+         
+         for (var i=0; i < ele.length; i++) {
+            $(ele[i]).removeClass("on-hover");
+            success = true;            
+        }
+        if (success == true) {
+            working = false;
+        }
+    }
+
+    $(document).on("click", function() {        
+        removeEffect(); 
+    });
+    </script>
+</body>
+</html>

@@ -1,15 +1,16 @@
-.combobox-wrapper {position: relative;max-width: 250px;}
+.combobox-wrapper {position: relative;max-width: 250px;display: table;margin-top: var(--top-element);}
 .combo-text {min-width: 100px;border: 1px solid var(--jl-border-color);
-height: 36px;border-radius: var(--radius-core);background-color: var(--jl-background-gray-lightest);display: flex;
+height: var(--size-medium);border-radius: var(--radius-core);background-color: var(--jl-background-gray-lightest);display: flex;
 }
-.combo-text input {width:calc(100% - 30px);border:none; padding: 2px;margin: 3px;height: 26px;font-size: var(--size3);}
+.combo-text input {width:calc(100% - 30px);border:none; padding: 3px;margin: 2px;height: calc(var((--size-medium))-10);font-size: var(--size3);line-height: calc(var((--size-medium))-10);}
+.combo-text:hover {outline: 2px solid var(--jl-hover-bg);}
 .combobox-menu {
     position: absolute;
     height: 200px;
     /* width: 100%; */
     overflow: hidden;    
     display: none;
-   
+   z-index: 1250;
   }
 
 .combo-item {background: var(--jl-gradient);
@@ -20,11 +21,12 @@ height: 36px;border-radius: var(--radius-core);background-color: var(--jl-backgr
     outline: none;    
     padding-bottom: 5px;
     height: 200px;
-    max-height: 200px;     
+    max-height: 200px;  
+    display: table-row;   
     position: relative;    
     padding-top: 5px;}
 
-.combo-item li {margin-bottom: 5px;padding: 0px 12px 0px 8px;height: 30px;line-height: 30px;list-style: none;display: flex;gap: 10px;align-items: center;}
+.combo-item li {margin-bottom: 5px;padding: 0px 12px 0px 8px;height: var(--size-medium);line-height: var(--size-medium);list-style: none;display: flex;gap: 10px;align-items: center;}
 .combo-item li:hover{background-color: var(--jl-hover-bg);color: var(--jl-hover-color);cursor: pointer;}  
 .bx {margin-right: 3px;cursor: pointer;}
 .combo-line {border-bottom: 1px solid var(--jl-border-color-light);margin: 2px 2px 2px 2px;}

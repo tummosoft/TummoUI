@@ -6,8 +6,8 @@
 <head>
     <meta charset="utf-8" />
     <title></title>
-    <link href="../../css/core.css" rel="stylesheet" type="text/css" />
-    <link href="../../css/dialog.css" rel="stylesheet" type="text/css" />    
+    <link href="../css/core.css" rel="stylesheet" type="text/css" />
+    <link href="../css/dialog.css" rel="stylesheet" type="text/css" />    
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
@@ -31,8 +31,6 @@
     </div>
     
     <script>
-        const wd = $('#item-id124').width() + 25;
-        $('#box-id124').css("width",wd);
         
         function cboItemClick(id) {
             const vituarlID = id.id;
@@ -63,6 +61,8 @@
                 $(realID).show().fadeIn(200);
             }  
         }
+        // transition-duration: 86ms;
+    //transition-property: opacity,transform;
     </script>
 </body>
 </html>
