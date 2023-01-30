@@ -20,38 +20,64 @@
         <div id="info">Observe the platform icon's motion direction when there is up and down hover on options.</div>
         <i class='bx bx-chevron-down' ></i>
         <div class="combobox-wrapper">
-            <div class="combo-text">
-                <input type="text" class="combo-input" value="Apple choices">                    
-                
-                <div class="combo-button">
-                    
+            <div id="box-id124" class="combo-text">
+                <input id="text-id124" type="text" class="combo-input" value="Apple choices">                    
+                <div id="id124" onclick="cboButtonClick(this)" class="combo-button">                    
                 </div>
-            </div>
-            <div class="combobox-menu">
-            <ul class="combo-item">  
-                <li><img src="https://img.icons8.com/offices/512/flag-of-afghanistan.png"> Afghanistan</li>
-                <li><img src="https://img.icons8.com/offices/512/albania.png"> Albania</li>
-                <li><img src="https://img.icons8.com/office/512/algeria.png"> Algeria</li>
-                <div class="combo-line"></div>
-                <li><img src="https://img.icons8.com/office/512/andorra--v2.png"> Andorra</li>
-                <li><img src="https://img.icons8.com/office/512/antigua-and-barbuda.png"> Antigua and Barbuda</li>
-             </ul>
-          </div>
+            </div> 
+            <div id="item-id124" class="combobox-menu">
+                <ul class="combo-item scrollbar">  
+                    <li id="op1-id124" onclick="cboItemClick(this)"><img src="https://img.icons8.com/offices/512/flag-of-afghanistan.png"> Afghanistan</li>
+                    <li id="op2-id124" onclick="cboItemClick(this)"><img src="https://img.icons8.com/offices/512/albania.png"> Albania</li>
+                    <li id="op3-id124" onclick="cboItemClick(this)"><img src="https://img.icons8.com/office/512/algeria.png"> Algeria</li>
+                    <div class="combo-line"></div>
+                    <li><img src="https://img.icons8.com/office/512/andorra--v2.png"> Andorra</li>
+                    <li><img src="https://img.icons8.com/office/512/antigua-and-barbuda.png"> Antigua and Barbuda</li>
+                    <li><img src="https://img.icons8.com/offices/512/flag-of-afghanistan.png"> Afghanistan</li>
+                    <li><img src="https://img.icons8.com/offices/512/albania.png"> Albania</li>
+                    <li><img src="https://img.icons8.com/office/512/algeria.png"> Algeria</li>
+                    <div class="combo-line"></div>
+                    <li><img src="https://img.icons8.com/office/512/andorra--v2.png"> Andorra</li>
+                    <li><img src="https://img.icons8.com/office/512/antigua-and-barbuda.png"> Antigua and Barbuda</li>
+                </ul>
+              </div>          
         </div>
+        
     </div>
     
     <script>
-const customSelect = document.querySelector('.custom-select');
-const select = customSelect.querySelector('select');
-const selectTrigger = customSelect.querySelector('.custom-select__trigger');
+        const wd = $('#item-id124').width() + 25;
+        $('#box-id124').css("width",wd);
+        
+        function cboItemClick(id) {
+            const vituarlID = id.id;
+            const spID = vituarlID.split("-");            
+            const newID = '#text-' + spID[1];            
+            const boxID = '#box-' + spID[1];
+            $(boxID).removeClass('hover-border');
 
-select.addEventListener('change', () => {
-  selectTrigger.textContent = select.value;
-});
+            $(newID).val($(id).text());
+            
+            const popupID = '#item-' + spID[1]; 
+            cboHide(popupID);
+            
+        }
 
-selectTrigger.addEventListener('click', () => {
-  select.focus();
-});
+        function cboButtonClick(ele) {            
+            var realID = '#item-' + ele.id;
+            const boxID = '#box-' + ele.id;
+            $(boxID).addClass('hover-border');
+            cboHide(realID);
+                      
+        }
+
+        function cboHide(realID) {
+            if ($(realID).is(":visible")) {
+                $(realID).hide().fadeOut(200);
+            } else {
+                $(realID).show().fadeIn(200);
+            }  
+        }
     </script>
 </body>
 </html>

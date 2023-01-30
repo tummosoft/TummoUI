@@ -22,7 +22,7 @@
     --jl-text-light: rgba(0,0,0,.68);
     --jl-text-gray: rgba(0,0,0,.6);
     --jl-text-gray-lightest: rgba(0,0,0,.5);
-    --jl-border-color: rgba(0,0,0,.1);
+    --jl-border-color: 1px solid #DCDFE6;
     --jl-border-color-light: rgba(0,0,0,.05);
     --jl-background-gray: #f5f7fd;
     --jl-background-gray-light: #f9f9f9;
@@ -40,8 +40,8 @@
     --size4: 14px;
     --size5: 12px;
     --size-icon: 20px;
-    --shadown-black: 0 1px 3px hsl(0deg 0% 7% / 10%);
-    --radius-core: 5px;
+    --shadown-black: 0 2px 12px 0 rgb(0 0 0 / 10%);
+    --radius-core: 5px;    
     
 }
 svg:hover {
@@ -50,3 +50,26 @@ svg:hover {
   
 body {font-family: Segoe UI, Segoe UI Midlevel, Segoe WP, Arial, sans-serif;font-size: var(--size4);}
 a {text-decoration: none;color: var(--jl-main-color);}
+.scrollbar
+{
+	float: left;		
+	overflow-y: scroll;		
+  cursor: -webkit-grab; cursor: grab;
+  border-radius: var(--radius-core);
+}
+.scrollbar::-webkit-scrollbar
+{
+	width: 10px;
+  border-radius: var(--radius-core);
+	background-color: #F5F5F5;
+}
+.scrollbar::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 3px rgba(0,0,0,0.3);	  
+	background-color: var(--jl-gradient);
+}
+.scrollbar::-webkit-scrollbar-thumb
+{
+	border-radius: var(--radius-core);
+	background-color: var(--jl-border-color);	
+}

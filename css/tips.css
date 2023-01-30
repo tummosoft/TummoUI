@@ -4,13 +4,12 @@
     position: relative;
     left: 7px;
     top: 0px;    
-    color: #FFC93C;
-    background: var(--jl-main-color);    
-    background: var(--jl-gradient);
+    color: var(--jl-text-color);
+    background: var(--jl-hover-bg);        
     z-index: 10000;
     padding: 4px 5px 5px 5px;
     padding-right: 6px;    
-    font-size: var(--size5);
+    font-size: var(--size4);
     text-align: left;
     width: 100%;
     height: auto;   
@@ -27,12 +26,12 @@
     z-index: 10001;
     width: 8px;
     height: 8px;
-    border-top: 1px solid var(--jl-main-color);
-    border-right: 1px solid var(--jl-main-color);    
+    border-top: 1px solid var(--jl-hover-bg);
+    border-right: 1px solid var(--jl-hover-bg);    
 }
 .l-verify-tip-corner:after {
     content: "";    
-    background: var(--jl-main-color);
+    background: var(--jl-hover-bg);
     height: 50px;
     width: 50px;
     -moz-transform: rotate(45deg); 

@@ -1,0 +1,8 @@
+.tummo-dialog {position: absolute; width: 350px;height: 150px;background: var(--jl-gradient);margin: auto;    
+    top: 0; left: 0; bottom: 0; right: 0;border: 1px solid var(--jl-border-color);
+    display: flex; flex-direction: column;
+    border-radius: var(--radius-core);overflow: hidden;}
+.tummo-dialog-title {width: 100%;position: relative;height: 32px;background: var(--jl-main-color);display: flex;flex-direction: row;}
+.dialog-title-icon {width: 25px;height: 25px;margin: 3px;margin-right: 5px;}
+.dialog-title-text {color: var(--jl-text-color);font-size: var(--size3);line-height: 30px;}
+.dialog-title-close {background: url('/assets/images/close.png');float: right; background-repeat: no-repeat;background-size: 25px 25px;width:25px; height: 25px; float: right;display: flex;position:absolute; right: 5px;top:3px;}
