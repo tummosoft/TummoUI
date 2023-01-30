@@ -1,0 +1,46 @@
+.t-checkbox {cursor: pointer;
+    font-size: 0;
+    vertical-align: middle;
+    white-space: nowrap;}
+    .t-checkbox {
+      cursor: pointer;
+      font-size: 0;
+      white-space: nowrap;
+    }
+    .t-checkbox input[type="checkbox"], .t-checkbox-text {
+      vertical-align: middle;
+    }
+    .t-checkbox input[type="checkbox"]:checked {
+      background-color: var(--jl-hover-bg);  
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" style="fill:rgb(67, 112, 245);transform: ;msFilter:;"><path d="m10 15.586-3.293-3.293-1.414 1.414L10 18.414l9.707-9.707-1.414-1.414z"></path></svg>');
+      background-repeat: no-repeat;  
+    }
+    .t-checkbox input[type="checkbox"] {
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      background-clip: border-box;
+      background-color: var(--jl-background-gray-light);
+      border-radius: 2px;
+      font-size: 14px;
+      height: 14px;
+      line-height: 14px;
+      margin: 0 !important;
+      outline: none;
+      transition: background-color .3s,box-shadow .3s;
+      width: 14px;
+    }
+    .t-checkbox input[type="checkbox"]::after {
+      box-sizing: inherit;
+      content: "";
+      color: white;
+       
+    }
+    
+    .t-checkbox-text {
+        display: inline-block;
+        font-size: var(--size4);
+        margin-right: 5px;
+        padding-left: 4px;
+        color: var(--jl-text-color);
+    }

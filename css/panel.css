@@ -1,0 +1,19 @@
+.tummo-panel {min-width: 100px;min-height: 150px;background: var(--jl-gradient);    
+    position: relative;
+    border: 1px solid var(--jl-border-color);
+    display: flex; flex-direction: column;
+    border-radius: var(--radius-core);overflow:hidden;resize: both;}
+.panel-top {width: 100%;height: var(--size-large);background: var(--jl-gradient);display: flex;flex-direction: row; border-bottom: var(--jl-border-color);padding-left: 2px;padding-right: 5px ;align-items: center;vertical-align: middle;padding-left: 5px;}
+.top-icon {position: relative; width: 25px;margin-right: 5px;width: 30px;}
+.top-text {position: relative; color: var(--jl-text-color);font-size: var(--size3);align-items: center;vertical-align:middle;font-weight: bold;}
+.top-close {position: absolute;float: right;float: right;top:6px; right:5px;width: 30px;}
+
+.top-close .bx {font-size: var(--size1);}
+.top-icon img {height: var(--size-medium);}
+.panel-content {width: 100%;display:block;position:absolute;top: var(--size-medium);padding: 20px 15px 15px 15px;}
+.panel-bottom {position: absolute;bottom: 0;left: 0; height: var(--size-medium);border-top: var(--jl-border-color);width: 100%;padding-left:5px;}
+.group-left {float: left;}
+.group-right {position: absolute; float: right;right:5px;}
+.bottom-group {list-style: none; display: flex; flex-direction: row;gap:5px; right: 5px;}
+.bottom-item {border-right: var(--jl-border-color); padding-right: 5px; color: var(--jl-hover-color);line-height: var(--size-medium);}
+.bottom-item:last-child {content: '';border: none;}

@@ -17,15 +17,15 @@
     --jl-hover-color: #4370f5;
     --jl-hover-bg: rgb(255,217,108);
     --jl-gradient: linear-gradient(290deg, var(--jl-background-gray-lightest) 35%, var(--jl-color-white) 100%);
-    --jl-gradient-header: linear-gradient(0deg, var(--jl-background-gray-lightest) 35%, var(--jl-color-white) 100%);
+    --jl-gradient-header: rgb(223,221,219);
     --jl-text-color: rgba(0,0,0,.84);
     --jl-text-light: rgba(0,0,0,.68);
     --jl-text-gray: rgba(0,0,0,.6);
     --jl-text-gray-lightest: rgb(7, 7, 8);
     --jl-border-color: 1px solid #DCDFE6;
     --jl-border-color-light: rgba(0,0,0,.05);
-    --jl-background-gray: #f5f7fd;
-    --jl-background-gray-light: #f9f9f9;
+    --jl-background-gray: #cfcfcf;
+    --jl-background-gray-light: #dfdddd;
     --jl-background-gray-lightest: #fafafa;
     --jl-background-white: #fff;
     --jl-color-white: #fff;
@@ -40,6 +40,7 @@
     --size4: 14px;
     --size5: 12px;
     --size-icon: 20px;
+    --jl-border-color: 1px solid var(--jl-background-gray);
     --shadown-black: 0 2px 12px 0 rgb(0 0 0 / 10%);
     --radius-core: 5px;    
     --top-element: 10px;
@@ -93,3 +94,4 @@ a {text-decoration: none;color: var(--jl-main-color);}
 }
 .disabled {background: var(--jl-border-color-light); cursor: not-allowed;
   z-index: 0;color: var(--primary-color);border: 1px solid var(--primary-color);}
+.small-text {font-size: var(--size5);}

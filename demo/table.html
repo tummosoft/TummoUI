@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <link href="../css/core.css" rel="stylesheet" type="text/css" />
+    <link href="../css/button.css" rel="stylesheet" type="text/css" />   
+    <link href="../css/checkbox.css" rel="stylesheet" type="text/css" /> 
+    <script src="../js/button.js"></script>
+    <script src="../js/drag.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+</head>
+<style>
+table {margin: 0 0 40px 0;  
+  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+  display: table;   
+  padding: 2px;
+}
+.row {display: table-row;width: 100%;}
+.row-line {border-bottom: 1px solid var(--jl-background-gray);}
+.cell {display: table-cell;padding: 10px;height: var(--size-medium);}
+.table-wrap { border: var(--jl-border-color);
+    border-radius: var(--radius-core);width:fit-content;margin-right: 10px;}
+.header {margin:2px; color: var(--jl-text-color);background: var(--jl-gradient-header);height: var(--size-medium);line-height: var(--size-medium);text-align: center;font-weight: bold;}
+.first-col {background-color: var(--jl-gradient-header);text-align: center;align-items: center;padding-left: 15px;width: 40px;}
+</style>
+<div style="width: 100px;height: 30px;background-color: aqua;" spellcheck="false" contenteditable="true" autocomplete="off" autocorrect="off" autocapiatlise="off" spellcheck="false" ></div>
+<body style="background-color:whitesmoke;">
+    <div style="margin: 100px;">
+        <div id="info">Observe the platform icon's motion direction when there is up and down hover on options.</div>
+        <div style="margin-top: 50px;"></div>
+        <div class="table table-wrap">    
+            <div class="row header">
+                <div class="cell first-col">
+                    <label class="t-checkbox">
+                        <input name="checkboxGroup" type="checkbox" value="四川菜" checked="">
+                        <div class="t-checkbox-text"></div>
+                        </label>
+                  </div>
+                
+              <div class="cell">
+                Name
+              </div>
+              <div class="cell">
+                Age
+              </div>
+              <div class="cell">
+                Occupation
+              </div>
+              <div class="cell">
+                Location
+              </div>
+            </div>
+            
+            <div class="row">
+                <div class="cell row-line first-col">
+                    <label class="t-checkbox">
+                        <input name="checkboxGroup" type="checkbox" value="四川菜" checked="">
+                        <div class="t-checkbox-text"></div>
+                        </label>
+                  </div>
+              <div class="cell row-line" data-title="Name">
+                Luke Peters
+              </div>
+              <div class="cell row-line" data-title="Age">
+                25
+              </div>
+              <div class="cell row-line" data-title="Occupation">
+                Freelance Web Developer
+              </div>
+              <div class="cell row-line" data-title="Location">
+                Brookline, MA
+              </div>
+            </div>
+            
+            <div class="row">   
+                <div class="cell row-line first-col">
+                    <label class="t-checkbox">
+                        <input name="checkboxGroup" type="checkbox" value="四川菜" checked="">
+                        <div class="t-checkbox-text"></div>
+                        </label>
+                  </div>             
+              <div class="cell row-line" data-title="Name">
+                Joseph Smith
+              </div>
+              <div class="cell row-line" data-title="Age">
+                27
+              </div>
+              <div class="cell row-line" data-title="Occupation">
+                Project Manager
+              </div>
+              <div class="cell row-line" data-title="Location">
+                Somerville, MA
+              </div>
+            </div>
+            
+            <div class="row">
+                <div class="cell row-line first-col">
+                    <label class="t-checkbox">
+                        <input name="checkboxGroup" type="checkbox" value="四川菜" checked="">
+                        <div class="t-checkbox-text"></div>
+                        </label>
+                  </div>
+              <div class="cell row-line" data-title="Name">
+                Maxwell Johnson
+              </div>
+              <div class="cell row-line" data-title="Age">
+                26
+              </div>
+              <div class="cell row-line" data-title="Occupation">
+                UX Architect & Designer
+              </div>
+              <div class="cell row-line" data-title="Location">
+                Arlington, MA
+              </div>
+            </div>
+            
+            <div class="row">
+                <div class="cell row-line first-col">
+                    <label class="t-checkbox">
+                        <input name="checkboxGroup" type="checkbox" value="" checked="true">
+                        <div class="t-checkbox-text"></div>
+                        </label>
+                  </div>
+              <div class="cell" data-title="Name">
+                Harry Harrison
+              </div>
+              <div class="cell" data-title="Age">
+                25
+              </div>
+              <div class="cell" data-title="Occupation">
+                Front-End Developer
+              </div>
+              <div class="cell" data-title="Location">
+                Boston, MA
+              </div>
+            </div>
+            
+          </div>
+    </div>
+    
+    <script>     
+       
+    </script>
+</body>
+</html>
