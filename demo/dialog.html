@@ -9,7 +9,8 @@
     <link href="../css/core.css" rel="stylesheet" type="text/css" />
     <link href="../css/button.css" rel="stylesheet" type="text/css" />   
     <link href="../css/dialog.css" rel="stylesheet" type="text/css" />      
-    <script defer src="../js/button.js"></script>
+    <script src="../js/button.js"></script>
+    <script src="../js/drag.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
@@ -29,53 +30,22 @@
                 <div class="dialog-title-text">Infomation</div>
                 <div class="dialog-title-close"> 
                     <div class="tummo-btn-round tummo-btn-light circle-small" onmouseleave="quickMenuHideEffect(this)"  onmouseover="btnHoverEffect(this)"><i class='bx bx-x'></i></div>
-                </div>
-                <div class="tummo-dialog-content">
-                    <p>A free platform for download vector icons in SVG, PNG, EPS, AI & PSD format. All of our icon packs are completely free for commercial & personal use under</p>
-                </div>
-                <div class="tummo-dialog-bottom">                
-                    <div class="tummo-btn tummo-btn-light btn-small" onmouseleave="quickMenuHideEffect(this)"  onmouseover="btnHoverEffect(this)">
-                        <span class="hover-effect"></span>
-                        Close
-                    </div>                
-                </div>
+                </div>                  
            </div>
+           <div class="tummo-dialog-content">
+            <p>A free platform for download vector icons in SVG, PNG, EPS, AI & PSD format. All of our icon packs are completely free for commercial & personal use under</p>
+            </div>
+        <div class="tummo-dialog-bottom">                
+            <div class="tummo-btn tummo-btn-light btn-small" onmouseleave="quickMenuHideEffect(this)"  onmouseover="btnHoverEffect(this)">
+                <span class="hover-effect"></span>
+                Close
+            </div>                
+        </div>
         </div>
     </div>
     
-    <script>
-        
-        function cboItemClick(id) {
-            const vituarlID = id.id;
-            const spID = vituarlID.split("-");            
-            const newID = '#text-' + spID[1];            
-            const boxID = '#box-' + spID[1];
-            $(boxID).removeClass('hover-border');
-
-            $(newID).val($(id).text());
-            
-            const popupID = '#item-' + spID[1]; 
-            cboHide(popupID);
-            
-        }
-
-        function cboButtonClick(ele) {            
-            var realID = '#item-' + ele.id;
-            const boxID = '#box-' + ele.id;
-            $(boxID).addClass('hover-border');
-            cboHide(realID);
-                      
-        }
-
-        function cboHide(realID) {
-            if ($(realID).is(":visible")) {
-                $(realID).hide().fadeOut(200);
-            } else {
-                $(realID).show().fadeIn(200);
-            }  
-        }
-        // transition-duration: 86ms;
-    //transition-property: opacity,transform;
+    <script>       
+        dragElement('.info');
     </script>
 </body>
 </html>

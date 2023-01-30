@@ -11,3 +11,4 @@
 .dialog-title-icon img {height: var(--size-medium);}
 .tummo-dialog-content {width: 100%;display:block;position:absolute;top: var(--size-medium);padding: 20px 15px 15px 15px;}
 .tummo-dialog-bottom {position: absolute;bottom: 0;left: 0; height: var(--size-medium);border-top: var(--jl-border-color);width: 100%;text-align: center;align-items: center;vertical-align: middle;padding-top: 1px;}
+.drag-over {cursor: pointer;position: absolute;z-index: 12555;}

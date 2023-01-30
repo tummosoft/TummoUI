@@ -59,8 +59,4 @@ function quickMenuHideEffect(e) {
         if (success == true) {
             working = false;
         }
-    }
-
-    $(document).on("click", function() {        
-        removeEffect(); 
-    });
+    }   
