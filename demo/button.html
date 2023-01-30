@@ -20,36 +20,77 @@
 <body style="background-color:grey;">
     <div style="margin: 100px;">
         <div id="info">Observe the platform icon's motion direction when there is up and down hover on options.</div>
-        <div class="tummo-btn tummo-btn-primary" onmouseleave="quickMenuHideEffect(this)"  onmouseover="btnHoverEffect(this)">
+        <div class="tummo-btn tummo-btn-primary btn-medium" onmouseleave="quickMenuHideEffect(this)"  onmouseover="btnHoverEffect(this)">
             <span class="hover-effect"></span>
             Click here
         </div>
-        <div class="tummo-btn tummo-btn-light" onmouseleave="quickMenuHideEffect(this)"  onmouseover="btnHoverEffect(this)">
+        <div class="tummo-btn tummo-btn-light btn-medium" onmouseleave="quickMenuHideEffect(this)"  onmouseover="btnHoverEffect(this)">
             <span class="hover-effect"></span>
             Click here
         </div>
-        <h3>Group button</h3>
+        <h3>Small size</h3>
         <div class="tummo-btn-group">
-            <div class="tummo-btn tummo-btn-primary disabled" onmouseleave="quickMenuHideEffect(this)"  onmouseover="btnHoverEffect(this)">
+            <div class="tummo-btn tummo-btn-primary disabled btn-small" onmouseleave="quickMenuHideEffect(this)"  onmouseover="btnHoverEffect(this)">
                 <span class="hover-effect"></span>
                 Disabled Button
             </div>
-            <div class="tummo-btn tummo-btn-light" onmouseleave="quickMenuHideEffect(this)"  onmouseover="btnHoverEffect(this)">
+            <div class="tummo-btn tummo-btn-light btn-small" onmouseleave="quickMenuHideEffect(this)"  onmouseover="btnHoverEffect(this)">
+                <span class="hover-effect"></span>
+                Click here
+            </div>
+        </div>
+        <h3>Group button</h3>
+        <div class="tummo-btn-group">
+            <div class="tummo-btn tummo-btn-primary btn-medium disabled" onmouseleave="quickMenuHideEffect(this)"  onmouseover="btnHoverEffect(this)">
+                <span class="hover-effect"></span>
+                Disabled Button
+            </div>
+            <div class="tummo-btn tummo-btn-light btn-medium" onmouseleave="quickMenuHideEffect(this)"  onmouseover="btnHoverEffect(this)">
                 <span class="hover-effect"></span>
                 Click here
             </div>
         </div>
         <h3>Image button</h3>
         <div class="tummo-btn-group-image non-radius">
-            <div class="tummo-btn tummo-btn-primary" onmouseleave="quickMenuHideEffect(this)"  onmouseover="btnHoverEffect(this)">
+            <div class="tummo-btn tummo-btn-primary btn-medium" onmouseleave="quickMenuHideEffect(this)"  onmouseover="btnHoverEffect(this)">
                 <span class="hover-effect"></span>
                 <i class='bx bxl-apple'></i>
             </div>
-            <div class="tummo-btn tummo-btn-light" onmouseleave="quickMenuHideEffect(this)"  onmouseover="btnHoverEffect(this)">
+            <div class="tummo-btn tummo-btn-light btn-medium" onmouseleave="quickMenuHideEffect(this)"  onmouseover="btnHoverEffect(this)">
                 <span class="hover-effect"></span>
                 <i class='bx bxl-microsoft' ></i>
             </div>
             <div class="tummo-btn tummo-btn-light" onmouseleave="quickMenuHideEffect(this)"  onmouseover="btnHoverEffect(this)">
+                <span class="hover-effect"></span>
+                <i class='bx bxl-adobe' ></i>
+            </div>
+        </div>
+        <h3>Radius Button</h3>
+        <div class="tummo-btn-group">
+            <div class="tummo-btn tummo-btn-primary btn-medium" onmouseleave="quickMenuHideEffect(this)"  onmouseover="btnHoverEffect(this)">
+                <span class="hover-effect"></span>
+                <i class='bx bxl-apple'></i>
+            </div>
+            <div class="tummo-btn tummo-btn-light btn-medium" onmouseleave="quickMenuHideEffect(this)"  onmouseover="btnHoverEffect(this)">
+                <span class="hover-effect"></span>
+                <i class='bx bxl-microsoft' ></i>
+            </div>
+            <div class="tummo-btn tummo-btn-light btn-medium" onmouseleave="quickMenuHideEffect(this)"  onmouseover="btnHoverEffect(this)">
+                <span class="hover-effect"></span>
+                <i class='bx bxl-adobe' ></i>
+            </div>
+        </div>
+        <h3>Circle Button</h3>
+        <div class="tummo-btn-group">
+            <div class="tummo-btn-round tummo-btn-primary circle-small disabled" onmouseleave="quickMenuHideEffect(this)"  onmouseover="btnHoverEffect(this)">
+                <span class="hover-effect"></span>
+                <i class='bx bxl-apple'></i>
+            </div>
+            <div class="tummo-btn-round circle-small tummo-btn-light" onmouseleave="quickMenuHideEffect(this)"  onmouseover="btnHoverEffect(this)">
+                <span class="hover-effect"></span>
+                <i class='bx bxl-microsoft' ></i>
+            </div>
+            <div class="tummo-btn-round circle-small tummo-btn-light" onmouseleave="quickMenuHideEffect(this)"  onmouseover="btnHoverEffect(this)">
                 <span class="hover-effect"></span>
                 <i class='bx bxl-adobe' ></i>
             </div>
@@ -69,7 +110,16 @@ function btnHoverEffect(e) {
     }
 }
 
+function checkButton(e) {
+    var rs = 70;
+    if ($(e).hasClass('tummo-btn-round')) {
+        rs = 15;
+    }
+    return rs;
+}
+
 function hoverEffect(e) {
+    var ss = checkButton(e);
     var size = 0;
     var ele = $(e).find(".hover-effect");
         var id;
@@ -77,10 +127,10 @@ function hoverEffect(e) {
         var width = $(e).width();
         id = setInterval(frame, 5);
         function frame() {
-            size = size + 0.9;
+            size = size + 0.8;
             ele.css("width", size + "px");
             ele.css("height", size + "px");
-            if (size > 70) {
+            if (size > ss) {
                 clearInterval(id);                    
                 ele.hide();                    
                 $(e).addClass("on-hover");
@@ -90,13 +140,18 @@ function hoverEffect(e) {
 }
 
 function quickMenuHideEffect(e) {
-        removeEffect();        
+        removeEffect(e);        
     }
       
-    function removeEffect() {
+    function removeEffect(e) {
         var ele = [];
         var success = false;
-         ele = $('.tummo-btn');
+        var chk = checkButton(e);
+        if (chk == 70) {
+            ele = $('.tummo-btn');
+        } else {
+            ele = $('.tummo-btn-round');
+        }
          
          for (var i=0; i < ele.length; i++) {
             $(ele[i]).removeClass("on-hover");
@@ -111,5 +166,7 @@ function quickMenuHideEffect(e) {
         removeEffect(); 
     });
     </script>
+
+
 </body>
 </html>

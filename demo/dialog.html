@@ -7,7 +7,9 @@
     <meta charset="utf-8" />
     <title></title>
     <link href="../css/core.css" rel="stylesheet" type="text/css" />
-    <link href="../css/dialog.css" rel="stylesheet" type="text/css" />    
+    <link href="../css/button.css" rel="stylesheet" type="text/css" />   
+    <link href="../css/dialog.css" rel="stylesheet" type="text/css" />      
+    <script defer src="../js/button.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
@@ -21,11 +23,22 @@
     <div style="margin: 100px;">
         <div id="info">Observe the platform icon's motion direction when there is up and down hover on options.</div>
        
-        <div class="tummo-dialog">
+        <div class="tummo-dialog info">
            <div class="tummo-dialog-title">
-                <img class="dialog-title-icon" src="https://img.icons8.com/office/512/appointment-reminders--v1.png">
+                <div class="dialog-title-icon"><img src="https://img.icons8.com/external-victoruler-linear-colour-victoruler/512/external-information-medical-victoruler-linear-colour-victoruler.png"></div>
                 <div class="dialog-title-text">Infomation</div>
-                <div class="dialog-title-close"></div>
+                <div class="dialog-title-close"> 
+                    <div class="tummo-btn-round tummo-btn-light circle-small" onmouseleave="quickMenuHideEffect(this)"  onmouseover="btnHoverEffect(this)"><i class='bx bx-x'></i></div>
+                </div>
+                <div class="tummo-dialog-content">
+                    <p>A free platform for download vector icons in SVG, PNG, EPS, AI & PSD format. All of our icon packs are completely free for commercial & personal use under</p>
+                </div>
+                <div class="tummo-dialog-bottom">                
+                    <div class="tummo-btn tummo-btn-light btn-small" onmouseleave="quickMenuHideEffect(this)"  onmouseover="btnHoverEffect(this)">
+                        <span class="hover-effect"></span>
+                        Close
+                    </div>                
+                </div>
            </div>
         </div>
     </div>
