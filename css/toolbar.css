@@ -1,0 +1,27 @@
+.tummo-toolbar {height: var(--size-medium2);width: 100%;background: var( --jl-gradient-header);box-shadow: var(--shadown-black);border-radius: var(--radius-core);overflow: hidden;display: flex;flex-direction: row;}
+.toolbar-left {width: 10px;height: auto;
+background-position: center center;display: flex; flex-direction: column;margin: 5px;
+}
+.dot-circle {width: 5px; height: 5px; border-radius: 50%; margin-bottom: 2px; background: var(--ji-toolbar-color);box-shadow: var(--ji-btn-shadown);}
+.toolbar-button {display: flex;flex-direction: row;gap:1px;}
+.btn-toolbar {height: 100%;font-size: var(--size3);line-height: var(--size-base);min-width: 25px;text-align: center;position: relative;padding:5px;}
+.toolbar-line {border-right: var(--jl-border-color);}
+.btn-toolbar .hover-effect {     
+    background: var(--jl-hover-bg);
+    opacity: 25%;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    width: 0px;
+    height: 0px;
+    border-radius: 50%;          
+    position: absolute;    
+    z-index: 900; 
+    display: none;               
+}
+.btn-toolbar:hover {background: var(--jl-hover-bg);
+    transition: background-color .5s,opacity 1s;        
+  }
+

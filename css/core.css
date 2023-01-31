@@ -31,6 +31,7 @@
     --jl-color-white: #fff;
     --ji-btn-light-bg: #f8f9fa;
     --ji-btn-light-color: #393e48;
+    --ji-toolbar-color: #707070;
     --ji-btn-shadown: inset 0 1px 0 0 rgba(0,0,0,.17),inset 1px -1px 0 0 rgba(0,0,0,.17),inset -1px 0 0 0 rgba(0,0,0,.17);
     --yellow-200: hsl(47,65%,84%);
     --red-100: hsl(358,76%,90%);
