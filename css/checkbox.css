@@ -20,7 +20,7 @@
       -moz-appearance: none;
       appearance: none;
       background-clip: border-box;
-      background-color: var(--jl-background-gray-light);
+      background-color: var(--jl-main-color);
       border-radius: 2px;
       font-size: 14px;
       height: 14px;

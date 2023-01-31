@@ -8,6 +8,7 @@
     <link href="../css/checkbox.css" rel="stylesheet" type="text/css" /> 
     <script src="../js/button.js"></script>
     <script src="../js/drag.js"></script>
+    <script src="../js/app.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
@@ -15,18 +16,21 @@
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 </head>
 <style>
-table {margin: 0 0 40px 0;  
-  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
-  display: table;   
-  padding: 2px;
-}
-.row {display: table-row;width: 100%;}
-.row-line {border-bottom: 1px solid var(--jl-background-gray);}
-.cell {display: table-cell;padding: 10px;height: var(--size-medium);}
-.table-wrap { border: var(--jl-border-color);
+  .table-wrap {box-shadow: var(--jl-border-color); border: 1px solid var(--jl-background-gray);
     border-radius: var(--radius-core);width:fit-content;margin-right: 10px;}
 .header {margin:2px; color: var(--jl-text-color);background: var(--jl-gradient-header);height: var(--size-medium);line-height: var(--size-medium);text-align: center;font-weight: bold;}
-.first-col {background-color: var(--jl-gradient-header);text-align: center;align-items: center;padding-left: 15px;width: 40px;}
+.row {display: table-row;width: 100%;}
+.row-line {border-bottom: 1px solid var(--jl-background-gray);}
+.cell {display: table-cell;padding: 10px;height: var(--size-medium);border-right: var(--jl-border-color);}
+.first-col {border-bottom: var(--jl-border-color);
+    background-color: var(--jl-gradient-header);text-align: center;align-items: center;padding-left: 15px;width: 40px;}
+.check-col {border-bottom: var(--jl-border-color);border-left: var(--jl-border-color);
+    border-right:var(--jl-border-color);background-color: var(--jl-gradient-header);background-color: var(--jl-gradient-header);text-align: center;align-items: center;padding-left: 15px;width: 40px;}
+.main-content {color: var(--jl-text-color);}
+.row:last-child * {border-bottom: 0px solid white;}
+.row-selected * {background: var(--red-100);}
+.cell-editting {background: var(--third-color);border: 2px dotted var(--jl-main-color);}
+.row-bottom {background: var(--jl-gradient-header);height: var(--size-medium);width: 100%;}
 </style>
 <div style="width: 100px;height: 30px;background-color: aqua;" spellcheck="false" contenteditable="true" autocomplete="off" autocorrect="off" autocapiatlise="off" spellcheck="false" ></div>
 <body style="background-color:whitesmoke;">
@@ -35,7 +39,10 @@ table {margin: 0 0 40px 0;
         <div style="margin-top: 50px;"></div>
         <div class="table table-wrap">    
             <div class="row header">
-                <div class="cell first-col">
+              <div class="cell first-col">
+                
+              </div>
+                <div class="cell check-col">
                     <label class="t-checkbox">
                         <input name="checkboxGroup" type="checkbox" value="四川菜" checked="">
                         <div class="t-checkbox-text"></div>
@@ -54,31 +61,36 @@ table {margin: 0 0 40px 0;
               <div class="cell">
                 Location
               </div>
-            </div>
-            
-            <div class="row">
-                <div class="cell row-line first-col">
+            </div>            
+            <div class="row main-content" id="row1">
+              <div class="cell first-col">
+                1
+              </div>
+                <div class="cell row-line check-col">
                     <label class="t-checkbox">
                         <input name="checkboxGroup" type="checkbox" value="四川菜" checked="">
                         <div class="t-checkbox-text"></div>
                         </label>
                   </div>
-              <div class="cell row-line" data-title="Name">
+              <div class="cell row-line" edit="true" mid="row1" data-title="Name">
                 Luke Peters
               </div>
-              <div class="cell row-line" data-title="Age">
+              <div class="cell row-line" edit="true" mid="row1" data-title="Age">
                 25
               </div>
-              <div class="cell row-line" data-title="Occupation">
+              <div class="cell row-line" edit="true" mid="row1" data-title="Occupation">
                 Freelance Web Developer
               </div>
-              <div class="cell row-line" data-title="Location">
+              <div class="cell row-line" edit="false" mid="row1" data-title="Location">
                 Brookline, MA
               </div>
             </div>
             
-            <div class="row">   
-                <div class="cell row-line first-col">
+            <div class="row">  
+              <div class="cell first-col">
+                2
+              </div> 
+                <div class="cell row-line check-col">
                     <label class="t-checkbox">
                         <input name="checkboxGroup" type="checkbox" value="四川菜" checked="">
                         <div class="t-checkbox-text"></div>
@@ -99,7 +111,10 @@ table {margin: 0 0 40px 0;
             </div>
             
             <div class="row">
-                <div class="cell row-line first-col">
+              <div class="cell first-col">
+                3
+              </div>
+                <div class="cell row-line check-col">
                     <label class="t-checkbox">
                         <input name="checkboxGroup" type="checkbox" value="四川菜" checked="">
                         <div class="t-checkbox-text"></div>
@@ -120,7 +135,10 @@ table {margin: 0 0 40px 0;
             </div>
             
             <div class="row">
-                <div class="cell row-line first-col">
+              <div class="cell first-col">
+                4
+              </div>
+                <div class="cell row-line check-col">
                     <label class="t-checkbox">
                         <input name="checkboxGroup" type="checkbox" value="" checked="true">
                         <div class="t-checkbox-text"></div>
@@ -139,12 +157,123 @@ table {margin: 0 0 40px 0;
                 Boston, MA
               </div>
             </div>
-            
+            <div class="row row-bottom">
+              <div class="cell">
+               
+              </div>
+              <div class="cell">
+               
+              </div>
+              <div class="cell">
+                
+              </div>
+              <div class="cell">
+                
+              </div>
+              <div class="cell">
+                  <p style="text-align: right;font-weight: bold;">Total: </p>
+              </div>
+              <div class="cell">
+                <p style="text-align: left;font-weight: bold;">4 persons </p>
+              </div>
+            </div>
           </div>
+         
     </div>
     
     <script>     
-       
+      var vituralID = '';
+      var hasEditting = false;
+       $('.row').click(function(e) {
+          //attr('id') e.target.id
+          //console.log(e.target.className);
+          event_row_selected(this);
+          var ele = $(".row");
+          for (var i=0; i < ele.length; i++) {
+              if ($(ele[i]).hasClass('row-selected') == true) {
+                $(ele[i]).removeClass('row-selected');
+              }
+          }
+          
+          if (!($(this).hasClass('header')) && !($(this).hasClass('row-bottom'))) {
+            $(this).addClass('row-selected');
+          }
+
+          
+      });
+
+      $('.row').dblclick(function(e) {
+        exitEdit();
+        var attr = $(e.target).attr('edit');
+        if (attr == 'true') {                       
+              beginEdit(e.target);          
+        }
+      })
+
+      function beginEdit(element) {
+        vituralID = randomID();
+        event_cell_editting(vituralID);
+        event_cell_focus(vituralID);
+        $(element).attr('spellcheck', 'false');
+          $(element).attr('contenteditable', 'true');
+          $(element).attr('autocomplete', 'off');
+          $(element).attr('autocorrect', 'off');
+          $(element).attr('autocapiatlise', 'off');
+          $(element).attr('id', vituralID);
+          $(element).addClass('cell-editting');
+          $(element).focus();
+      }
+
+      function exitEdit() {          
+          
+          if (vituralID !== '') {
+            var ele = $('#'+ vituralID);
+            var txta = document.getElementById(vituralID).innerText;
+            event_cell_lostfocus(txta);
+
+            $(ele).attr('contenteditable', 'false');
+            $(ele).removeClass('cell-editting');
+            vituralID = '';
+          }          
+      }
+      
+      $( "input:checkbox").click( function(e) {
+            var check = $(this).is(":checked");
+            
+            if (!($(this).hasClass('header'))) {
+                event_header_check_status(check);
+            } else {
+                event_row_check_status(check);
+            }
+
+      });
+
+      function event_row_selected(e) {
+          console.log('id row selected: ' + e.id);
+      } 
+
+      function event_cell_editting(id) {
+        console.log('cell editting: ' + id);
+      }
+
+      function event_cell_focus(id) {
+        console.log('cell id: ' + id);
+      }
+
+      function event_cell_lostfocus(text) {
+        console.log('cell text: ' + text);
+      }
+
+      function event_row_check_status(value) {
+        console.log('id checked: ' + value);
+      }
+
+      function event_header_check_status(value) {
+        console.log('Header checked: ' + value);
+      }
+
+
+      
     </script>
 </body>
 </html>

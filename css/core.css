@@ -29,6 +29,8 @@
     --jl-background-gray-lightest: #fafafa;
     --jl-background-white: #fff;
     --jl-color-white: #fff;
+    --yellow-200: hsl(47,65%,84%);
+    --red-100: hsl(358,76%,90%);
     --primary-color: rgb(255,64,85);
     --second-color: rgb(25,169,223);
     --third-color: rgb(63,188,126);
