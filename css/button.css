@@ -1,20 +1,19 @@
 .tummo-btn {
     align-items: center;
-    border: var(--jl-border-color);
-    border-radius: var(--radius-core);    
+    border: none;
+    border-radius: var(--radius-core);        
     cursor: pointer;
     display: inline-flex;
     flex-direction: row;    
     justify-content: center;     
     padding: 5px 7px;
-    position: relative;
-    text-align: left;
+    position: relative;    
     text-align: center;
+    vertical-align: middle;
     transition: background-color .5s,opacity 1s;
     -webkit-user-select: none;
     -moz-user-select: none;
-    user-select: none;
-    vertical-align: middle;
+    user-select: none;    
     overflow: hidden;
 }
 .tummo-btn .hover-effect {     
@@ -38,10 +37,10 @@
     z-index: 1;
 }
 .tummo-btn-light {
-    background-color: var(--jl-background-gray-light);
-    box-shadow: var(--shadown-black);
-    color: var(--jl-text-color);
-    z-index: 1;
+    background-color: var(--ji-btn-light-bg);
+    box-shadow: var(--ji-btn-shadown);
+    color: var(--ji-btn-light-color);
+    z-index: 1;    
 }
 .on-hover {background: var(--jl-hover-bg);color: var(--jl-text-color);}
 .tummo-btn-group {margin-top: var(--top-element) ; position: relative; display: flex; flex-direction: row; gap: 10px;}
@@ -55,8 +54,7 @@
     display: inline-flex;
     flex-direction: row;    
     justify-content: center;       
-    position: relative;
-    text-align: left;
+    position: relative;    
     text-align: center;
     transition: background-color .5s,opacity 1s;
     -webkit-user-select: none;
@@ -86,3 +84,29 @@
 .btn-medium {height: var(--size-medium);}
 .circle-small {height: var(--size-base); width: var(--size-base);}
 .circle-medium {height: var(--size-medium); width: var(--size-medium);}
+.loading {animation: rotate .5s linear infinite;
+    border: 1.2px solid #fff;
+    -webkit-clip-path: polygon(0 0,100% 0,100% 30%,0 30%);
+    clip-path: polygon(0 0,100% 0,100% 30%,0 30%);}
+.loading-two {animation: rotate .5s linear infinite;}
+        
+    @-webkit-keyframes rotate {
+        from {
+          -webkit-transform: rotateZ(0deg);
+                  transform: rotateZ(0deg);
+        }
+        to {
+          -webkit-transform: rotateZ(360deg);
+                  transform: rotateZ(360deg);
+        }
+      }
+      @keyframes rotate {
+        from {
+          -webkit-transform: rotateZ(0deg);
+                  transform: rotateZ(0deg);
+        }
+        to {
+          -webkit-transform: rotateZ(360deg);
+                  transform: rotateZ(360deg);
+        }
+      }

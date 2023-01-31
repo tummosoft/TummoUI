@@ -29,6 +29,9 @@
     --jl-background-gray-lightest: #fafafa;
     --jl-background-white: #fff;
     --jl-color-white: #fff;
+    --ji-btn-light-bg: #f8f9fa;
+    --ji-btn-light-color: #393e48;
+    --ji-btn-shadown: inset 0 1px 0 0 rgba(0,0,0,.17),inset 1px -1px 0 0 rgba(0,0,0,.17),inset -1px 0 0 0 rgba(0,0,0,.17);
     --yellow-200: hsl(47,65%,84%);
     --red-100: hsl(358,76%,90%);
     --primary-color: rgb(255,64,85);
@@ -43,11 +46,12 @@
     --size5: 12px;
     --size-icon: 20px;
     --jl-border-color: 1px solid var(--jl-background-gray);
-    --shadown-black: 0 2px 12px 0 rgb(0 0 0 / 10%);
+    --shadown-black: 0 0 0 0 rgba(19,124,189,0),0 0 0 0 rgba(19,124,189,0),inset 0 0 0 1px rgba(16,22,26,.15),inset 0 1px 1px rgba(16,22,26,.2);
     --radius-core: 5px;    
     --top-element: 10px;
     --size-base: 26px;
     --size-medium: 30px;
+    --size-medium2: 35px;
     --size-large: 40px;
     
 }

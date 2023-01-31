@@ -1,0 +1,10 @@
+.textbox-text {margin-top: var(--top-element); 
+height: var(--size-medium2);border-radius: var(--radius-core);background-color: var(--jl-background-gray-lightest);box-shadow: var(--shadown-black); display:flex; width: fit-content; padding: 3px;
+}
+.textbox-text img {height: 25px;}
+.textbox-text .text-icon {display: table-cell; font-size: 16px;line-height: var(--size-medium);margin-left: 5px;margin-right: 5px;}
+.textbox-text .textbox-center {display: table-cell;}
+.textbox-text input {padding-left: 5px; border:none;font-size: var(--size4);line-height: calc(var((--size-medium))-10);}
+.textbox-text:hover {outline: 2px solid var(--jl-hover-bg);}
+.hover-border {border: 2px solid var(--jl-hover-bg);}
+.textbox-text .text-button {float: right;margin-right: 1px;margin-top: 1px;}
