@@ -60,44 +60,26 @@ a {text-decoration: none;color: var(--jl-main-color);}
 .scrollbar
 {
 	float: left;		
-	overflow-y: scroll;		
-  cursor: -webkit-grab; cursor: grab;
+	overflow-y: scroll;		  
   border-radius: var(--radius-core);
 }
-::-webkit-scrollbar
+.scrollbar::-webkit-scrollbar
 {
 	width: 10px;
   border-radius: var(--radius-core);
 	background-color: var(--jl-background-gray);
 }
-::-webkit-scrollbar-track
+.scrollbar::-webkit-scrollbar-track
 {
-	-webkit-box-shadow: inset 0 0 3px rgba(0,0,0,0.3);	  
+	-webkit-box-shadow: inset 0 0 3px var(--jl-background-gray);	  
 	background-color: var(--jl-gradient);
 }
-::-webkit-scrollbar-thumb
+.scrollbar::-webkit-scrollbar-thumb
 {
 	border-radius: var(--radius-core);
-	background-color: var(--jl-border-color);	
-}
-::-webkit-scrollbar {
-  width: 10px;
-}
-
-/* Track */
-::-webkit-scrollbar-track {
-  background: #f1f1f1; 
-}
- 
-/* Handle */
-::-webkit-scrollbar-thumb {
-  background: #888; 
-}
-
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  background: #555; 
+	background-color: var(--third-color);	
 }
 .disabled {background: var(--jl-border-color-light); cursor: not-allowed;
   z-index: 0;color: var(--primary-color);border: 1px solid var(--primary-color);}
 .small-text {font-size: var(--size5);}
+

@@ -1,0 +1,91 @@
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <link href="../css/core.css" rel="stylesheet" type="text/css" />
+    <link href="../css/button.css" rel="stylesheet" type="text/css" />    
+    <link href="../css/listbox.css" rel="stylesheet" type="text/css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+</head>
+<style>
+    
+</style>
+<body style="background-color:white;">
+    <div style="margin: 100px;">
+        <div id="info">Observe the platform icon's motion direction when there is up and down hover on options.</div>
+        <div class="tummo-listbox">
+            <div class="listbox-top">
+                <div class="top-icon">
+                    <i class='bx bxs-data'></i>
+                </div>
+                <div class="top-text">Our Database</div>
+            </div>
+            <div class="listbox-content scrollbar">
+                <ul class="list-body">
+                    <li class="list-item">Hadoop</li>
+<li id="item1" class="list-item">MariaDB</li>
+<li id="item2" class="list-item">MongoDB</li>
+<li id="item3" class="list-item">MySQL</li>
+<li class="list-item">Oracle 10g XE</li>
+<li class="list-item">PostgreSQL</li>
+<li class="list-item">Redis</li>
+<li class="list-item">SQL Syntax</li>
+<li class="list-item">SQLite</li>
+                </ul>
+            </div>
+        </div>
+        
+    </div>
+    
+    <script>
+        $('.list-item').click(function(e) {
+            var ele = $(".list-item");
+          for (var i=0; i < ele.length; i++) {
+              if ($(ele[i]).hasClass('listbox-clicked') == true) {
+                $(ele[i]).removeClass('listbox-clicked');
+              }
+          }
+                    
+          $(this).addClass('listbox-clicked');  
+          event_item_click(e);        
+        });
+
+        $('.listbox-content').scroll(function(e) {
+            checkListboxScroll(this);
+        });
+
+        var lastListScroll = 0;
+        
+        function checkListboxScroll(e) {            
+            var st = e.scrollTop;
+            console.log(st);
+            if (st > lastListScroll) {
+                event_listbox_scroll('down');
+                lastListScroll = st;
+            } else if (st < lastListScroll) {
+                event_listbox_scroll('up');
+                lastListScroll = st;
+            }
+           
+        }
+
+        function event_item_click(e) {
+            console.log('id = ' + e.target.id);
+        }
+
+        function event_listbox_scroll(status) {
+            console.log('HERE:' + status);
+        }
+    </script>
+
+
+</body>
+</html>
