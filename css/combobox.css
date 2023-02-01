@@ -12,17 +12,17 @@ height: var(--size-medium);border-radius: var(--radius-core);background-color: v
     display: flex;
     position: absolute;
     flex-direction: column;
-    display: none;  
-    shadow: var(--ji-btn-shadown);
-    margin-top: var(--size-medium);   
+    display: none;      
+    margin-top: var(--size-medium);  
+    box-shadow: var(--shahown-menu); 
+    border-radius: var(--radius-core);
   }
 
 .combo-item {background: var(--jl-gradient);
     margin-top: 2px;
     color: var(--jl-text-color);      
     border: none;
-    font-size: var(--size3);
-    box-shadow: var(--shadown-black);        
+    font-size: var(--size3);        
     outline: none;    
     padding-bottom: 5px;
     height: 200px;      

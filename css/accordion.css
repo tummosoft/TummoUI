@@ -4,7 +4,7 @@
 .l-accordion-panel {    
     width: 100%;    
     border: 1px solid var(--jl-background-gray);
-    box-shadow: 0 1px 1px 0 var(--jl-border-color-light);
+    box-shadow: var(--shadown-black);
     border-radius: var(--radius-core);
 }
 .l-accordion-toggle {
