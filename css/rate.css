@@ -1,0 +1,18 @@
+.tummo-vote {display: flex;flex-direction: row;
+    box-shadow: var(--ji-btn-shadown);width: fit-content;border-radius: var(--radius-core); padding:2px;
+    font-size: var(--size4);padding: 2px 5px 2px 5px;
+    margin-top: var(--top-element);
+}
+.star-vote {margin-right: 2px;}
+.star-black {color: var(--ji-btn-light-color);}
+.star-yellow {color: var(--vote-color);}
+.star-red {color: var(--primary-color);}
+.vote-text {padding-right: 5px;}
+.vote-effect {background: url('/assets/images/icons8-star-filled-96.png');background-repeat: no-repeat;
+background-size:15px;height:15px;background-position: center;
+}
+.vote-star {position: absolute;width: 15px; height: 15px;display: none;}
+.vote-animation { 
+    animation-name: flying;
+    animation-duration: 4s;    
+}

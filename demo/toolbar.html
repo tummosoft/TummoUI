@@ -99,6 +99,14 @@
     $('.btn-toolbar').mouseleave(function(e) {
         toolbar_removeEffect(e);
     });
+    $('.btn-toolbar').click(function(e) {
+        event_toolbar_item_click(e);
+    });
+
+
+    function event_toolbar_item_click(e) {
+            console.log('clicked');
+    }
     </script>
 </body>
 </html>

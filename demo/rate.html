@@ -1,0 +1,167 @@
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <link href="../css/core.css" rel="stylesheet" type="text/css" />    
+    <link href="../css/rate.css" rel="stylesheet" type="text/css" />      
+    <link href="../css/animation.css" rel="stylesheet" type="text/css" />  
+    <script src="../js/button.js"></script>
+    <script src="../js/drag.js"></script>
+    <script src="../js/app.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+</head>
+<style>
+    
+</style>
+<body style="background-color:white;">
+    <div style="margin: 100px;">
+        <span class="vote-text">Let's vote thank to author:</span> 
+        <div class="tummo-vote">            
+            <span class="star-vote star-black" pos="1"><i class='bx bxs-star'></i></span>
+            <span class="star-vote star-black" pos="2"><i class='bx bxs-star'></i></span>
+            <span class="star-vote star-black" pos="3"><i class='bx bxs-star'></i></span>
+            <span class="star-vote star-black" pos="4"><i class='bx bxs-star'></i></span>
+            <span class="star-vote star-black" pos="5"><i class='bx bxs-star'></i></span>
+        </div>
+        <span class="vote-text">Rate:</span>
+        <div class="tummo-vote">            
+            <span class="star-vote star-yellow" pos="1"><i class='bx bxs-star'></i></span>
+            <span class="star-vote star-yellow" pos="2"><i class='bx bxs-star'></i></span>
+            <span class="star-vote star-black" pos="3"><i class='bx bxs-star'></i></span>
+            <span class="star-vote star-black" pos="4"><i class='bx bxs-star'></i></span>
+            <span class="star-vote star-black" pos="5"><i class='bx bxs-star'></i></span>
+        </div>
+        <div class="vote-star vote-effect"></div>
+    </div>
+    <style class="animation-vote">
+       
+    </style>
+    <script>   
+        var voteworking = false;
+        var lastpoint = -1;
+        var checked = false;
+        var clicked = false;
+        var currentID = '';
+        var effect_runing = false;
+
+        $('.star-vote').mouseenter(function(e) {
+            checkid(this);
+            var getid = '#' + $(this).parent().attr('id');
+            currentID = getid;
+            if (checked == false) {
+                checkLastPoint(getid);
+            }
+            clicked = false;
+            drawYellowStar(this);
+        });
+
+        function drawYellowStar(e) {
+            var getid = '#' + $(e).parent().attr('id');
+            var pos = $(e).attr('pos');
+            if (voteworking == false) {
+                voteworking = true;
+                $(getid).children().each(function (index, element) {
+                    if (index < pos) {
+                        $(element).addClass('star-yellow');
+                    }                    
+                });
+            }
+        }
+
+        $('.star-vote').mouseleave(function(e) {
+            voteworking = false;  
+            if (clicked == false) {
+                if (currentID !== '') {                
+                $(currentID).children().each(function (index, element) {                                        
+                        if (index > lastpoint) {
+                            $(element).removeClass('star-yellow');
+                            $(element).addClass('star-black');                       lastpoint = -1; 
+                        }
+                                      
+                });
+                }
+            }
+           
+        });
+        
+        function checkLastPoint(id) {
+            $(id).children().each(function (index, element) {
+                var hasclass = $(element).hasClass('star-yellow');
+                if (hasclass == true) {
+                    lastpoint = index;  
+                    checked = true;                  
+                }                    
+            });
+        }
+
+        $('.tummo-vote').mouseout(function(e) {            
+            checked = false;             
+        });
+        
+        function newPoint(e) {
+            var getid = '#' + $(e).parent().attr('id');
+            var pos = $(e).attr('pos');
+            
+            //if (voteworking == false) {
+                voteworking = true;
+                
+                $(getid).children().each(function (index, element) {
+                    $(element).removeClass('star-yellow');
+                        $(element).addClass('star-black');
+                        
+                                     
+                });   
+                // -------------------        
+                                 
+                $(getid).children().each(function (index, element) {
+                    if (index < pos) {
+                        $(element).addClass('star-yellow');                       
+                    }                    
+                });
+           // }
+           lastpoint = lastpoint + 1;
+           event_vote_changed(lastpoint, pos);
+           lastpoint = pos;
+        }
+
+
+        $('.star-vote').click(function(e) {
+            clicked = true;
+            //lastpoint = $(this).attr('pos');
+            newPoint(this);
+             
+            if (effect_runing == false) {
+                effect_runing = true;
+                var newtop = e.clientY - 200;
+                createAnimation(e.clientX, e.clientY)
+                $(".vote-star").animate({top: newtop + "px",opacity: "0"},{duration: 2000, complete : function(){
+                    effect_runing = false;                    
+                }});
+            }
+            lastpoint = -1;
+        });
+
+        function createAnimation(x, y) {
+            x = x - 5;
+            y = y - 5;            
+            $('.vote-star').removeAttr('style');                     
+            $('.vote-star').css('display','block');
+            $('.vote-star').css('top',y + 'px');
+            $('.vote-star').css('left',x + 'px');          
+        }
+        
+        function event_vote_changed(oldpoint, newpoint) {
+            console.log("Old Point=" + oldpoint);
+            console.log("New Point=" + newpoint);
+        }
+    </script>
+</body>
+</html>
