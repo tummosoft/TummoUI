@@ -33,9 +33,6 @@ Tummo UI is a modern, sleek, and user-friendly UI library built for web applicat
 # Tips
 ![Panel](https://raw.githubusercontent.com/tummosoft/TummoUI/main/screenshot/tips.png)
 
-# Tips
-![Panel](https://raw.githubusercontent.com/tummosoft/TummoUI/main/screenshot/tips.png)
-
 # Toolbar
 ![Panel](https://raw.githubusercontent.com/tummosoft/TummoUI/main/screenshot/toolbar.png)
 
