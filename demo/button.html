@@ -162,7 +162,8 @@ function quickMenuHideEffect(e) {
         }
          
          for (var i=0; i < ele.length; i++) {
-            $(ele[i]).removeClass("hover-effect");
+            console.log('here');
+            $(ele[i]).removeClass("on-hover");
             success = true;            
         }
         if (success == true) {
