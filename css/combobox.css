@@ -1,11 +1,11 @@
 .combobox-wrapper {position: relative;display: flex;flex-direction: column; margin-top: var(--top-element);width: fit-content;}
-.combo-text {min-width: 100px;border: 1px solid var(--ji-btn-shadown);
+.combo-text {min-width: 100px;box-shadow: var(--shadown-black);
 height: var(--size-medium);border-radius: var(--radius-core);background-color: var(--jl-gradient-header);display: flex;flex-direction: row;
 }
 .combo-text input {width:calc(100% - 30px);border:none; padding: 3px;margin: 2px;height: calc(var((--size-medium))-10);font-size: var(--size3);line-height: calc(var((--size-medium))-10);}
 .combo-text:hover {outline: 2px solid var(--jl-hover-bg);}
 .combobox-menu {    
-    height: 200px;    
+    height: 210px;    
     overflow: hidden;    
     display: none;
     z-index: 1250;
