@@ -1,0 +1,10 @@
+.tummo-sidebar {height: 100%; background: var('--jl-gradient') ;box-shadow: var(--shadown-black);border-radius: var(--radius-core);display: flex;flex-direction: column;width: 200px;position: absolute;top:0;max-width: 50%;min-width: 150px;}
+.sidebar-header {margin-top:10px; height: 50px;display: flex;flex-direction: row;position: relative; align-items: center;text-align: center;width:100%;}
+.sidebar-content {display: flex;flex-direction: column;}
+.header-logo img {width: 50px;height: 50px;}
+.header-title {font-size: var(--size2);font-weight: bold;font-family: 'Rammetto One', cursive;color:var(--jl-hover-color)}
+.sidebar-group {list-style: none;padding-bottom: 15px;}
+.sidebar-group li {padding-left: 15px;height: var(--size-medium);line-height: var(--size-medium);color: var(--third-color);}
+.sidebar-group li:hover {background: var( --jl-hover-bg);}
+.sidebar-group li a {color:var(--second-color);font-size: var(--size4);}
+.sidebar-resize {width: 5px;position: absolute;right: 0;height: 100%;cursor:e-resize; }
