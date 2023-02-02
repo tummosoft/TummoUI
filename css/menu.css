@@ -1,5 +1,5 @@
 .menu-wrapper {width: fit-content;border-radius: var(--radius-core);box-shadow: var(--shahown-menu);height: auto;
-background: var(--jl-gradient);position: absolute;z-index: 1250;
+background: var(--jl-gradient);position: absolute;z-index: 1250;display: none;
 }
 .t-context-item {
     display: flex;    
@@ -17,15 +17,18 @@ background: var(--jl-gradient);position: absolute;z-index: 1250;
 .t-context-line {border-bottom: var(--divider);margin: 2px 2px 2px 2px;}
 .t-context-item img {height: 25px;}
 .t-context-child {}
-.menu-effect {
-    position: absolute;    
-    height: var(--size-medium);
-    background: var(--jl-hover-bg);
-    width: 0;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    margin: 0 auto;
-    z-index: -124;
+.arrow {  
+    border-color: transparent;
+    height: 30px;
+    position: absolute;
+    width: 30px;
+    z-index: 21;
+}
+.arrow-top {transform: rotate(90deg);top: -10px;}
+.arrow-bottom {transform: rotate(270deg);bottom: -10px;}
+.arrow-left {transform: rotate(0deg);left: -10px;}
+.arrow-right {transform: rotate(180deg);right: -10px;}
+.menu-show-effect {
+    filter: blur(8px);
+    -webkit-filter: blur(8px);
 }
