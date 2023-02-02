@@ -3,8 +3,9 @@
 <head>
     <meta charset="utf-8" />
     <title>A high quality UI Toolkit, a web applcation component library for PHP, ASP.NET, B4J</title>
-    <link href="/css/core.css" rel="stylesheet" type="text/css" />    
-    <link href="/css/sidebar.css" rel="stylesheet" type="text/css" />          
+    <link href="../css/core.css" rel="stylesheet" type="text/css" />    
+    <link href="../css/sidebar.css" rel="stylesheet" type="text/css" />          
+    <link href="../css/button.css" rel="stylesheet" type="text/css" />      
     <script src="../js/button.js"></script>
     <script src="../js/drag.js"></script>
     <script src="../js/app.js"></script>
@@ -16,15 +17,15 @@
 <link href="https://fonts.googleapis.com/css2?family=Rammetto+One&family=Roboto&display=swap" rel="stylesheet">
 </head>
 <style>
-   
+   .sidebar-expand-button {position: absolute;width: 30px; height: 30px;right: -15px;top:calc(50% - 30px);}
     
 </style>
 <body style="background-color:white;">
     <div style="margin-top: 100px;">
-        <div class="tummo-sidebar">
+        <div class="tummo-sidebar sidebar-left">
         <div class="sidebar-header">
             <div class="header-logo">
-                <img src="/assets/images/logo.svg">
+                <img src="../assets/images/logo.svg">
             </div>
             <div class="header-title">
                 TUMMO UI
@@ -50,10 +51,22 @@
             </ul>
         </div>
             <div class="sidebar-resize"></div>
+            <div class="sidebar-expand-button">
+                <div class="tummo-btn-round circle-small tummo-btn-light" onmouseleave="quickMenuHideEffect(this)"  onmouseover="btnHoverEffect(this)">
+                    <span class="hover-effect"></span>                    
+                    <i class='bx bx-chevron-left'></i>
+                </div>
+            </div>
         </div>
 
     </div>
-    <script>   
+    <script>  
+        $('.sidebar-expand-button').click(function(e){
+           $('.sidebar-expand-button').parent().animate({
+                width: "0"   
+            }, 1500 ).hide(500);           
+        });
+    
        $(document).ready(function (e) {
             var hightsideber = $('.sidebar-content').height();
             var heightscreen = $(window).height();;

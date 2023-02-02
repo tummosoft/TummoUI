@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>A high quality UI Toolkit, a web applcation component library for PHP, ASP.NET, B4J</title>
+    <link href="/css/core.css" rel="stylesheet" type="text/css" />    
+    <link href="/css/sidebar.css" rel="stylesheet" type="text/css" />  
+    <link href="/css/layout.css" rel="stylesheet" type="text/css" />         
+    <script src="../js/button.js"></script>
+    <script src="../js/drag.js"></script>
+    <script src="../js/app.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Rammetto+One&family=Roboto&display=swap" rel="stylesheet">
+</head>
+<style>
+   
+    
+</style>
+<body style="background-color:white;">
+    <div style="margin-top: 100px;">
+        
+    </div>
+    <script>   
+       $(document).ready(function (e) {
+            var hightsideber = $('.sidebar-content').height();
+            var heightscreen = $(window).height();;
+            if (hightsideber > heightscreen) {
+                $('.sidebar-content').addClass('scrollbar');            
+            }        
+       });
+
+       var startResize = false;
+       var currentx = 0;
+       var lastx = 0;
+       var lastwidth = 0;
+       var canResize = false;
+
+       $('.sidebar-resize').mousedown(function (e) {      
+            startResize = true;
+            lastx = $('.sidebar-resize').offset().left;
+            lastwidth = $('.sidebar-resize').width();
+           
+       });
+
+        $(window).mouseup(function(e) {
+            if (startResize == true) {
+                startResize = false;
+            }
+        });
+
+       $(window).mousemove(function(e) {            
+            if (startResize == true) {                
+                currentx = e.clientX;                
+                if (currentx > lastx) {                    
+                    var nWidth = lastwidth + (currentx - lastwidth);                    
+                    $('.tummo-sidebar').css('width',nWidth);
+                    lastwidth = nWidth;
+                } else {
+                    var nWidth = lastwidth - (currentx - lastwidth);                    
+                    $('.tummo-sidebar').css('width',nWidth);
+                    lastwidth = nWidth;
+                }
+            }
+       });
+    </script>
+</body>
+</html>

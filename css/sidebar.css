@@ -1,4 +1,4 @@
-.tummo-sidebar {height: 100%; background: var('--jl-gradient') ;box-shadow: var(--shadown-black);border-radius: var(--radius-core);display: flex;flex-direction: column;width: 200px;position: absolute;top:0;max-width: 50%;min-width: 150px;}
+.tummo-sidebar {height: 100%; background: var('--jl-gradient') ;box-shadow: var(--shadown-black);border-radius: var(--radius-core);display: flex;flex-direction: column;width: 200px;position: absolute;max-width: 50%;min-width: 150px;}
 .sidebar-header {margin-top:10px; height: 50px;display: flex;flex-direction: row;position: relative; align-items: center;text-align: center;width:100%;}
 .sidebar-content {display: flex;flex-direction: column;}
 .header-logo img {width: 50px;height: 50px;}
@@ -8,3 +8,6 @@
 .sidebar-group li:hover {background: var( --jl-hover-bg);}
 .sidebar-group li a {color:var(--second-color);font-size: var(--size4);}
 .sidebar-resize {width: 5px;position: absolute;right: 0;height: 100%;cursor:e-resize; }
+.sidebar-left {top:0px;left: 0px;}
+.sidebar-right {top:0px;right: 0px;}
+
