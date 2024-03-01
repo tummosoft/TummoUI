@@ -1,36 +1,14 @@
 package com.tummosoft.layout;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.Color;
-import android.graphics.drawable.Drawable;
-import android.transition.AutoTransition;
-import android.transition.TransitionManager;
-import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.AccelerateDecelerateInterpolator;
-import android.widget.Button;
-import android.widget.GridView;
-import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.TableLayout;
-import android.widget.TextView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.ConstraintSet;
 
 import anywheresoftware.b4a.AbsObjectWrapper;
 import anywheresoftware.b4a.BA;
-import anywheresoftware.b4a.BA.Hide;
-import anywheresoftware.b4a.keywords.Common;
-import anywheresoftware.b4a.objects.LabelWrapper;
 import anywheresoftware.b4a.objects.PanelWrapper;
-import anywheresoftware.b4a.objects.collections.List;
-import anywheresoftware.b4a.objects.collections.Map;
-import com.tummosoft.Utils.ActivityHelper;
-import com.tummosoft.Utils.ResourcesHelper;
-import androidx.constraintlayout.helper.widget.Flow;
 
 @BA.ShortName("xConstraintLayout")
 public class xConstraintLayout extends AbsObjectWrapper<ConstraintLayout> {

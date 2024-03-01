@@ -781,7 +781,6 @@ public class ResourcesHelper {
         Bitmap bmp = null;
         try {
             File.InputStreamWrapper inputStream = File.OpenInput(File.getDirAssets(), filename);
-
             BufferedInputStream bufferedInputStream = new BufferedInputStream(inputStream.getObject());
             bmp = BitmapFactory.decodeStream(bufferedInputStream);
         } catch (IOException ex) {
@@ -789,19 +788,15 @@ public class ResourcesHelper {
         }
         return bmp;
     }
-
-    static public BitmapDrawable OpenDrawable(String filename) {
-        BitmapDrawable bmp = null;
+    
+    static public String OpenString(String filename) {
+        String result = "";
         try {
-            File.InputStreamWrapper inputStream = File.OpenInput(File.getDirAssets(), filename);
-
-            BufferedInputStream bufferedInputStream = new BufferedInputStream(inputStream.getObject());
-            bmp.setBitmap(BitmapFactory.decodeStream(bufferedInputStream));
-
+            result = File.ReadString(File.getDirAssets(), filename);
         } catch (IOException ex) {
 
         }
-        return bmp;
+        return result;
     }
 
     public static String getString(@StringRes int resId) {

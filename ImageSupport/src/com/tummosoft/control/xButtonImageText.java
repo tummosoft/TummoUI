@@ -71,9 +71,7 @@ public class xButtonImageText extends AbsObjectWrapper<FancyButton> implements D
     private int mTextPosition = 1;
     private float mDefaultTextSize;
     private int mDefaultTextGravity = 0x11; // Gravity.CENTER
-    
-
-    // # Icon Attributes
+        
     private Drawable mIconResource = null;
     private int mFontIconSize;
     private String mFontIcon = "EMPTY";

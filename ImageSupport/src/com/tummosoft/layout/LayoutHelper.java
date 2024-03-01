@@ -20,7 +20,6 @@ import java.io.InputStream;
 
 @BA.ShortName("LayoutHelper")
 public class LayoutHelper {
-
     private Context baContext;
     private String _tag;
     private BA baa;
