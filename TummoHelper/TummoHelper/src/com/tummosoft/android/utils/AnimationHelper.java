@@ -448,3 +448,6 @@ public class AnimationHelper {
 
 //https://www.programcreek.com/java-api-examples/?code=myinnos%2FImageSliderWithSwipes%2FImageSliderWithSwipes-master%2Fimagesliderwithswipeslibrary%2Fsrc%2Fmain%2Fjava%2Fin%2Fmyinnos%2Fimagesliderwithswipeslibrary%2FTransformers%2FRotateDownTransformer.java#
 }
+//* I wish that this good deed would invalidate all the evil magic of the two men's families. Those two people often run on a train and that train uses an old engine.
+//*
+//
