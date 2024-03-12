@@ -24,10 +24,21 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.Shader;
 import android.graphics.Typeface;
+import android.graphics.drawable.AnimatedStateListDrawable;
 import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.ClipDrawable;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.InsetDrawable;
+import android.graphics.drawable.LayerDrawable;
+import android.graphics.drawable.LevelListDrawable;
 import android.graphics.drawable.NinePatchDrawable;
+import android.graphics.drawable.RippleDrawable;
+import android.graphics.drawable.RotateDrawable;
+import android.graphics.drawable.ScaleDrawable;
+import android.graphics.drawable.StateListDrawable;
+import android.graphics.drawable.TransitionDrawable;
+import android.graphics.drawable.VectorDrawable;
 import android.media.ExifInterface;
 import android.os.Build;
 import android.renderscript.Allocation;
@@ -815,12 +826,80 @@ public class ResourcesHelper {
         AnimationDrawable drawable = (AnimationDrawable) AppCompatResources.getDrawable(baContext, resId);
         return drawable;
     }
-
-    public static Drawable getVectorDrawable(@DrawableRes int resId) {
+    
+    public static StateListDrawable getStateListDrawable(@DrawableRes int resId) {
+        Resources res = baContext.getResources();
+        StateListDrawable drawable = (StateListDrawable) AppCompatResources.getDrawable(baContext, resId);
+        return drawable;
+    }
+    
+    public static AnimatedStateListDrawable getAnimatedStateListDrawable(@DrawableRes int resId) {
+        Resources res = baContext.getResources();
+        AnimatedStateListDrawable drawable = (AnimatedStateListDrawable) AppCompatResources.getDrawable(baContext, resId);
+        return drawable;
+    }
+    
+    public static LevelListDrawable getLevelListDrawable(@DrawableRes int resId) {
+        Resources res = baContext.getResources();
+        LevelListDrawable drawable = (LevelListDrawable) AppCompatResources.getDrawable(baContext, resId);
+        return drawable;
+    }
+    
+     public static LayerDrawable getLayerDrawable(@DrawableRes int resId) {
+        Resources res = baContext.getResources();
+        LayerDrawable drawable = (LayerDrawable) AppCompatResources.getDrawable(baContext, resId);
+        return drawable;
+    }
+     
+     public static TransitionDrawable getTransitionDrawable(@DrawableRes int resId) {
+        Resources res = baContext.getResources();
+        TransitionDrawable drawable = (TransitionDrawable) AppCompatResources.getDrawable(baContext, resId);
+        return drawable;
+    }
+     
+    public static RippleDrawable getRippleDrawable(@DrawableRes int resId) {
+        Resources res = baContext.getResources();
+        RippleDrawable drawable = (RippleDrawable) AppCompatResources.getDrawable(baContext, resId);
+        return drawable;
+    }
+     
+    public static ScaleDrawable getScaleDrawable(@DrawableRes int resId) {
+        Resources res = baContext.getResources();
+        ScaleDrawable drawable = (ScaleDrawable) AppCompatResources.getDrawable(baContext, resId);
+        return drawable;
+    }
+    
+    public static ClipDrawable getClipDrawable(@DrawableRes int resId) {
+        Resources res = baContext.getResources();
+        ClipDrawable drawable = (ClipDrawable) AppCompatResources.getDrawable(baContext, resId);
+        return drawable;
+    }
+    
+    public static RotateDrawable getRotateDrawable(@DrawableRes int resId) {
+        Resources res = baContext.getResources();
+        RotateDrawable drawable = (RotateDrawable) AppCompatResources.getDrawable(baContext, resId);
+        return drawable;
+    }
+    
+     public static NinePatchDrawable getNinePatchDrawable(@DrawableRes int resId) {
+        Resources res = baContext.getResources();
+        NinePatchDrawable  drawable = (NinePatchDrawable) AppCompatResources.getDrawable(baContext, resId);
+        
+        return drawable;
+    }
+     
+      public static InsetDrawable getInsetDrawable(@DrawableRes int resId) {
+        Resources res = baContext.getResources();
+        InsetDrawable  drawable = (InsetDrawable) AppCompatResources.getDrawable(baContext, resId);
+        
+        return drawable;
+    }
+    
+    public static VectorDrawable getVectorDrawable(@DrawableRes int resId) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            return baContext.getDrawable(resId);
+            return (VectorDrawable) baContext.getDrawable(resId);
         }
-        return AppCompatResources.getDrawable(baContext, resId);
+        return (VectorDrawable) AppCompatResources.getDrawable(baContext, resId);
     }
 
     public static Drawable getDrawableAttrRes(TypedArray typedArray, @StyleableRes int styleableResId) {

@@ -1,0 +1,220 @@
+﻿Build1=Default,b4a.example,HU2_ACCEPTALL
+File1=front.jpg
+File2=img2.jpg
+File3=img3.jpg
+File4=Layout.bal
+File5=layout2.bal
+File6=layout3.bal
+File7=sign-red-error-icon-1.png
+FileGroup1=Default Group
+FileGroup2=Default Group
+FileGroup3=Default Group
+FileGroup4=Default Group
+FileGroup5=Default Group
+FileGroup6=Default Group
+FileGroup7=Default Group
+Group=Default Group
+Library1=appcompat
+Library2=core
+Library3=network
+Library4=tummoui
+Library5=xui
+Library6=javaobject
+ManifestCode='This code will be applied to the manifest file during compilation.~\n~'You do not need to modify it in most cases.~\n~'See this link for for more information: https://www.b4x.com/forum/showthread.php?p=78136~\n~AddManifestText(~\n~<uses-sdk android:minSdkVersion="21" android:targetSdkVersion="33"/>~\n~<supports-screens android:largeScreens="true" ~\n~    android:normalScreens="true" ~\n~    android:smallScreens="true" ~\n~    android:anyDensity="true"/>)~\n~SetApplicationAttribute(android:icon, "@drawable/icon")~\n~SetApplicationAttribute(android:label, "$LABEL$")~\n~CreateResourceFromFile(Macro, Themes.LightTheme)~\n~'End of default text.~\n~
+Module1=Starter
+NumberOfFiles=7
+NumberOfLibraries=6
+NumberOfModules=1
+Version=12.8
+@EndOfDesignText@
+#Region  Project Attributes 
+	#ApplicationLabel: B4A Example
+	#VersionCode: 1
+	#VersionName: 
+	'SupportedOrientations possible values: unspecified, landscape or portrait.
+	#SupportedOrientations: unspecified
+	#CanInstallToExternalStorage: False
+#End Region
+
+#Region  Activity Attributes 
+	#FullScreen: False
+	#IncludeTitle: True
+#End Region
+
+#AdditionalJar: okhttp-4.12.0.jar
+#AdditionalJar: okio-3.8.0.jar
+#AdditionalJar: okio-jvm-3.8.0.jar
+#MultiDex: true
+
+Sub Process_Globals	
+	Private xui As XUI
+End Sub
+
+Sub Globals
+	Dim layout As xLinearLayout
+	Private Button1 As Button
+	Private Panel1 As Panel
+	Private Button2 As Button
+	Private Button3 As Button
+	Private Button4 As Button
+	Private Button5 As Button
+	Private Button6 As Button
+	Private Label1 As Label
+	
+	Dim anim As xAnimation
+	Private Button7 As Button
+	Private Button8 As Button
+	Private Button9 As Button
+	Dim radius As Float
+	Dim centerX As Float
+	Dim centerY As Float
+	Private xImageView1 As xImageView
+	Private socket As Socket
+End Sub
+
+Sub Activity_Create(FirstTime As Boolean)
+	Activity.LoadLayout("layout2")
+	anim.initialize("anim")
+	xImageView1.initialize2("xImageView1")
+	Activity.AddView(xImageView1, 0,0,200dip,200dip)
+	xImageView1.HasCircle = True	
+	xImageView1.Position = "CENTER" 'FULL CENTER_CROP RIGHT TOPLEFT CENTER LEFT
+	
+	xImageView1.BitmapError = LoadBitmap(File.DirAssets, "sign-red-error-icon-1.png")
+	xImageView1.getImageFromURL("https://cdn.tuoitre.vn/zoom/456_285/471584752817336320/2024/3/7/thu-tuong-le-don-3-17097703635511079333768-306-703-1116-2000-crop-1709770847142527180620.jpeg")
+	
+End Sub
+
+Sub Activity_Resume
+
+End Sub
+
+Sub Activity_Pause (UserClosed As Boolean)
+
+End Sub
+
+Sub Button1_Click
+	'https://blog.csdn.net/linglongxin24/article/details/53470872
+	'https://juejin.cn/post/7086669633800896549
+End Sub
+
+Sub test2()
+	Activity.LoadLayout("layout3")
+	
+	layout.initialize("layout", layout.ROW_HORIZONTAL, layout.COL_CENTER_VERTICAL)
+	
+	'layout.Animation(layout.ANIM_NONE, 5000)
+	layout.Color = Colors.Magenta
+	Dim line As xLineView
+	line.initialize(5dip)
+	
+	
+	Dim lbl As Label
+	lbl.Initialize("")
+	layout.AddView(lbl, 0, 0, 0, 0, 100%x, 100%y)
+	lbl.Text = "BOTTOM MENU"
+	lbl.Color = Colors.Red
+	lbl.Gravity = Gravity.CENTER
+	
+	
+	Dim lst As ListView
+	lst.Initialize("")
+	layout.AddView(lst, 0, 5dip, 0, 0, 100%x, 100%y)
+	lst.Color = Colors.DarkGray
+	For i=0 To 10
+		lst.AddTwoLines("This is LinearLayout with animation", "item loadding...")
+	Next
+		
+	Activity.AddView(layout, 0,0,100%x, 100%y)
+End Sub
+
+Sub test1()
+	Dim layout As xLinearLayout
+	layout.initialize("layout", layout.ROW_VERTICAL, layout.COL_CENTER_VERTICAL)
+	Activity.AddView(layout, 0,0,100%x, 100%y)
+	
+	Dim lbl As Label
+	lbl.Initialize("")
+	lbl.Text = "Hello, wellcome to Vietnam"
+	lbl.Color = Colors.Red
+	lbl.Gravity = Gravity.CENTER
+	layout.AddView(lbl,0, 20dip, 0, 0, 50%x, 50dip)
+	
+	Dim lb2 As Label
+	lb2.Initialize("")
+	lb2.Text = "Xin chao cac ban"
+	lb2.Color = Colors.Green
+	lb2.Gravity = Gravity.CENTER
+	layout.AddView(lb2,0, 0, 0, 0, 100%x, 50dip)
+	
+	Dim img As ImageView
+	img.Initialize("")
+	img.Bitmap = LoadBitmap(File.DirAssets, "img2.jpg")
+	img.Gravity = Gravity.FILL	
+	layout.AddView(img,0, 0, 0, 0, 100dip, 100dip)
+End Sub
+
+Sub xImageView1_Click
+	Log("Image has clicked")
+End Sub
+
+Private Sub Button2_Click
+	radius = 100
+	centerX = (100%x + Label1.Width) / 2.0
+	centerY = (100%y + Label1.Height) / 2.0
+	
+	Dim target As Float = 0
+	Dim theend As Float = 360
+	anim.startAccelerateDecelerateInterpolator(Label1, 2000, "rotation", target, theend)
+End Sub
+
+Sub anim_onAnimationUpdate(angle As Float)
+	
+	Dim x As Float = centerX + radius * Cos(angle)
+	Dim y As Float = centerY + radius * Sin(angle)
+	
+	Label1.Left = x - Label1.Width / 2.0
+	Label1.top = y - Label1.Height / 2.0
+	
+End Sub
+
+Private Sub Button3_Click	
+	Dim target As Float = 200
+	Dim theend As Float = 0
+	anim.startAccelerateInterpolator(Label1, 2000, "translationX", target, theend)
+End Sub
+
+Private Sub Button4_Click
+	Dim target As Float = 200
+	Dim theend As Float = 0
+	anim.startAnticipateInterpolator(Label1, 2000, "translationX", target, theend)
+End Sub
+
+Private Sub Button5_Click
+	Dim target As Float = 200
+	Dim theend As Float = 0
+	anim.startBounceInterpolator(Label1, 2000, "translationX", target, theend)
+End Sub
+
+Private Sub Button6_Click
+	Dim target As Float = 200
+	Dim theend As Float = 0
+	anim.startCycleInterpolator(Label1, 2000, "translationX", target, theend)
+End Sub
+
+Private Sub Button7_Click
+	Dim target As Float = 200
+	Dim theend As Float = 0
+	anim.startDecelerateInterpolator(Label1, 2000, "translationX", target, theend)
+End Sub
+
+Private Sub Button8_Click
+	Dim target As Float = 200
+	Dim theend As Float = 0
+	anim.startLinearInterpolator(Label1, 2000, "translationX", target, theend)
+End Sub
+'alpha, scale, translate, rotate
+
+Private Sub Button9_Click
+	
+End Sub

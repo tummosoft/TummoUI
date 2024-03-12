@@ -1,0 +1,76 @@
+package com.tummosoft.control.image;
+
+import static android.content.Context.MODE_PRIVATE;
+import android.os.AsyncTask;
+import android.widget.ProgressBar;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+import okhttp3.ResponseBody;
+
+ public class DownloadTask extends AsyncTask<String, Integer, Boolean> {
+
+        @Override
+        protected Boolean doInBackground(String... params) {
+            String fileUrl = params[0];
+            OkHttpClient client = new OkHttpClient();
+
+            try {
+                Request request = new Request.Builder().url(fileUrl).build();
+                Response response = client.newCall(request).execute();
+
+                if (!response.isSuccessful()) {
+                    return false;
+                }
+                //FileOutput openFileOutput;
+                ResponseBody body = response.body();
+                long fileSize = body.contentLength();
+                InputStream inputStream = body.byteStream();
+                FileOutputStream outputStream = null; // = openFileOutput("downloaded_file", MODE_PRIVATE);
+                byte[] buffer = new byte[1024];
+                long total = 0;
+                int count;
+
+                while ((count = inputStream.read(buffer)) != -1) {
+                    total += count;
+                    publishProgress((int) (total * 100 / fileSize));
+                    outputStream.write(buffer, 0, count);
+                }
+
+                outputStream.flush();
+                outputStream.close();
+                inputStream.close();
+                return true;
+
+            } catch (IOException e) {
+                e.printStackTrace();
+                return false;
+            }
+        }
+
+        private ProgressBar progressBar;
+        private String progressText;
+        @Override
+        protected void onProgressUpdate(Integer... values) {
+            super.onProgressUpdate(values);
+            int progress = values[0];
+            progressBar.setProgress(progress);
+           // progressText.setText(progress + "%");
+        }
+
+        @Override
+        protected void onPostExecute(Boolean result) {
+            super.onPostExecute(result);
+            if (result) {
+                // Tải thành công
+                //progressText.setText("Tải thành công");
+            } else {
+                // Lỗi trong quá trình tải
+              //  progressText.setText("Lỗi khi tải");
+            }
+        }
+    }
+
