@@ -861,5 +861,3 @@ public class ViewHelper {
         });
     }
 }
-// Phuoc duc nay xin hoi huong den tat ca chu thien cu ngu o chua nam tong, chu thien cu ngu o bo de dao trang
-// Nguyen cho phuoc duc nay hoa giai tat ca ta thuat cua dong ho 3 doi thang chay may xe, tu lam, 7 khanh va tat ca nguoi o dap 3 hai thanh
