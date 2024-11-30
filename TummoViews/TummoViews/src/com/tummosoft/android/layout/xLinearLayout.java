@@ -114,7 +114,7 @@ public class xLinearLayout extends AbsObjectWrapper<LinearLayout> {
         view.setLayoutParams(LinearLayoutParams);
         getObject().addView(view);
     }
-
+    
     public int getViewID(int index) {
         int vid = 0;
         for (int i = 0; i < views.size(); i++) {

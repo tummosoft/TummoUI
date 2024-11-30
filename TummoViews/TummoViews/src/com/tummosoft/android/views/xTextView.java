@@ -145,20 +145,73 @@ import java.util.Locale;
 import java.util.Map;
 
 @BA.ShortName("xTextView")
-@BA.Events(values = {"Click()"})
+@BA.Events(values = {"Click (view as Object)", "FocusChanged (HasFocus As Boolean)","TextChanged (Old As String, New As String)"})
+
 public class xTextView extends AbsObjectWrapper<TextView> {
-
-    private String event;
-
-    public void initialize(BA ba, String event) {
+    
+    private static String eventname = "";
+    private BA _ba;
+    private boolean hasfocus = false;
+    private String oldtext = "";
+    private String newtext = "";
+    
+    public void initialize(final BA ba, String event) {
         setObject(new TextView(ba.context));
-        this.event = event.toLowerCase();
+        this.eventname = event.toLowerCase();
+        //_ba = ba;
+        
+        getObject().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {              
+                ba.raiseEventFromUI(xTextView.this, eventname + "_click", v);
+            }
+        });  
+        
+        getObject().setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus) {
+                    hasfocus = true;
+                    ba.raiseEventFromUI(xTextView.this, eventname + "_focuschanged", hasfocus);
+                } else {
+                    hasfocus = false;
+                    ba.raiseEventFromUI(xTextView.this, eventname + "_focuschanged", hasfocus);
+                }
+            }
+        });
+        
+        getObject().setOnKeyListener(new View.OnKeyListener() {
+        public boolean onKey(View v, int keyCode, KeyEvent event) {            
+            ba.raiseEventFromUI(xTextView.this, eventname + "_textchanged", oldtext, newtext);
+            if (!oldtext.contains(newtext)) {
+                oldtext = newtext;
+            }
+            
+            return false;
+        }
+    });
     }
-
+    
+    public void setTagName(String value) {
+        getObject().setTag(value);
+    }
+    
+     public void setAutoSizeTextTypeWithDefaults(int value) {
+        getObject().setAutoSizeTextTypeWithDefaults(value);
+    }
+    
+    public String getTagName() {
+        return (String) getObject().getTag();
+    }
+    
     public TextView GetView() {
         return getObject();
     }
-
+    
+    public void setShadow(float radius, int x, int y, String color) {
+        getObject().setShadowLayer(radius, x, y, Color.parseColor(color));
+    }
+    
     public void addExtraDataToAccessibilityNodeInfo(AccessibilityNodeInfo info, String extraDataKey, Bundle arguments) {
 
         getObject().addExtraDataToAccessibilityNodeInfo(info, extraDataKey, arguments);
@@ -328,9 +381,28 @@ public class xTextView extends AbsObjectWrapper<TextView> {
 
         getObject().setAllCaps(allCaps);
     }
-
+    
+    public void setTextAlign(int align) {
+        switch (align) {
+            case 0:
+                getObject().setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+                break;
+            case 1:
+                getObject().setTextAlignment(View.TEXT_ALIGNMENT_TEXT_START);
+                break;
+            case 2:
+                getObject().setTextAlignment(View.TEXT_ALIGNMENT_TEXT_END);
+                break;
+            case 3:
+                getObject().setTextAlignment(View.TEXT_DIRECTION_RTL    );
+                break;
+            default:
+                break;
+        }
+        
+    }
+    
     public void setAutoLinkMask(int mask) {
-
         getObject().setAutoLinkMask(mask);
     }
 
@@ -339,16 +411,16 @@ public class xTextView extends AbsObjectWrapper<TextView> {
         getObject().setAutoSizeTextTypeUniformWithConfiguration(autoSizeMinTextSize, autoSizeMaxTextSize, autoSizeStepGranularity, unit);
     }
 
-    public void setAutoSizeTextTypeUniformWithPresetSizes(int[] presetSizes, int unit) {
-
+    public void setSizeFitContent(boolean value) {
+        if (value == true) {
+            getObject().setAutoSizeTextTypeWithDefaults(TextView.AUTO_SIZE_TEXT_TYPE_UNIFORM);        
+        }        
+    }
+    
+    public void setAutoSizeTextTypeUniformWithPresetSizes(int[] presetSizes, int unit) {        
         getObject().setAutoSizeTextTypeUniformWithPresetSizes(presetSizes, unit);
     }
-
-    public void setAutoSizeTextTypeWithDefaults(int autoSizeTextType) {
-
-        getObject().setAutoSizeTextTypeWithDefaults(autoSizeTextType);
-    }
-
+    
     public void setBreakStrategy(int breakStrategy) {
 
         getObject().setBreakStrategy(breakStrategy);
@@ -721,20 +793,26 @@ public class xTextView extends AbsObjectWrapper<TextView> {
 
         getObject().setSpannableFactory(factory);
     }
-
-    public void setText(int resid) {
-
-        getObject().setText(resid);
+    
+    public void setText(String text) {
+        if (edit_enable == true) {
+            getObject().setText(text, TextView.BufferType.EDITABLE);
+        } else {
+            getObject().setText(text);
+        }        
+    }
+    
+    public void setBackgroundColor(String color) {
+        getObject().setBackgroundColor(Color.parseColor(color));
+    }
+    
+    public void setBackgroundDrawable(Drawable background) {
+        getObject().setBackground(background);        
     }
 
-    public void setText(CharSequence text) {
-
-        getObject().setText(text);
-    }
-
-    public void setText(CharSequence text, TextView.BufferType type) {
-
-        getObject().setText(text, type);
+    private boolean edit_enable = false;
+    public void setEditEnable(boolean value) {
+        edit_enable = value;
     }
 
     public void setText(int resid, TextView.BufferType type) {

@@ -73,6 +73,10 @@ public class xConstraintLayout extends AbsObjectWrapper<ConstraintLayout> {
     public int getChildCount() {
         return getObject().getChildCount();
     }
+    
+     public void AddView(View view) {
+        getObject().addView(view);        
+    }
 
     public View getViewAt(int index) {
         return getObject().getChildAt(index);

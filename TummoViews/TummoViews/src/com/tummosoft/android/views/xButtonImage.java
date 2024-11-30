@@ -148,15 +148,72 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
+@BA.ShortName("xButtonImage")
+@BA.Events(values = {"Click (view as Object)", "LongClick (view as Object)"})
+public class xButtonImage extends AbsObjectWrapper<ImageButton> {
 
- @BA.ShortName("xImageButton")
-    public class xImageButton extends AbsObjectWrapper<ImageButton> {
+    private static String eventname = "";
+    private BA _ba;
+    private boolean hasfocus = false;
+    private String oldtext = "";
+    private String newtext = "";
 
-        public void initialize(BA ba, String event) {
-           setObject(new ImageButton(ba.context));                      
-        }
+    public void initialize(final BA ba, String event) {
+        setObject(new ImageButton(ba.context));
+        getObject().setScaleType(ImageView.ScaleType.FIT_CENTER);
+        _ba = ba;
+        this.eventname = event.toLowerCase();
 
-        public ImageButton GetView() {
-            return getObject();
-        }
+        getObject().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                _ba.raiseEventFromUI(xButtonImage.this, eventname + "_click", v);
+            }
+        });
+
+        getObject().setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent me) {
+                _ba.raiseEventFromUI(xButtonImage.this, eventname + "_touch", view);
+                return false;
+            }
+
+        });
+
+        getObject().setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                _ba.raiseEventFromUI(xButtonImage.this, eventname + "_longclick", view);
+                return false;
+            }
+        });
     }
+
+    public ImageButton GetView() {
+        return getObject();
+    }
+    
+    public void setTagName(String value) {
+        getObject().setTag(value);
+    }
+
+    public String getTagName() {
+        return (String) getObject().getTag();
+    }
+
+    public void setBackgroundColor(String color) {
+        getObject().setBackgroundColor(android.graphics.Color.parseColor(color));
+    }
+
+    public void setImageResourceID(int ResourceID) {
+        getObject().setBackgroundResource(ResourceID);
+    }
+
+    public void setBackgroundDrawable(Drawable value) {
+        getObject().setBackground(value);
+    }
+
+    public void setPadding(int left, int top, int right, int bottom) {
+        getObject().setPadding(left, top, right, bottom);
+    }
+}

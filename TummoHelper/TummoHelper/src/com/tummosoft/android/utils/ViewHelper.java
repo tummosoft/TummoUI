@@ -169,6 +169,10 @@ public class ViewHelper {
     public static void setBackgroundKeepingPadding(View view, int backgroundResId) {
         setBackgroundKeepingPadding(view, ContextCompat.getDrawable(view.getContext(), backgroundResId));
     }
+    
+    public static void setViewPadding(View view, int[] padding) {
+        view.setPadding(padding[0], padding[1], padding[2], padding[3]);
+    }
 
     public static void setBackgroundColorKeepPadding(View view, @ColorInt int color) {
         int[] padding = new int[]{view.getPaddingLeft(), view.getPaddingTop(), view.getPaddingRight(), view.getPaddingBottom()};

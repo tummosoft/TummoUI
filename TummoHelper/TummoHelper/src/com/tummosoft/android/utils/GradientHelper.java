@@ -74,12 +74,13 @@ public class GradientHelper extends AbsObjectWrapper<GradientDrawable> {
     }
 
     public void setColors(String[] arrayColors) {
-
-        int[] itemColor = new int[arrayColors.length];
-        for (int i = 0; i < arrayColors.length; i++) {
-            itemColor[i] = Color.parseColor(arrayColors[i]);
-        }
-        getObject().setColors(itemColor);
+        if (arrayColors.length > 0) {
+            int[] itemColor = new int[arrayColors.length];
+            for (int i = 0; i < arrayColors.length; i++) {
+                itemColor[i] = Color.parseColor(arrayColors[i]);
+            }
+            getObject().setColors(itemColor);
+        }        
     }
 
     public void setStroke(int strokeWidth, String strokeColor) {

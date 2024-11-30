@@ -20,13 +20,9 @@ import io.github.inflationx.viewpump.ViewPump;
 @BA.ShortName("AppHelper")
 public class AppHelper {
     private static Application sContext;
-
     private static boolean sIsTabletChecked;
-
     private static int sScreenType;
-
     private static String sDefaultFontAssetPath;
-
 
     public static void init(Application context) {
         sContext = context;
@@ -127,7 +123,6 @@ public class AppHelper {
     public static void setTheme(int resourceID, Activity activity) {
         activity.setTheme(resourceID);
     }
-    
     
     @ColorInt
     public static int getMainThemeColor(Context context) {
