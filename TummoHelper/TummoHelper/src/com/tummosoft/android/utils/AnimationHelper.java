@@ -36,17 +36,17 @@ import static com.tummosoft.android.utils.ViewHelper.Direction.TOP_TO_BOTTOM;
 @BA.Events(values = {"onAnimationUpdate(angle as float),onAnimationStart(),onAnimationEnd(),onAnimationRepeat()"})
 public class AnimationHelper {
 
-    private static Context baContext;
+    private Context baContext;
     private String _eventName;
     private PanelWrapper _base;
     private int _height;
     private int _width;
-    private static BA _ba;
+    private BA _ba;
     private int idx = 0;
-    public static final int MODE_INFINITE = ObjectAnimator.INFINITE;
-    public static final int MODE_RESTART = ObjectAnimator.RESTART;
-    public static final int MODE_REVERSE = ObjectAnimator.REVERSE;
-    public static final int MODE_DURATION_INFINITE = (int) ObjectAnimator.DURATION_INFINITE;
+    public final int MODE_INFINITE = ObjectAnimator.INFINITE;
+    public final int MODE_RESTART = ObjectAnimator.RESTART;
+    public final int MODE_REVERSE = ObjectAnimator.REVERSE;
+    public final int MODE_DURATION_INFINITE = (int) ObjectAnimator.DURATION_INFINITE;
 
     public void initialize(BA ba, String event) {
         _ba = ba;
@@ -54,7 +54,7 @@ public class AnimationHelper {
         _eventName = event.toLowerCase();
     }
 
-    public static Animation getAnim(@AnimRes int resId) {
+    public Animation getAnim(@AnimRes int resId) {
         return AnimationUtils.loadAnimation(baContext, resId);
     }
 
@@ -109,13 +109,13 @@ public class AnimationHelper {
         return anim;
     }
 
-    public static AnimationDrawable getDrawableAnimation(@DrawableRes int resId) {
+    public AnimationDrawable getDrawableAnimation(@DrawableRes int resId) {
         Resources res = baContext.getResources();
         AnimationDrawable drawable = (AnimationDrawable) AppCompatResources.getDrawable(baContext, resId);
         return drawable;
     }
 
-    public static AnimatedStateListDrawable getAnimatedStateListDrawable(@DrawableRes int resId) {
+    public AnimatedStateListDrawable getAnimatedStateListDrawable(@DrawableRes int resId) {
         Resources res = baContext.getResources();
         AnimatedStateListDrawable drawable = (AnimatedStateListDrawable) AppCompatResources.getDrawable(baContext, resId);
         return drawable;
@@ -304,12 +304,12 @@ public class AnimationHelper {
     }
 
     @Nullable
-    public static TranslateAnimation slideIn(final View view, String event, int duration, String direction, int RepeatMode, int RepeatCount) {
+    public TranslateAnimation slideIn(final View view, String event, int duration, String direction, int RepeatMode, int RepeatCount) {
         return slideIn(view, event, duration, true, direction, RepeatMode, RepeatCount);
     }
 
     @Nullable
-    public static TranslateAnimation slideIn(final View view, String event, int duration, boolean isNeedAnimation, String direction, int RepeatMode, int RepeatCount) {
+    public TranslateAnimation slideIn(final View view, String event, int duration, boolean isNeedAnimation, String direction, int RepeatMode, int RepeatCount) {
         if (view == null) {
             return null;
         }
@@ -374,12 +374,12 @@ public class AnimationHelper {
     }
 
     @Nullable
-    public static TranslateAnimation slideOut(final View view, String event, int duration, String direction) {
+    public TranslateAnimation slideOut(final View view, String event, int duration, String direction) {
         return slideOut(view, event, duration, true, direction);
     }
 
     @Nullable
-    public static TranslateAnimation slideOut(final View view, String event, int duration, boolean isNeedAnimation, String direction) {
+    public TranslateAnimation slideOut(final View view, String event, int duration, boolean isNeedAnimation, String direction) {
         if (view == null) {
             return null;
         }
@@ -441,7 +441,7 @@ public class AnimationHelper {
         }
     }
 
-    public static void SimpleSlide(View view, Context context, int animID) {
+    public void SimpleSlide(View view, Context context, int animID) {
         Animation shake = AnimationUtils.loadAnimation(context, animID);
         view.startAnimation(shake);
     }

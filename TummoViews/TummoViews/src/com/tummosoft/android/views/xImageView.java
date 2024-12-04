@@ -149,13 +149,43 @@ import java.util.Locale;
 import java.util.Map;
 
 @BA.ShortName("xImageView")
+@BA.Events(values = {"Click (view as Object)", "LongClick (view as Object)"})
 public class xImageView extends AbsObjectWrapper<ImageView> {
 
-    public void initialize(BA ba, String event) {
-        setObject(new ImageView(ba.context));
-    }
+     private static String eventname = "";
+    private BA _ba;
+    private boolean hasfocus = false;
+    private String oldtext = "";
+    private String newtext = "";
 
-    public ImageView GetView() {
-        return getObject();
+    public void initialize(final BA ba, String event) {
+        setObject(new ImageView(ba.context));
+        getObject().setScaleType(ImageView.ScaleType.FIT_CENTER);
+        _ba = ba;
+        this.eventname = event.toLowerCase();
+
+        getObject().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                _ba.raiseEventFromUI(xImageView.this, eventname + "_click", v);
+            }
+        });
+
+        getObject().setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent me) {
+                _ba.raiseEventFromUI(xImageView.this, eventname + "_touch", view);
+                return false;
+            }
+
+        });
+
+        getObject().setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                _ba.raiseEventFromUI(xImageView.this, eventname + "_longclick", view);
+                return false;
+            }
+        });
     }
 }

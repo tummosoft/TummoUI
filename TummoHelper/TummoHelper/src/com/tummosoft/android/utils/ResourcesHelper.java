@@ -118,8 +118,8 @@ import java.util.Map;
 @BA.ShortName("ResourcesHelper")
 public class ResourcesHelper {
 
-    private static Context _context;
-    private static BA _ba;
+    private Context _context;
+    private BA _ba;
 
     public void initialize(final BA ba) {
         _context = ba.context;
@@ -127,25 +127,25 @@ public class ResourcesHelper {
     }
 
     @Hide
-    public static Resources getResources() {
+    public Resources getResources() {
         return _context.getResources();
     }
 
-    private static Map<String, Typeface> cachedFontMap = new HashMap<String, Typeface>();
+    private Map<String, Typeface> cachedFontMap = new HashMap<String, Typeface>();
 
-    public static int pxToSp(final Context context, final float px) {
+    public int pxToSp(final Context context, final float px) {
         return Math.round(px / context.getResources().getDisplayMetrics().scaledDensity);
     }
 
-    public static int spToPx(final Context context, final float sp) {
+    public int spToPx(final Context context, final float sp) {
         return Math.round(sp * context.getResources().getDisplayMetrics().scaledDensity);
     }
     
-     public static Bitmap getBitmapResources(int id) {
+     public Bitmap getBitmapResources(int id) {
         return BitmapFactory.decodeResource(_context.getResources(), id);
     }
      
-    public static Typeface findFont(String fontPath, String defaultFontPath) {
+    public Typeface findFont(String fontPath, String defaultFontPath) {
         if (fontPath == null) {
             return Typeface.DEFAULT;
         }
@@ -189,7 +189,7 @@ public class ResourcesHelper {
         }
     }
 
-    private static int getRotateDegree(String filePath) {
+    private int getRotateDegree(String filePath) {
         int degree = 0;
         try {
             ExifInterface exifInterface = new ExifInterface(filePath);
@@ -216,7 +216,7 @@ public class ResourcesHelper {
 
    
 
-    private static boolean isSpace(String s) {
+    private boolean isSpace(String s) {
         if (s == null) {
             return true;
         }
@@ -228,7 +228,7 @@ public class ResourcesHelper {
         return true;
     }
     
-    public static Typeface findFont(Context context, String fontPath, String defaultFontPath) {
+    public Typeface findFont(Context context, String fontPath, String defaultFontPath) {
 
         if (fontPath == null) {
             return Typeface.DEFAULT;
@@ -273,7 +273,7 @@ public class ResourcesHelper {
         }
     }
 
-    public static int getResourceId(String pVariableName, String pResourcename) {
+    public int getResourceId(String pVariableName, String pResourcename) {
         try {
             int rsid = _context.getResources().getIdentifier(pVariableName, pResourcename, _context.getPackageName());            
             return rsid;
@@ -283,7 +283,7 @@ public class ResourcesHelper {
         }
     }
 
-    static public int ConvertToDP(int value) {
+    public int ConvertToDP(int value) {
         return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, value, _context.getResources().getDisplayMetrics());
     }
 
@@ -293,7 +293,7 @@ public class ResourcesHelper {
         return result;
     }
     
-    static public String OpenString(String filename) {
+    public String OpenString(String filename) {
         String result = "";
         try {
             result = File.ReadString(File.getDirAssets(), filename);
@@ -303,49 +303,49 @@ public class ResourcesHelper {
         return result;
     }
 
-    public static String getString(@StringRes int resId) {
+    public String getString(@StringRes int resId) {
         return _context.getResources().getString(resId);
     }
     
-    public static Typeface getFont(@FontRes int resId) {        
+    public Typeface getFont(@FontRes int resId) {        
         return _context.getResources().getFont(resId);        
     }
     
-    public static Drawable getDrawable(@DrawableRes int resId) {        
+    public Drawable getDrawable(@DrawableRes int resId) {        
         return _context.getResources().getDrawable(resId, null);
     }
    
-    public static float getDimens(@DimenRes int resId) {
+    public float getDimens(@DimenRes int resId) {
         return _context.getResources().getDimension(resId);
     }
 
-    public static int getColor(@ColorRes int resId) {
+    public int getColor(@ColorRes int resId) {
         return ContextCompat.getColor(_context, resId);
     }
 
-    public static ColorStateList getColors(@ColorRes int resId) {
+    public ColorStateList getColors(@ColorRes int resId) {
         return ContextCompat.getColorStateList(_context, resId);
     }
 
-    public static int getDimensionPixelOffset(@DimenRes int resId) {
+    public int getDimensionPixelOffset(@DimenRes int resId) {
         return _context.getResources().getDimensionPixelOffset(resId);
     }
 
-    public static int getDimensionPixelSize(@DimenRes int resId) {
+    public int getDimensionPixelSize(@DimenRes int resId) {
         return _context.getResources().getDimensionPixelSize(resId);
     }
 
-    public static String[] getStringArray(@ArrayRes int resId) {
+    public String[] getStringArray(@ArrayRes int resId) {
         return _context.getResources().getStringArray(resId);
     }
 
     @NonNull
-    public static List<String> getStringList(int resId) {
+    public List<String> getStringList(int resId) {
         return getStringList(_context, resId, 0);
     }
 
     @NonNull
-    public static List<String> getStringList(@NonNull Context context, int resId, int emptyId) {
+    public List<String> getStringList(@NonNull Context context, int resId, int emptyId) {
         List<String> data = new ArrayList<>();
         if (resId == emptyId) {
             return data;
@@ -357,215 +357,215 @@ public class ResourcesHelper {
         return data;
     }
     
-    public static int[] getIntArray(@ArrayRes int resId) {
+    public int[] getIntArray(@ArrayRes int resId) {
         return _context.getResources().getIntArray(resId);
     }
     
-    public static ListView getListView(@LayoutRes int resId, ViewGroup root, String event) {
+    public ListView getListView(@LayoutRes int resId, ViewGroup root, String event) {
         ListView textv = (ListView) ListView.inflate(_context, resId, root);
         setEvent(_ba, event, textv);
         return textv;
     }
 
-    public static TextView getTextView(@LayoutRes int resId, ViewGroup root, String event) {
+    public TextView getTextView(@LayoutRes int resId, ViewGroup root, String event) {
         TextView textv = (TextView) TextView.inflate(_context, resId, root);
         setEvent(_ba, event, textv);
         return textv;
     }
 
-    public static ViewStub getViewStub(@LayoutRes int resId, ViewGroup root, String event) {
+    public ViewStub getViewStub(@LayoutRes int resId, ViewGroup root, String event) {
         ViewStub textv = (ViewStub) ViewStub.inflate(_context, resId, root);
         setEvent(_ba, event, textv);
         return textv;
     }
 
-    public static BottomNavigationView getBottomNavigationView(@LayoutRes int resId, ViewGroup root, String event) {
+    public BottomNavigationView getBottomNavigationView(@LayoutRes int resId, ViewGroup root, String event) {
         BottomNavigationView textv = (BottomNavigationView) BottomNavigationView.inflate(_context, resId, root);
         setEvent(_ba, event, textv);
         return textv;
     }
 
-    public static NavigationView getNavigationView(@LayoutRes int resId, ViewGroup root, String event) {
+    public NavigationView getNavigationView(@LayoutRes int resId, ViewGroup root, String event) {
         NavigationView textv = (NavigationView) NavigationView.inflate(_context, resId, root);
         setEvent(_ba, event, textv);
         return textv;
     }
 
-    public static CardView getCardView(@LayoutRes int resId, ViewGroup root, String event) {
+    public CardView getCardView(@LayoutRes int resId, ViewGroup root, String event) {
         CardView textv = (CardView) CardView.inflate(_context, resId, root);
         setEvent(_ba, event, textv);
         return textv;
     }
 
-    public static HorizontalScrollView getHorizontalScrollView(@LayoutRes int resId, ViewGroup root, String event) {
+    public HorizontalScrollView getHorizontalScrollView(@LayoutRes int resId, ViewGroup root, String event) {
         HorizontalScrollView textv = (HorizontalScrollView) HorizontalScrollView.inflate(_context, resId, root);
         setEvent(_ba, event, textv);
         return textv;
     }
 
-    public static ScrollView getScrollView(@LayoutRes int resId, ViewGroup root, String event) {
+    public ScrollView getScrollView(@LayoutRes int resId, ViewGroup root, String event) {
         ScrollView textv = (ScrollView) ScrollView.inflate(_context, resId, root);
         setEvent(_ba, event, textv);
         return textv;
     }
 
-    public static Spinner getSpinner(@LayoutRes int resId, ViewGroup root, String event) {
+    public Spinner getSpinner(@LayoutRes int resId, ViewGroup root, String event) {
         Spinner textv = (Spinner) Spinner.inflate(_context, resId, root);
         setEvent(_ba, event, textv);
         return textv;
     }
 
-    public static RecyclerView getRecyclerView(@LayoutRes int resId, ViewGroup root, String event) {
+    public RecyclerView getRecyclerView(@LayoutRes int resId, ViewGroup root, String event) {
         RecyclerView textv = (RecyclerView) RecyclerView.inflate(_context, resId, root);
         setEvent(_ba, event, textv);
         return textv;
     }
 
-    public static Space getSpace(@LayoutRes int resId, ViewGroup root, String event) {
+    public Space getSpace(@LayoutRes int resId, ViewGroup root, String event) {
         Space textv = (Space) Space.inflate(_context, resId, root);
         setEvent(_ba, event, textv);
         return textv;
     }
 
-    public static SurfaceView getSurfaceView(@LayoutRes int resId, ViewGroup root, String event) {
+    public SurfaceView getSurfaceView(@LayoutRes int resId, ViewGroup root, String event) {
         SurfaceView textv = (SurfaceView) SurfaceView.inflate(_context, resId, root);
         setEvent(_ba, event, textv);
         return textv;
     }
 
-    public static TextureView getTextureView(@LayoutRes int resId, ViewGroup root, String event) {
+    public TextureView getTextureView(@LayoutRes int resId, ViewGroup root, String event) {
         TextureView textv = (TextureView) TextureView.inflate(_context, resId, root);
         setEvent(_ba, event, textv);
         return textv;
     }
 
-    public static SearchView getSearchView(@LayoutRes int resId, ViewGroup root, String event) {
+    public SearchView getSearchView(@LayoutRes int resId, ViewGroup root, String event) {
         SearchView textv = (SearchView) SearchView.inflate(_context, resId, root);
         setEvent(_ba, event, textv);
         return textv;
     }
 
-    public static SeekBar getSeekBar(@LayoutRes int resId, ViewGroup root, String event) {
+    public SeekBar getSeekBar(@LayoutRes int resId, ViewGroup root, String event) {
         SeekBar textv = (SeekBar) SeekBar.inflate(_context, resId, root);
         setEvent(_ba, event, textv);
         return textv;
     }
 
-    public static RatingBar getRatingBar(@LayoutRes int resId, ViewGroup root, String event) {
+    public RatingBar getRatingBar(@LayoutRes int resId, ViewGroup root, String event) {
         RatingBar textv = (RatingBar) SearchView.inflate(_context, resId, root);
         setEvent(_ba, event, textv);
         return textv;
     }
 
-    public static ProgressBar getProgressBar(@LayoutRes int resId, ViewGroup root, String event) {
+    public ProgressBar getProgressBar(@LayoutRes int resId, ViewGroup root, String event) {
         ProgressBar textv = (ProgressBar) ProgressBar.inflate(_context, resId, root);
         setEvent(_ba, event, textv);
         return textv;
     }
 
-    public static TextClock getTextClock(@LayoutRes int resId, ViewGroup root, String event) {
+    public TextClock getTextClock(@LayoutRes int resId, ViewGroup root, String event) {
         TextClock textv = (TextClock) TextClock.inflate(_context, resId, root);
         setEvent(_ba, event, textv);
         return textv;
     }
 
-    public static CalendarView getCalendarView(@LayoutRes int resId, ViewGroup root, String event) {
+    public CalendarView getCalendarView(@LayoutRes int resId, ViewGroup root, String event) {
         CalendarView textv = (CalendarView) CalendarView.inflate(_context, resId, root);
         setEvent(_ba, event, textv);
         return textv;
     }
 
-    public static VideoView getVideoView(@LayoutRes int resId, ViewGroup root, String event) {
+    public VideoView getVideoView(@LayoutRes int resId, ViewGroup root, String event) {
         VideoView textv = (VideoView) VideoView.inflate(_context, resId, root);
         setEvent(_ba, event, textv);
         return textv;
     }
 
-    public static Switch getSwitch(@LayoutRes int resId, ViewGroup root, String event) {
+    public Switch getSwitch(@LayoutRes int resId, ViewGroup root, String event) {
         Switch textv = (Switch) Switch.inflate(_context, resId, root);
         setEvent(_ba, event, textv);
         return textv;
     }
 
-    public static ToggleButton getToggleButton(@LayoutRes int resId, ViewGroup root, String event) {
+    public ToggleButton getToggleButton(@LayoutRes int resId, ViewGroup root, String event) {
         ToggleButton textv = (ToggleButton) ToggleButton.inflate(_context, resId, root);
         setEvent(_ba, event, textv);
         return textv;
     }
 
-    public static RadioButton getRadioButton(@LayoutRes int resId, ViewGroup root, String event) {
+    public RadioButton getRadioButton(@LayoutRes int resId, ViewGroup root, String event) {
         RadioButton textv = (RadioButton) RadioButton.inflate(_context, resId, root);
         setEvent(_ba, event, textv);
         return textv;
     }
 
-    public static RadioGroup getRadioGroup(@LayoutRes int resId, ViewGroup root, String event) {
+    public RadioGroup getRadioGroup(@LayoutRes int resId, ViewGroup root, String event) {
         RadioGroup textv = (RadioGroup) RadioGroup.inflate(_context, resId, root);
         setEvent(_ba, event, textv);
         return textv;
     }
 
-    public static CheckBox getCheckBox(@LayoutRes int resId, ViewGroup root, String event) {
+    public CheckBox getCheckBox(@LayoutRes int resId, ViewGroup root, String event) {
         CheckBox textv = (CheckBox) CheckBox.inflate(_context, resId, root);
         setEvent(_ba, event, textv);
         return textv;
     }
 
-    public static Chip getChip(@LayoutRes int resId, ViewGroup root, String event) {
+    public Chip getChip(@LayoutRes int resId, ViewGroup root, String event) {
         Chip textv = (Chip) Chip.inflate(_context, resId, root);
         setEvent(_ba, event, textv);
         return textv;
     }
 
-    public static ChipGroup getChipGroup(@LayoutRes int resId, ViewGroup root, String event) {
+    public ChipGroup getChipGroup(@LayoutRes int resId, ViewGroup root, String event) {
         ChipGroup textv = (ChipGroup) ChipGroup.inflate(_context, resId, root);
         setEvent(_ba, event, textv);
         return textv;
     }
 
-    public static TextInputLayout getTextInputLayout(@LayoutRes int resId, ViewGroup root, String event) {
+    public TextInputLayout getTextInputLayout(@LayoutRes int resId, ViewGroup root, String event) {
         TextInputLayout textv = (TextInputLayout) TextInputLayout.inflate(_context, resId, root);
         setEvent(_ba, event, textv);
         return textv;
     }
 
-    public static MultiAutoCompleteTextView getMultiAutoCompleteTextView(@LayoutRes int resId, ViewGroup root, String event) {
+    public MultiAutoCompleteTextView getMultiAutoCompleteTextView(@LayoutRes int resId, ViewGroup root, String event) {
         MultiAutoCompleteTextView textv = (MultiAutoCompleteTextView) MultiAutoCompleteTextView.inflate(_context, resId, root);
         setEvent(_ba, event, textv);
         return textv;
     }
 
-    public static AutoCompleteTextView getAutoCompleteTextView(@LayoutRes int resId, ViewGroup root, String event) {
+    public AutoCompleteTextView getAutoCompleteTextView(@LayoutRes int resId, ViewGroup root, String event) {
         AutoCompleteTextView textv = (AutoCompleteTextView) AutoCompleteTextView.inflate(_context, resId, root);
         setEvent(_ba, event, textv);
         return textv;
     }
 
-    public static EditText getEditText(@LayoutRes int resId, ViewGroup root, String event) {
+    public EditText getEditText(@LayoutRes int resId, ViewGroup root, String event) {
         EditText textv = (EditText) EditText.inflate(_context, resId, root);
         setEvent(_ba, event, textv);
         return textv;
     }
 
-    public static ImageView getImageView(@LayoutRes int resId, ViewGroup root, String event) {
+    public ImageView getImageView(@LayoutRes int resId, ViewGroup root, String event) {
         ImageView textv = (ImageView) ImageView.inflate(_context, resId, root);
         setEvent(_ba, event, textv);
         return textv;
     }
 
-    public static Button getButton(@LayoutRes int resId, ViewGroup root, String event) {
+    public Button getButton(@LayoutRes int resId, ViewGroup root, String event) {
         Button textv = (Button) Button.inflate(_context, resId, root);
         setEvent(_ba, event, textv);
         return textv;
     }
 
-    public static ImageButton getImageButton(@LayoutRes int resId, ViewGroup root, String event) {
+    public ImageButton getImageButton(@LayoutRes int resId, ViewGroup root, String event) {
         ImageButton textv = (ImageButton) ImageButton.inflate(_context, resId, root);
         setEvent(_ba, event, textv);
         return textv;
     }
 
-    public static TabHost getTabHost(@LayoutRes int resId, ViewGroup root, String event) {
+    public TabHost getTabHost(@LayoutRes int resId, ViewGroup root, String event) {
         TabHost textv = (TabHost) TabHost.inflate(_context, resId, root);
         setEvent(_ba, event, textv);
         return textv;
@@ -573,7 +573,7 @@ public class ResourcesHelper {
     // ********************
     // EVENTS
 
-    static public void setEvent(BA ba, String BAevent, View view) {
+    public void setEvent(BA ba, String BAevent, View view) {
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

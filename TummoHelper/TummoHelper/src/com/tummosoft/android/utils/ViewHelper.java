@@ -78,18 +78,18 @@ import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 
 @BA.ShortName("ViewHelper")
-@Version(1.63f)
+@Version(1.64f)
 public class ViewHelper {
 
-    private static final AtomicInteger ATOMIC_INTEGER = new AtomicInteger(1);
+    private final AtomicInteger ATOMIC_INTEGER = new AtomicInteger(1);
 
-    private static Application app;
-    private static boolean sIsTabletChecked;
-    private static int sScreenType;
-    private static String sDefaultFontAssetPath;
-    private static Context _context;
-    private static BA _ba;
-    private static ViewStub viewStub;
+    private Application app;
+    private boolean sIsTabletChecked;
+    private int sScreenType;
+    private String sDefaultFontAssetPath;
+    private Context _context;
+    private BA _ba;
+    private ViewStub viewStub;
 
     public void initialize(final BA ba) {        
         _ba = ba;
@@ -100,19 +100,19 @@ public class ViewHelper {
         return viewStub.getInflatedId();
     }
     
-    public static int ConvertToDP(int value, Context context) {
+    public int ConvertToDP(int value, Context context) {
         return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, value, context.getResources().getDisplayMetrics());
     }
 
-    public static View getActivityRoot(Activity activity) {
+    public View getActivityRoot(Activity activity) {
         return ((ViewGroup) activity.findViewById(Window.ID_ANDROID_CONTENT)).getChildAt(0);
     }
     
-    public static void setOutlineAmbientShadowColor(View view, String color) {
+    public void setOutlineAmbientShadowColor(View view, String color) {
         view.setOutlineAmbientShadowColor(Color.parseColor(color));
     }
 
-    public static void requestApplyInsets(Window window) {
+    public void requestApplyInsets(Window window) {
         if (Build.VERSION.SDK_INT >= 19 && Build.VERSION.SDK_INT < 21) {
             window.getDecorView().requestFitSystemWindows();
         } else if (Build.VERSION.SDK_INT >= 21) {
@@ -120,7 +120,7 @@ public class ViewHelper {
         }
     }
 
-    public static int getListViewHeightBasedOnChildren(ListView view) {
+    public int getListViewHeightBasedOnChildren(ListView view) {
         int height = getAbsListViewHeightBasedOnChildren(view);
         ListAdapter adapter;
         int adapterCount;
@@ -131,7 +131,7 @@ public class ViewHelper {
         return height;
     }
     
-    public static int getAbsListViewHeightBasedOnChildren(AbsListView view) {
+    public int getAbsListViewHeightBasedOnChildren(AbsListView view) {
         ListAdapter adapter;
         if (view == null || (adapter = view.getAdapter()) == null) {
             return 0;
@@ -152,7 +152,7 @@ public class ViewHelper {
     }
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
-    public static void setBackground(View view, Drawable drawable) {
+    public void setBackground(View view, Drawable drawable) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
             view.setBackground(drawable);
         } else {
@@ -160,27 +160,27 @@ public class ViewHelper {
         }
     }
 
-    public static void setBackgroundKeepingPadding(View view, Drawable drawable) {
+    public void setBackgroundKeepingPadding(View view, Drawable drawable) {
         int[] padding = new int[]{view.getPaddingLeft(), view.getPaddingTop(), view.getPaddingRight(), view.getPaddingBottom()};
         setBackground(view, drawable);
         view.setPadding(padding[0], padding[1], padding[2], padding[3]);
     }
 
-    public static void setBackgroundKeepingPadding(View view, int backgroundResId) {
+    public void setBackgroundKeepingPadding(View view, int backgroundResId) {
         setBackgroundKeepingPadding(view, ContextCompat.getDrawable(view.getContext(), backgroundResId));
     }
     
-    public static void setViewPadding(View view, int[] padding) {
+    public void setViewPadding(View view, int[] padding) {
         view.setPadding(padding[0], padding[1], padding[2], padding[3]);
     }
 
-    public static void setBackgroundColorKeepPadding(View view, @ColorInt int color) {
+    public void setBackgroundColorKeepPadding(View view, @ColorInt int color) {
         int[] padding = new int[]{view.getPaddingLeft(), view.getPaddingTop(), view.getPaddingRight(), view.getPaddingBottom()};
         view.setBackgroundColor(color);
         view.setPadding(padding[0], padding[1], padding[2], padding[3]);
     }
 
-    public static int generateViewId() {
+    public int generateViewId() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
             return View.generateViewId();
         } else {
@@ -198,26 +198,26 @@ public class ViewHelper {
         }
     }
 
-    public static Rect calculateViewScreenLocation(View view) {
+    public Rect calculateViewScreenLocation(View view) {
         int[] location = new int[2];
         view.getLocationOnScreen(location);
         return new Rect(location[0], location[1], location[0] + view.getWidth(),
                 location[1] + view.getHeight());
     }
 
-    public static void setVisibility(View view, boolean isShow) {
+    public void setVisibility(View view, boolean isShow) {
         if (view != null) {
             view.setVisibility(isShow ? View.VISIBLE : View.GONE);
         }
     }
 
-    public static void setVisibility(View view, int visibility) {
+    public void setVisibility(View view, int visibility) {
         if (view != null) {
             view.setVisibility(visibility);
         }
     }
 
-    public static void setEnabled(View view, boolean enabled) {
+    public void setEnabled(View view, boolean enabled) {
         if (view != null) {
             view.setEnabled(enabled);
             if (view instanceof EditText) {
@@ -227,43 +227,43 @@ public class ViewHelper {
         }
     }
 
-    public static void setText(TextView view, String text) {
+    public void setText(TextView view, String text) {
         if (view != null) {
             view.setText(text);
         }
     }
 
-    public static void setText(TextView view, @StringRes int textId) {
+    public void setText(TextView view, @StringRes int textId) {
         if (view != null) {
             view.setText(textId);
         }
     }
 
-    public static void textColorId(TextView view, @ColorRes int colorId) {
+    public void textColorId(TextView view, @ColorRes int colorId) {
         if (view != null) {
             view.setTextColor(ContextCompat.getColor(view.getContext(), colorId));
         }
     }
 
-    public static void setImageResource(ImageView view, @DrawableRes int imageId) {
+    public void setImageResource(ImageView view, @DrawableRes int imageId) {
         if (view != null) {
             view.setImageResource(imageId);
         }
     }
 
-    public static void setImageDrawable(ImageView view, Drawable drawable) {
+    public void setImageDrawable(ImageView view, Drawable drawable) {
         if (view != null) {
             view.setImageDrawable(drawable);
         }
     }
 
-    public static void setImageLevel(ImageView view, int level) {
+    public void setImageLevel(ImageView view, int level) {
         if (view != null) {
             view.setImageLevel(level);
         }
     }
 
-    public static void setImageTint(ImageView view, ColorStateList tint) {
+    public void setImageTint(ImageView view, ColorStateList tint) {
         if (view != null) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 view.setImageTintList(tint);
@@ -271,19 +271,19 @@ public class ViewHelper {
         }
     }
 
-    public static void setChecked(CompoundButton view, boolean isCheck) {
+    public void setChecked(CompoundButton view, boolean isCheck) {
         if (view != null) {
             view.setChecked(isCheck);
         }
     }
 
-    public static void setOnCheckedChangeListener(CompoundButton view, CompoundButton.OnCheckedChangeListener checkedChangeListener) {
+    public void setOnCheckedChangeListener(CompoundButton view, CompoundButton.OnCheckedChangeListener checkedChangeListener) {
         if (view != null) {
             view.setOnCheckedChangeListener(checkedChangeListener);
         }
     }
 
-    public static void setCheckedSilent(CompoundButton view, boolean isCheck, CompoundButton.OnCheckedChangeListener checkedChangeListener) {
+    public void setCheckedSilent(CompoundButton view, boolean isCheck, CompoundButton.OnCheckedChangeListener checkedChangeListener) {
         if (view != null) {
             view.setOnCheckedChangeListener(null);
             view.setChecked(isCheck);
@@ -292,7 +292,7 @@ public class ViewHelper {
     }
 
     @ShortName("expendTouchArea")
-    public static void expendTouchArea(final View view, final int expendSize) {
+    public void expendTouchArea(final View view, final int expendSize) {
         if (view != null) {
             final View parentView = (View) view.getParent();
 
@@ -311,53 +311,53 @@ public class ViewHelper {
         }
     }
 
-    public static void setPadding(View view, int padding) {
+    public void setPadding(View view, int padding) {
         if (view != null) {
             view.setPadding(padding, padding, padding, padding);
         }
     }
 
-    public static void setPaddingLeft(View view, int value) {
+    public void setPaddingLeft(View view, int value) {
         if (value != view.getPaddingLeft()) {
             view.setPadding(value, view.getPaddingTop(), view.getPaddingRight(), view.getPaddingBottom());
         }
     }
 
-    public static void setPaddingStart(View view, int value) {
+    public void setPaddingStart(View view, int value) {
         if (value != view.getPaddingStart()) {
             view.setPaddingRelative(value, view.getPaddingTop(), view.getPaddingEnd(), view.getPaddingBottom());
         }
     }
 
-    public static void setPaddingTop(View view, int value) {
+    public void setPaddingTop(View view, int value) {
         if (value != view.getPaddingTop()) {
             view.setPadding(view.getPaddingLeft(), value, view.getPaddingRight(), view.getPaddingBottom());
         }
     }
 
-    public static void setPaddingRight(View view, int value) {
+    public void setPaddingRight(View view, int value) {
         if (value != view.getPaddingRight()) {
             view.setPadding(view.getPaddingLeft(), view.getPaddingTop(), value, view.getPaddingBottom());
         }
     }
 
-    public static void setPaddingEnd(View view, int value) {
+    public void setPaddingEnd(View view, int value) {
         if (value != view.getPaddingEnd()) {
             view.setPaddingRelative(view.getPaddingStart(), view.getPaddingTop(), value, view.getPaddingBottom());
         }
     }
 
-    public static void setPaddingBottom(View view, int value) {
+    public void setPaddingBottom(View view, int value) {
         if (value != view.getPaddingBottom()) {
             view.setPadding(view.getPaddingLeft(), view.getPaddingTop(), view.getPaddingRight(), value);
         }
     }
 
-    public static boolean getIsLastLineSpacingExtraError() {
+    public boolean getIsLastLineSpacingExtraError() {
         return Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP;
     }
 
-    public static ImageButton findButton(View parentView, int viewStubId, int inflatedViewId) {
+    public ImageButton findButton(View parentView, int viewStubId, int inflatedViewId) {
         if (null == parentView) {
             return null;
         }
@@ -376,7 +376,7 @@ public class ViewHelper {
         return view;
     }
 
-    public static View findViewFromViewStub(View parentView, int viewStubId, int inflatedViewId) {
+    public View findViewFromViewStub(View parentView, int viewStubId, int inflatedViewId) {
         if (null == parentView) {
             return null;
         }
@@ -395,7 +395,7 @@ public class ViewHelper {
     }
 
     @SuppressLint("ResourceType")
-    public static View findViewFromViewStub2(View parentView, int viewStubId, int inflatedViewId, int inflateLayoutResId) {
+    public View findViewFromViewStub2(View parentView, int viewStubId, int inflatedViewId, int inflateLayoutResId) {
         if (null == parentView) {
             return null;
         }
@@ -417,7 +417,7 @@ public class ViewHelper {
     }
 
     @SuppressLint("ResourceType")
-    public static View findViewFromViewStub3(final BA ba, String event, View parentView, int viewStubId, int inflatedViewId) {
+    public View findViewFromViewStub3(final BA ba, String event, View parentView, int viewStubId, int inflatedViewId) {
         if (null == parentView) {
             return null;
         }
@@ -443,7 +443,7 @@ public class ViewHelper {
         return view;
     }
 
-    public static void safeSetImageViewSelected(ImageView imageView, boolean selected) {
+    public void safeSetImageViewSelected(ImageView imageView, boolean selected) {
         Drawable drawable = imageView.getDrawable();
         if (drawable == null) {
             return;
@@ -456,13 +456,13 @@ public class ViewHelper {
         }
     }
 
-    public static ColorFilter setImageViewTintColor(ImageView imageView, @ColorInt int tintColor) {
+    public ColorFilter setImageViewTintColor(ImageView imageView, @ColorInt int tintColor) {
         LightingColorFilter colorFilter = new LightingColorFilter(Color.argb(255, 0, 0, 0), tintColor);
         imageView.setColorFilter(colorFilter);
         return colorFilter;
     }
    
-    public static boolean isListViewAlreadyAtBottom(ListView listView) {
+    public boolean isListViewAlreadyAtBottom(ListView listView) {
         if (listView.getAdapter() == null || listView.getHeight() == 0) {
             return false;
         }
@@ -473,19 +473,14 @@ public class ViewHelper {
         }
         return false;
     }
-
-    public static void getDescendantRect(ViewGroup parent, View descendant, Rect out) {
-        out.set(0, 0, descendant.getWidth(), descendant.getHeight());
-        ViewGroupHelper.offsetDescendantRect(parent, descendant, out);
-    }
-
+   
     @ShortName("ViewGroupHelper")
-    private static class ViewGroupHelper {
+    private class ViewGroupHelper {
 
-        private static final ThreadLocal<Matrix> MATRIX_THREAD_LOCAL = new ThreadLocal<>();
-        private static final ThreadLocal<RectF> RECT_F_THREAD_LOCAL = new ThreadLocal<>();
+        private final ThreadLocal<Matrix> MATRIX_THREAD_LOCAL = new ThreadLocal<>();
+        private final ThreadLocal<RectF> RECT_F_THREAD_LOCAL = new ThreadLocal<>();
 
-        public static void offsetDescendantRect(ViewGroup group, View child, Rect rect) {
+        public void offsetDescendantRect(ViewGroup group, View child, Rect rect) {
             Matrix m = MATRIX_THREAD_LOCAL.get();
             if (m == null) {
                 m = new Matrix();
@@ -507,7 +502,7 @@ public class ViewHelper {
                     (int) (rectF.right + 0.5f), (int) (rectF.bottom + 0.5f));
         }
 
-        static void offsetDescendantMatrix(ViewParent target, View view, Matrix m) {
+        void offsetDescendantMatrix(ViewParent target, View view, Matrix m) {
             final ViewParent parent = view.getParent();
             if (parent instanceof View && parent != target) {
                 final View vp = (View) parent;
@@ -523,7 +518,7 @@ public class ViewHelper {
         }
     }
 
-    public static void setViewTextFont(View view, String assetFont) {
+    public void setViewTextFont(View view, String assetFont) {
         Typeface typeface = Typeface.createFromFile(assetFont);
         if (view == null || typeface == null) {
             return;
@@ -538,7 +533,7 @@ public class ViewHelper {
         }
     }
 
-    public static void setViewsFont(String assetFont, View... views) {
+    public void setViewsFont(String assetFont, View... views) {
         if (views == null || views.length == 0) {
             return;
         }
@@ -548,7 +543,7 @@ public class ViewHelper {
         }
     }
 
-    public static void clearViewLongClick(View rootView, int... ids) {
+    public void clearViewLongClick(View rootView, int... ids) {
         if (rootView == null || ids == null || ids.length == 0) {
             return;
         }
@@ -565,7 +560,7 @@ public class ViewHelper {
         }
     }
 
-    public static void clearAllViewLongClick(View view) {
+    public void clearAllViewLongClick(View view) {
         if (view == null) {
             return;
         }
@@ -849,7 +844,7 @@ public class ViewHelper {
         BOTTOM_TO_TOP
     }
 
-    static public void setEvent(BA ba, String BAevent, View view) {
+    public void setEvent(BA ba, String BAevent, View view) {
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

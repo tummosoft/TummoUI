@@ -190,4 +190,5 @@ public class xView extends AbsObjectWrapper<View> {
     public void setY(int value) {               
         getObject().setY(value);        
     }
+    
 }

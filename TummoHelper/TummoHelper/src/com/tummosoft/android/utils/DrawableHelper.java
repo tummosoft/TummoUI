@@ -106,9 +106,6 @@ import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.textfield.TextInputLayout;
-import static com.tummosoft.android.utils.BitmapHelper.bitmap2Bytes;
-import static com.tummosoft.android.utils.BitmapHelper.drawable2Bitmap;
-import static com.tummosoft.android.utils.ResourcesHelper.getResources;
 import java.io.BufferedInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -121,7 +118,7 @@ import java.util.Map;
 
 @BA.ShortName("DrawableHelper")
 public class DrawableHelper {
-    private static Context baContext;
+    private Context baContext;
     private String _eventName;        
     private BA _ba;
     private int idx = 0;
@@ -132,15 +129,7 @@ public class DrawableHelper {
         _eventName = event.toLowerCase();
     }
     
-     public static byte[] drawable2Bytes(Drawable drawable, CompressFormat format) {
-        return drawable == null ? null : bitmap2Bytes(drawable2Bitmap(drawable), format);
-    }
-
-    public static Drawable bitmap2Drawable(Resources res, Bitmap bitmap) {
-        return bitmap == null ? null : new BitmapDrawable(res, bitmap);
-    }
-    
-     public static GradientDrawable createRectangleDrawable(int color, float cornerRadius) {
+     public GradientDrawable createRectangleDrawable(int color, float cornerRadius) {
         GradientDrawable gradientDrawable = new GradientDrawable();
         gradientDrawable.setShape(GradientDrawable.RECTANGLE);
         gradientDrawable.setCornerRadius(cornerRadius);
@@ -149,7 +138,7 @@ public class DrawableHelper {
     }
      
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
-    public static GradientDrawable createRectangleDrawable(int[] colors, float cornerRadius) {
+    public GradientDrawable createRectangleDrawable(int[] colors, float cornerRadius) {
         GradientDrawable gradientDrawable = new GradientDrawable();
         gradientDrawable.setShape(GradientDrawable.RECTANGLE);
         gradientDrawable.setCornerRadius(cornerRadius);
@@ -157,7 +146,7 @@ public class DrawableHelper {
         return gradientDrawable;
     }
         
-    public static GradientDrawable createOvalDrawable(int color) {
+    public GradientDrawable createOvalDrawable(int color) {
         GradientDrawable gradientDrawable = new GradientDrawable();
         gradientDrawable.setShape(GradientDrawable.OVAL);
         gradientDrawable.setColor(color);
@@ -165,91 +154,104 @@ public class DrawableHelper {
     }
        
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
-    public static GradientDrawable createOvalDrawable(int[] colors) {
+    public GradientDrawable createOvalDrawable(int[] colors) {
         GradientDrawable gradientDrawable = new GradientDrawable();
         gradientDrawable.setShape(GradientDrawable.OVAL);
         gradientDrawable.setColors(colors);
         return gradientDrawable;
     }
     
-     public static Drawable getDrawable(@DrawableRes int resId) {
+    public Drawable Bitmap2Drawable(Bitmap bitmap, int width, int height) {
+        
+        Bitmap resizedBitmap = Bitmap.createScaledBitmap(bitmap, width, height, false);
+        BitmapDrawable drawable = new BitmapDrawable();
+        drawable.setBitmap(resizedBitmap);
+        
+        return (Drawable)drawable;
+    }
+    
+     public Drawable getDrawable(@DrawableRes int resId) {
+         Drawable temp = null;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            return baContext.getDrawable(resId);
+            temp = baContext.getDrawable(resId);            
+        } else {
+            temp = AppCompatResources.getDrawable(baContext, resId);
         }
-        return AppCompatResources.getDrawable(baContext, resId);
+        
+        return temp;
     }
      
-       public static StateListDrawable getStateListDrawable(@DrawableRes int resId) {
+       public StateListDrawable getStateListDrawable(@DrawableRes int resId) {
         Resources res = baContext.getResources();
         StateListDrawable drawable = (StateListDrawable) AppCompatResources.getDrawable(baContext, resId);
         return drawable;
     }
        
-        public static LevelListDrawable getLevelListDrawable(@DrawableRes int resId) {
+        public LevelListDrawable getLevelListDrawable(@DrawableRes int resId) {
         Resources res = baContext.getResources();
         LevelListDrawable drawable = (LevelListDrawable) AppCompatResources.getDrawable(baContext, resId);
         return drawable;
     }
 
-    public static LayerDrawable getLayerDrawable(@DrawableRes int resId) {
+    public LayerDrawable getLayerDrawable(@DrawableRes int resId) {
         Resources res = baContext.getResources();
         LayerDrawable drawable = (LayerDrawable) AppCompatResources.getDrawable(baContext, resId);
         return drawable;
     }
 
-    public static TransitionDrawable getTransitionDrawable(@DrawableRes int resId) {
+    public TransitionDrawable getTransitionDrawable(@DrawableRes int resId) {
         Resources res = baContext.getResources();
         TransitionDrawable drawable = (TransitionDrawable) AppCompatResources.getDrawable(baContext, resId);
         return drawable;
     }
 
-    public static RippleDrawable getRippleDrawable(@DrawableRes int resId) {
+    public RippleDrawable getRippleDrawable(@DrawableRes int resId) {
         Resources res = baContext.getResources();
         RippleDrawable drawable = (RippleDrawable) AppCompatResources.getDrawable(baContext, resId);
         return drawable;
     }
 
-    public static ScaleDrawable getScaleDrawable(@DrawableRes int resId) {
+    public ScaleDrawable getScaleDrawable(@DrawableRes int resId) {
         Resources res = baContext.getResources();
         ScaleDrawable drawable = (ScaleDrawable) AppCompatResources.getDrawable(baContext, resId);
         return drawable;
     }
 
-    public static ClipDrawable getClipDrawable(@DrawableRes int resId) {
+    public ClipDrawable getClipDrawable(@DrawableRes int resId) {
         Resources res = baContext.getResources();
         ClipDrawable drawable = (ClipDrawable) AppCompatResources.getDrawable(baContext, resId);
         return drawable;
     }
 
-    public static RotateDrawable getRotateDrawable(@DrawableRes int resId) {
+    public RotateDrawable getRotateDrawable(@DrawableRes int resId) {
         Resources res = baContext.getResources();
         RotateDrawable drawable = (RotateDrawable) AppCompatResources.getDrawable(baContext, resId);
 
         return drawable;
     }
 
-    public static NinePatchDrawable getNinePatchDrawable(@DrawableRes int resId) {
+    public NinePatchDrawable getNinePatchDrawable(@DrawableRes int resId) {
         Resources res = baContext.getResources();
         NinePatchDrawable drawable = (NinePatchDrawable) AppCompatResources.getDrawable(baContext, resId);
 
         return drawable;
     }
 
-    public static InsetDrawable getInsetDrawable(@DrawableRes int resId) {
+    public InsetDrawable getInsetDrawable(@DrawableRes int resId) {
         Resources res = baContext.getResources();
         InsetDrawable drawable = (InsetDrawable) AppCompatResources.getDrawable(baContext, resId);
 
         return drawable;
     }
 
-    public static VectorDrawable getVectorDrawable(@DrawableRes int resId) {
+    public VectorDrawable getVectorDrawable(@DrawableRes int resId) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             return (VectorDrawable) baContext.getDrawable(resId);
         }
         return (VectorDrawable) AppCompatResources.getDrawable(baContext, resId);
     }
 
-    public static Drawable getDrawableAttrRes(TypedArray typedArray, @StyleableRes int styleableResId) {
+    public Drawable getDrawableAttrRes(TypedArray typedArray, @StyleableRes int styleableResId) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             return typedArray.getDrawable(styleableResId);
         } else {
@@ -261,7 +263,7 @@ public class DrawableHelper {
         return null;
     }
 
-    public static ColorStateList getColorStateListAttrRes(TypedArray typedArray, @StyleableRes int styleableResId) {
+    public ColorStateList getColorStateListAttrRes(TypedArray typedArray, @StyleableRes int styleableResId) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             return typedArray.getColorStateList(styleableResId);
         } else {
@@ -273,16 +275,5 @@ public class DrawableHelper {
         return null;
     }
     
-    public static Drawable[] getDrawableArray(@ArrayRes int resId) {
-        TypedArray ta = getResources().obtainTypedArray(resId);
-        Drawable[] icons = new Drawable[ta.length()];
-        for (int i = 0; i < ta.length(); i++) {
-            int id = ta.getResourceId(i, 0);
-            if (id != 0) {
-                icons[i] = ContextCompat.getDrawable(baContext, id);
-            }
-        }
-        ta.recycle();
-        return icons;
-    }
+   
 }

@@ -105,4 +105,5 @@ public class xConstraintLayout extends AbsObjectWrapper<ConstraintLayout> {
 }
 // Nguyen cho phuoc duc nay hoa giai tat ca bua bong den, ta thuat cua ut vuon co. Phuoc nay se duoc hoi huong cho tat ca cac am binh, than bua. Mong cho chu vi nho co phuoc nay co duoc thuc an, nuoc uong, quan ao, xe co... va duoc giai thoat khoi nhung tay thay bua
 // Phuoc duc nay cung duoc hoi hung cho tat ca am binh cua thay 7 Liem. Voi uoc nguyen nhu tren.
-// Phuoc duc nay cung hoa giai bua meo den, meo muop, mao vang
+// Phuoc duc nay cung hoa giai bua meo den, meo muop, meo vang;
+// Phuoc duc nay se pha vo ta thuat da em len sim dien thoai 0769337020, 0924286382;

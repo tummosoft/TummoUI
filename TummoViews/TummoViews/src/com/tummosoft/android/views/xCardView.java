@@ -150,12 +150,47 @@ import java.util.Map;
 @BA.Events(values = {"Click()", "OnTouch(action as int),OnlongClick(v as View)"})
 public class xCardView extends AbsObjectWrapper<CardView> {
 
-    public void initialize(BA ba, String BAevent) {
-        String _event = BAevent.toLowerCase();
-        setObject(new CardView(ba.context));
-    }
+    private static String eventname = "";
+    private BA _ba;
+    private boolean hasfocus = false;
+    private String oldtext = "";
+    private String newtext = "";
 
-    public CardView GetView() {
-        return getObject();
+    public void initialize(final BA ba, String event) {
+        setObject(new CardView(ba.context));        
+        _ba = ba;
+        this.eventname = event.toLowerCase();
+      
+        getObject().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                _ba.raiseEventFromUI(xCardView.this, eventname + "_click", v);
+            }
+        });
+
+        getObject().setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent me) {
+                _ba.raiseEventFromUI(xCardView.this, eventname + "_touch", view);
+                return false;
+            }
+
+        });
+
+        getObject().setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                _ba.raiseEventFromUI(xCardView.this, eventname + "_longclick", view);
+                return false;
+            }
+        });
+    }
+    
+    public void addView(View child) {
+          getObject().addView(child);
+    }
+    
+    public void removeView(View child) {
+          getObject().removeView(child);
     }
 }

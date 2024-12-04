@@ -16,7 +16,7 @@ import anywheresoftware.b4a.objects.PanelWrapper;
 import java.util.ArrayList;
 import java.util.List;
 
-@Version(1.61f)
+@Version(1.62f)
 @BA.ShortName("xRelativeLayout")
 public class xRelativeLayout extends AbsObjectWrapper<RelativeLayout> {
 

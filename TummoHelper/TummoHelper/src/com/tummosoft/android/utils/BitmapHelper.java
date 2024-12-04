@@ -37,7 +37,7 @@ import java.io.IOException;
 
 @BA.ShortName("BitmapHelper")
 public class BitmapHelper {
-     static public Bitmap OpenImage(String filename) {
+     public Bitmap OpenImage(String filename) {
         Bitmap bmp = null;
         try {
             File.InputStreamWrapper inputStream = File.OpenInput(File.getDirAssets(), filename);
@@ -49,11 +49,11 @@ public class BitmapHelper {
         return bmp;
     }
      
-      public static Bitmap toRound2(Bitmap src) {
+      public Bitmap toRound2(Bitmap src) {
         return toRound(src, false);
     }
 
-    public static Bitmap toRound(Bitmap src, boolean recycle) {
+    public Bitmap toRound(Bitmap src, boolean recycle) {
 
         int width = src.getWidth();
         int height = src.getHeight();
@@ -73,11 +73,11 @@ public class BitmapHelper {
         return ret;
     }
 
-    public static Bitmap toRoundCorner2(Bitmap src, float radius) {
+    public Bitmap toRoundCorner2(Bitmap src, float radius) {
         return toRoundCorner(src, radius, false);
     }
 
-    public static Bitmap toRoundCorner(Bitmap src, float radius, boolean recycle) {
+    public Bitmap toRoundCorner(Bitmap src, float radius, boolean recycle) {
         if (null == src) {
             return null;
         }
@@ -97,13 +97,13 @@ public class BitmapHelper {
         return ret;
     }
 
-    public static Bitmap fastBlur2(Bitmap src,
+    public Bitmap fastBlur2(Bitmap src,
             @FloatRange(from = 0, to = 1, fromInclusive = false) float scale,
             @FloatRange(from = 0, to = 25, fromInclusive = false) float radius) {
         return fastBlur(src, scale, radius, false);
     }
 
-    public static Bitmap fastBlur(Bitmap src,
+    public Bitmap fastBlur(Bitmap src,
             @FloatRange(from = 0, to = 1, fromInclusive = false) float scale,
             @FloatRange(from = 0, to = 25, fromInclusive = false) float radius,
             boolean recycle) {
@@ -138,7 +138,7 @@ public class BitmapHelper {
     }
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
-    public static Bitmap renderScriptBlur(Context baContext, Bitmap src, @FloatRange(from = 0, to = 25, fromInclusive = false) float radius) {
+    public Bitmap renderScriptBlur(Context baContext, Bitmap src, @FloatRange(from = 0, to = 25, fromInclusive = false) float radius) {
 
         RenderScript rs = null;
         try {
@@ -159,7 +159,7 @@ public class BitmapHelper {
         return src;
     }
 
-    public static Bitmap stackBlur(Bitmap src, int radius, boolean recycle) {
+    public Bitmap stackBlur(Bitmap src, int radius, boolean recycle) {
         Bitmap ret;
         if (recycle) {
             ret = src;
@@ -363,11 +363,11 @@ public class BitmapHelper {
         return ret;
     }
 
-    public static Bitmap addFrame2(Bitmap src, int borderWidth, int color) {
+    public Bitmap addFrame2(Bitmap src, int borderWidth, int color) {
         return addFrame(src, borderWidth, color, false);
     }
 
-    public static Bitmap addFrame(Bitmap src, int borderWidth, int color, boolean recycle) {
+    public Bitmap addFrame(Bitmap src, int borderWidth, int color, boolean recycle) {
         int doubleBorder = borderWidth << 1;
         int newWidth = src.getWidth() + doubleBorder;
         int newHeight = src.getHeight() + doubleBorder;
@@ -386,11 +386,11 @@ public class BitmapHelper {
         return ret;
     }
 
-    public static Bitmap addReflection2(Bitmap src, int reflectionHeight) {
+    public Bitmap addReflection2(Bitmap src, int reflectionHeight) {
         return addReflection(src, reflectionHeight, false);
     }
 
-    public static Bitmap addReflection(Bitmap src, int reflectionHeight, boolean recycle) {
+    public Bitmap addReflection(Bitmap src, int reflectionHeight, boolean recycle) {
         final int REFLECTION_GAP = 0;
         int srcWidth = src.getWidth();
         int srcHeight = src.getHeight();
@@ -420,11 +420,11 @@ public class BitmapHelper {
         return ret;
     }
 
-    public static Bitmap toAlpha2(Bitmap src) {
+    public Bitmap toAlpha2(Bitmap src) {
         return toAlpha(src, false);
     }
 
-    public static Bitmap toAlpha(Bitmap src, Boolean recycle) {
+    public Bitmap toAlpha(Bitmap src, Boolean recycle) {
 
         Bitmap ret = src.extractAlpha();
         if (recycle && !src.isRecycled()) {
@@ -433,11 +433,11 @@ public class BitmapHelper {
         return ret;
     }
 
-    public static Bitmap toGray2(Bitmap src) {
+    public Bitmap toGray2(Bitmap src) {
         return toGray(src, false);
     }
 
-    public static Bitmap toGray(Bitmap src, boolean recycle) {
+    public Bitmap toGray(Bitmap src, boolean recycle) {
         Bitmap grayBitmap = Bitmap.createBitmap(src.getWidth(),
                 src.getHeight(), Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(grayBitmap);
@@ -453,27 +453,27 @@ public class BitmapHelper {
         return grayBitmap;
     }
 
-    public static Bitmap compressByScale3(Bitmap src, int newWidth, int newHeight) {
+    public Bitmap compressByScale3(Bitmap src, int newWidth, int newHeight) {
         return scale(src, newWidth, newHeight, false);
     }
 
-    public static Bitmap compressByScale2(Bitmap src, int newWidth, int newHeight, boolean recycle) {
+    public Bitmap compressByScale2(Bitmap src, int newWidth, int newHeight, boolean recycle) {
         return scale(src, newWidth, newHeight, recycle);
     }
 
-    public static Bitmap compressByScale1(Bitmap src, float scaleWidth, float scaleHeight) {
+    public Bitmap compressByScale1(Bitmap src, float scaleWidth, float scaleHeight) {
         return scale(src, scaleWidth, scaleHeight, false);
     }
 
-    public static Bitmap compressByScale(Bitmap src, float scaleWidth, float scaleHeight, boolean recycle) {
+    public Bitmap compressByScale(Bitmap src, float scaleWidth, float scaleHeight, boolean recycle) {
         return scale(src, scaleWidth, scaleHeight, recycle);
     }
 
-    public static Bitmap compressByQuality3(Bitmap src, @IntRange(from = 0, to = 100) int quality) {
+    public Bitmap compressByQuality3(Bitmap src, @IntRange(from = 0, to = 100) int quality) {
         return compressByQuality(src, quality, false);
     }
 
-    public static Bitmap compressByQuality2(Bitmap src, @IntRange(from = 0, to = 100) int quality, boolean recycle) {
+    public Bitmap compressByQuality2(Bitmap src, @IntRange(from = 0, to = 100) int quality, boolean recycle) {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         src.compress(Bitmap.CompressFormat.JPEG, quality, baos);
         byte[] bytes = baos.toByteArray();
@@ -483,11 +483,11 @@ public class BitmapHelper {
         return BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
     }
 
-    public static Bitmap compressByQuality1(Bitmap src, long maxByteSize) {
+    public Bitmap compressByQuality1(Bitmap src, long maxByteSize) {
         return compressByQuality(src, maxByteSize, false);
     }
 
-    public static Bitmap compressByQuality(Bitmap src, long maxByteSize, boolean recycle) {
+    public Bitmap compressByQuality(Bitmap src, long maxByteSize, boolean recycle) {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         int quality = 100;
         src.compress(Bitmap.CompressFormat.JPEG, quality, baos);
@@ -505,11 +505,11 @@ public class BitmapHelper {
         return BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
     }
 
-    public static Bitmap compressBySampleSize1(Bitmap src, int sampleSize) {
+    public Bitmap compressBySampleSize1(Bitmap src, int sampleSize) {
         return compressBySampleSize(src, sampleSize, false);
     }
 
-    public static Bitmap compressBySampleSize(Bitmap src, int sampleSize, boolean recycle) {
+    public Bitmap compressBySampleSize(Bitmap src, int sampleSize, boolean recycle) {
         BitmapFactory.Options options = new BitmapFactory.Options();
         options.inSampleSize = sampleSize;
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -521,11 +521,11 @@ public class BitmapHelper {
         return BitmapFactory.decodeByteArray(bytes, 0, bytes.length, options);
     }
     
-     public static Bitmap bytes2Bitmap(byte[] bytes) {
+     public Bitmap bytes2Bitmap(byte[] bytes) {
         return (bytes == null || bytes.length == 0) ? null : BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
     }
 
-    public static byte[] bitmap2Bytes(Bitmap bitmap, Bitmap.CompressFormat format) {
+    public byte[] bitmap2Bytes(Bitmap bitmap, Bitmap.CompressFormat format) {
         if (bitmap == null) {
             return null;
         }
@@ -534,7 +534,7 @@ public class BitmapHelper {
         return baos.toByteArray();
     }
 
-    public static Bitmap drawable2Bitmap(Drawable drawable) {
+    public Bitmap drawable2Bitmap(Drawable drawable) {
         if (drawable instanceof BitmapDrawable) {
             return ((BitmapDrawable) drawable).getBitmap();
         } else if (drawable instanceof NinePatchDrawable) {
@@ -551,14 +551,14 @@ public class BitmapHelper {
         }
     }
 
-    public static Bitmap getBitmap(byte[] data, int offset) {
+    public Bitmap getBitmap(byte[] data, int offset) {
         if (data.length == 0) {
             return null;
         }
         return BitmapFactory.decodeByteArray(data, offset, data.length);
     }
     
-    public static Bitmap scale(Bitmap src, float scaleWidth, float scaleHeight, boolean recycle) {
+    public Bitmap scale(Bitmap src, float scaleWidth, float scaleHeight, boolean recycle) {
         Matrix matrix = new Matrix();
         matrix.setScale(scaleWidth, scaleHeight);
         Bitmap ret = Bitmap.createBitmap(src, 0, 0, src.getWidth(), src.getHeight(), matrix, true);
@@ -568,15 +568,15 @@ public class BitmapHelper {
         return ret;
     }
 
-    public static Bitmap scale(Bitmap src, int newWidth, int newHeight) {
+    public Bitmap scale(Bitmap src, int newWidth, int newHeight) {
         return scale(src, newWidth, newHeight, false);
     }
 
-    public static Bitmap clip(Bitmap src, int x, int y, int width, int height) {
+    public Bitmap clip(Bitmap src, int x, int y, int width, int height) {
         return clip(src, x, y, width, height, false);
     }
 
-    public static Bitmap clip(Bitmap src, int x, int y, int width, int height, boolean recycle) {
+    public Bitmap clip(Bitmap src, int x, int y, int width, int height, boolean recycle) {
         Bitmap ret = Bitmap.createBitmap(src, x, y, width, height);
         if (recycle && !src.isRecycled()) {
             src.recycle();
@@ -584,15 +584,15 @@ public class BitmapHelper {
         return ret;
     }
 
-    public static Bitmap skew2(Bitmap src, float kx, float ky, boolean recycle) {
+    public Bitmap skew2(Bitmap src, float kx, float ky, boolean recycle) {
         return skew(src, kx, ky, 0, 0, recycle);
     }
 
-    public static Bitmap skew3(Bitmap src, float kx, float ky, float px, float py) {
+    public Bitmap skew3(Bitmap src, float kx, float ky, float px, float py) {
         return skew(src, kx, ky, px, py, false);
     }
 
-    public static Bitmap skew(Bitmap src, float kx, float ky, float px, float py, boolean recycle) {
+    public Bitmap skew(Bitmap src, float kx, float ky, float px, float py, boolean recycle) {
         Matrix matrix = new Matrix();
         matrix.setSkew(kx, ky, px, py);
         Bitmap ret = Bitmap.createBitmap(src, 0, 0, src.getWidth(), src.getHeight(), matrix, true);
@@ -602,11 +602,11 @@ public class BitmapHelper {
         return ret;
     }
 
-    public static Bitmap rotate2(Bitmap src, int degrees, float px, float py) {
+    public Bitmap rotate2(Bitmap src, int degrees, float px, float py) {
         return rotate(src, degrees, px, py, false);
     }
 
-    public static Bitmap rotate(Bitmap src, int degrees, float px, float py, boolean recycle) {
+    public Bitmap rotate(Bitmap src, int degrees, float px, float py, boolean recycle) {
 
         if (degrees == 0) {
             return src;

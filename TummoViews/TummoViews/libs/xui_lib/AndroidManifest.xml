@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.xuexiang.xui" >
+
+    <uses-sdk
+        android:minSdkVersion="17"
+        android:targetSdkVersion="29" />
+
+    <application>
+        <provider
+            android:name="com.xuexiang.xui.XUIInitProvider"
+            android:authorities="${applicationId}.xui-init-provider"
+            android:exported="false"
+            android:multiprocess="true" />
+
+        <activity
+            android:name="com.xuexiang.xui.widget.imageview.preview.ui.PreviewActivity"
+            android:theme="@style/XUITheme.Translucent" />
+        <activity
+            android:name="com.xuexiang.xui.widget.imageview.preview.ui.VideoPlayerActivity"
+            android:theme="@style/XUITheme.Translucent" />
+    </application>
+
+</manifest>
