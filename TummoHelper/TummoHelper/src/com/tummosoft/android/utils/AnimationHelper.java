@@ -35,6 +35,7 @@ import static com.tummosoft.android.utils.ViewHelper.Direction.LEFT_TO_RIGHT;
 import static com.tummosoft.android.utils.ViewHelper.Direction.RIGHT_TO_LEFT;
 import static com.tummosoft.android.utils.ViewHelper.Direction.TOP_TO_BOTTOM;
 import android.animation.ValueAnimator;
+import android.graphics.drawable.Drawable;
 import android.view.ViewGroup;
 import android.widget.GridView;
 import android.widget.LinearLayout;
@@ -59,8 +60,9 @@ public class AnimationHelper {
     public final int MODE_DURATION_INFINITE = (int) ObjectAnimator.DURATION_INFINITE;
     private ValueAnimator valueAnimator = null;
     private LayoutTransition transition = null;
+    private AnimationDrawable drawable = null;
         
-    public void initialize(BA ba, String event) {
+    public void initialize(final BA ba, String event) {
         _ba = ba;
         baContext = _ba.context;
         _eventName = event.toLowerCase();
@@ -68,6 +70,33 @@ public class AnimationHelper {
 
     public Animation getAnim(@AnimRes int resId) {
         return AnimationUtils.loadAnimation(baContext, resId);
+    }
+        
+    public void AnimationFromResID(Object viewObject, int resourceID) { 
+        View view = (View) viewObject;         
+        Animation animation = AnimationUtils.loadAnimation(baContext, resourceID);              
+        view.startAnimation(animation);        
+    }
+    
+    public void AnimationDrawable_initialize(boolean oneShot) {
+        drawable = new AnimationDrawable();
+        drawable.setOneShot(oneShot);       
+    }
+    
+    public void AnimationDrawable_addFrame(Drawable frame, int duration) {        
+        drawable.addFrame(frame, duration);        
+    }
+    
+    public Drawable GetAnimationDrawable() {        
+        return drawable;
+    }
+    
+    public void AnimationDrawable_Start() {        
+        drawable.start();
+    }
+    
+    public void AnimationDrawable_Stop() {        
+        drawable.stop();
     }
     
     public ObjectAnimator CreateObjectAnimator(Object view, String PropertyName, float... values) {
@@ -164,7 +193,7 @@ public class AnimationHelper {
          if (TransitionMethod.contains("APPEARING")) {
              transition.setAnimator(LayoutTransition.APPEARING, ObjAnimIn);
         } else if (TransitionMethod.contains("CHANGE_APPEARING")) {
-             transition.setAnimator(LayoutTransition.CHANGE_APPEARING, ObjAnimIn);
+             transition.setAnimator(LayoutTransition.CHANGE_APPEARING, ObjAnimIn); //APPEARING, CHANGE_APPEARING, CHANGE_DISAPPEARING, CHANGING, DISAPPEARING
          } else if (TransitionMethod.contains("CHANGE_DISAPPEARING")) {
              transition.setAnimator(LayoutTransition.CHANGE_DISAPPEARING, ObjAnimIn);
          } else if (TransitionMethod.contains("CHANGING")) {
