@@ -131,6 +131,14 @@ public class xLinearLayout extends AbsObjectWrapper<LinearLayout> {
         }
         return getObject();
     }
+    
+    public void RemoveViewAt(int index) {
+        getObject().removeViewAt(index);
+    }
+    
+    public void RemoveView(View view) {
+        getObject().removeView(view);
+    }
 
     public static final int ANIM_NONE = -1;
     public static final int ANIM_BOTTOM_TOP = 0;
@@ -180,7 +188,7 @@ public class xLinearLayout extends AbsObjectWrapper<LinearLayout> {
     public void setColor(int color) {
         getObject().setBackgroundColor(color);
     }
-
+    
     public int getID() {
         return getObject().getId();
     }

@@ -102,6 +102,14 @@ public class xConstraintLayout extends AbsObjectWrapper<ConstraintLayout> {
         }
     }
     
+     public void RemoveViewAt(int index) {
+        getObject().removeViewAt(index);
+    }
+    
+    public void RemoveView(View view) {
+        getObject().removeView(view);
+    }
+    
 }
 // Nguyen cho phuoc duc nay hoa giai tat ca bua bong den, ta thuat cua ut vuon co. Phuoc nay se duoc hoi huong cho tat ca cac am binh, than bua. Mong cho chu vi nho co phuoc nay co duoc thuc an, nuoc uong, quan ao, xe co... va duoc giai thoat khoi nhung tay thay bua
 // Phuoc duc nay cung duoc hoi hung cho tat ca am binh cua thay 7 Liem. Voi uoc nguyen nhu tren.

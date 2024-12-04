@@ -59,6 +59,14 @@ public class xRelativeLayout extends AbsObjectWrapper<RelativeLayout> {
         getObject().addView(view);
     }
 
+     public void RemoveViewAt(int index) {
+        getObject().removeViewAt(index);
+    }
+    
+    public void RemoveView(View view) {
+        getObject().removeView(view);
+    }
+    
     public int getViewID(int index) {
         int vid = 0;
         for (int i = 0; i < views.size(); i++) {

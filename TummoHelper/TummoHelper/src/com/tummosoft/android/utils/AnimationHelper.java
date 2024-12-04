@@ -1,6 +1,8 @@
 package com.tummosoft.android.utils;
 
+import android.animation.Animator;
 import android.animation.AnimatorSet;
+import android.animation.LayoutTransition;
 import android.animation.ObjectAnimator;
 import android.animation.TypeEvaluator;
 import android.animation.ValueAnimator;
@@ -20,6 +22,7 @@ import android.view.animation.BounceInterpolator;
 import android.view.animation.CycleInterpolator;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.LinearInterpolator;
+import android.view.animation.OvershootInterpolator;
 import android.view.animation.TranslateAnimation;
 import androidx.annotation.AnimRes;
 import androidx.annotation.DrawableRes;
@@ -31,9 +34,16 @@ import static com.tummosoft.android.utils.ViewHelper.Direction.BOTTOM_TO_TOP;
 import static com.tummosoft.android.utils.ViewHelper.Direction.LEFT_TO_RIGHT;
 import static com.tummosoft.android.utils.ViewHelper.Direction.RIGHT_TO_LEFT;
 import static com.tummosoft.android.utils.ViewHelper.Direction.TOP_TO_BOTTOM;
+import android.animation.ValueAnimator;
+import android.view.ViewGroup;
+import android.widget.GridView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.TableLayout;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 @BA.ShortName("AnimationHelper")
-@BA.Events(values = {"onAnimationUpdate(angle as float),onAnimationStart(),onAnimationEnd(),onAnimationRepeat()"})
+@BA.Events(values = {"onAnimationUpdate(angle as float),onAnimationStart(),onAnimationEnd(),onAnimationRepeat(),onAnimationCancel(),startTransition(view as Object),endTransition(view as Object)"})
 public class AnimationHelper {
 
     private Context baContext;
@@ -47,7 +57,9 @@ public class AnimationHelper {
     public final int MODE_RESTART = ObjectAnimator.RESTART;
     public final int MODE_REVERSE = ObjectAnimator.REVERSE;
     public final int MODE_DURATION_INFINITE = (int) ObjectAnimator.DURATION_INFINITE;
-
+    private ValueAnimator valueAnimator = null;
+    private LayoutTransition transition = null;
+        
     public void initialize(BA ba, String event) {
         _ba = ba;
         baContext = _ba.context;
@@ -57,7 +69,182 @@ public class AnimationHelper {
     public Animation getAnim(@AnimRes int resId) {
         return AnimationUtils.loadAnimation(baContext, resId);
     }
+    
+    public ObjectAnimator CreateObjectAnimator(Object view, String PropertyName, float... values) {
+       return ObjectAnimator.ofFloat(null, PropertyName, values);       
+    }
+    
+     public void LayoutAnimator_initialize(LinearLayout linearLayoutContainer) {
+        transition = new LayoutTransition();         
+        transition.addTransitionListener(new LayoutTransition.TransitionListener() {
+            @Override
+            public void startTransition(LayoutTransition transition, ViewGroup container, View view, int transitionType) {
+                 _ba.raiseEventFromUI(this, _eventName.toLowerCase() + "_starttransition", view);
+            }
 
+            @Override
+            public void endTransition(LayoutTransition transition, ViewGroup container, View view, int transitionType) {
+                _ba.raiseEventFromUI(this, _eventName.toLowerCase() + "_endtransition", view);
+            }
+        });
+
+        linearLayoutContainer.setLayoutTransition(transition);        
+    }
+    
+    public void LayoutAnimator_initialize2(TableLayout layout) {
+        transition = new LayoutTransition();         
+        transition.addTransitionListener(new LayoutTransition.TransitionListener() {
+            @Override
+            public void startTransition(LayoutTransition transition, ViewGroup container, View view, int transitionType) {
+                 _ba.raiseEventFromUI(this, _eventName.toLowerCase() + "_starttransition", view);
+            }
+
+            @Override
+            public void endTransition(LayoutTransition transition, ViewGroup container, View view, int transitionType) {
+                _ba.raiseEventFromUI(this, _eventName.toLowerCase() + "_endtransition", view);
+            }
+        });
+
+        layout.setLayoutTransition(transition);        
+    }
+    
+     public void LayoutAnimator_initialize3(RelativeLayout layout) {
+        transition = new LayoutTransition();         
+        transition.addTransitionListener(new LayoutTransition.TransitionListener() {
+            @Override
+            public void startTransition(LayoutTransition transition, ViewGroup container, View view, int transitionType) {
+                 _ba.raiseEventFromUI(this, _eventName.toLowerCase() + "_starttransition", view);
+            }
+
+            @Override
+            public void endTransition(LayoutTransition transition, ViewGroup container, View view, int transitionType) {
+                _ba.raiseEventFromUI(this, _eventName.toLowerCase() + "_endtransition", view);
+            }
+        });
+
+        layout.setLayoutTransition(transition);        
+    }
+     
+      public void LayoutAnimator_initialize4(GridView layout) {
+        transition = new LayoutTransition();         
+        transition.addTransitionListener(new LayoutTransition.TransitionListener() {
+            @Override
+            public void startTransition(LayoutTransition transition, ViewGroup container, View view, int transitionType) {
+                 _ba.raiseEventFromUI(this, _eventName.toLowerCase() + "_starttransition", view);
+            }
+
+            @Override
+            public void endTransition(LayoutTransition transition, ViewGroup container, View view, int transitionType) {
+                _ba.raiseEventFromUI(this, _eventName.toLowerCase() + "_endtransition", view);
+            }
+        });
+
+        layout.setLayoutTransition(transition);        
+    }
+      
+       public void LayoutAnimator_initialize5(ConstraintLayout layout) {
+        transition = new LayoutTransition();         
+        transition.addTransitionListener(new LayoutTransition.TransitionListener() {
+            @Override
+            public void startTransition(LayoutTransition transition, ViewGroup container, View view, int transitionType) {
+                 _ba.raiseEventFromUI(this, _eventName.toLowerCase() + "_starttransition", view);
+            }
+
+            @Override
+            public void endTransition(LayoutTransition transition, ViewGroup container, View view, int transitionType) {
+                _ba.raiseEventFromUI(this, _eventName.toLowerCase() + "_endtransition", view);
+            }
+        });
+
+        layout.setLayoutTransition(transition);        
+    }
+    
+    public void LayoutAnimatorIn(ObjectAnimator ObjAnimIn, String TransitionMethod) {
+        TransitionMethod = TransitionMethod.toUpperCase();         
+         if (TransitionMethod.contains("APPEARING")) {
+             transition.setAnimator(LayoutTransition.APPEARING, ObjAnimIn);
+        } else if (TransitionMethod.contains("CHANGE_APPEARING")) {
+             transition.setAnimator(LayoutTransition.CHANGE_APPEARING, ObjAnimIn);
+         } else if (TransitionMethod.contains("CHANGE_DISAPPEARING")) {
+             transition.setAnimator(LayoutTransition.CHANGE_DISAPPEARING, ObjAnimIn);
+         } else if (TransitionMethod.contains("CHANGING")) {
+             transition.setAnimator(LayoutTransition.CHANGING, ObjAnimIn);
+         } else if (TransitionMethod.contains("DISAPPEARING")) {
+             transition.setAnimator(LayoutTransition.DISAPPEARING, ObjAnimIn);
+         }         
+    }
+    
+    public void LayoutAnimatorOut(ObjectAnimator ObjAnimOut, String TransitionMethod) {
+        TransitionMethod = TransitionMethod.toUpperCase();         
+         if (TransitionMethod.contains("APPEARING")) {
+             transition.setAnimator(LayoutTransition.APPEARING, ObjAnimOut);
+        } else if (TransitionMethod.contains("CHANGE_APPEARING")) {
+             transition.setAnimator(LayoutTransition.CHANGE_APPEARING, ObjAnimOut);
+         } else if (TransitionMethod.contains("CHANGE_DISAPPEARING")) {
+             transition.setAnimator(LayoutTransition.CHANGE_DISAPPEARING, ObjAnimOut);
+         } else if (TransitionMethod.contains("CHANGING")) {
+             transition.setAnimator(LayoutTransition.CHANGING, ObjAnimOut);
+         } else if (TransitionMethod.contains("DISAPPEARING")) {
+             transition.setAnimator(LayoutTransition.DISAPPEARING, ObjAnimOut);
+         }         
+    }
+    
+    public void ValueAnimatorOfInt(int... values) {
+        valueAnimator = ValueAnimator.ofInt(values);
+         valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            public void onAnimationUpdate(ValueAnimator animation) {
+                Object curValue = animation.getAnimatedValue();
+                 _ba.raiseEventFromUI(this, _eventName.toLowerCase() + "_onanimationupdate", curValue);
+            }
+        });
+         
+          valueAnimator.addListener(new Animator.AnimatorListener() {
+            public void onAnimationStart(Animator animation) {
+                _ba.raiseEventFromUI(this, _eventName.toLowerCase() + "_onanimationstart", null);
+            }
+
+            public void onAnimationEnd(Animator animation) {
+                _ba.raiseEventFromUI(this, _eventName.toLowerCase() + "_onanimationend", null);
+            }
+
+            public void onAnimationCancel(Animator animation) {
+                 _ba.raiseEventFromUI(this, _eventName.toLowerCase() + "_onAnimationCancel", null);
+            }
+
+            public void onAnimationRepeat(Animator animation) {
+                 _ba.raiseEventFromUI(this, _eventName.toLowerCase() + "_onanimationrepeat", null);
+            }
+        });
+    }
+    
+    public void setValueAnimatorMethod(String Interpolator) {
+        Interpolator = Interpolator.toLowerCase();
+        if (Interpolator.contains("linear")) {
+            valueAnimator.setInterpolator(new LinearInterpolator());
+        } else if (Interpolator.contains("accelerate")) {
+            valueAnimator.setInterpolator(new AccelerateInterpolator());
+        } else if (Interpolator.contains("decelerate")) {
+            valueAnimator.setInterpolator(new DecelerateInterpolator());
+        } else if (Interpolator.contains("acceleratedecelerate")) {
+            valueAnimator.setInterpolator(new AccelerateDecelerateInterpolator());
+        } else if (Interpolator.contains("anticipate")) {
+            valueAnimator.setInterpolator(new AnticipateInterpolator());
+        } else if (Interpolator.contains("bounce")) {
+            valueAnimator.setInterpolator(new BounceInterpolator());
+        } else if (Interpolator.contains("overshoot")) {
+            valueAnimator.setInterpolator(new OvershootInterpolator());
+        } else if (Interpolator.contains("anticipateovershoot")) {
+            valueAnimator.setInterpolator(new AnticipateOvershootInterpolator());
+        }
+    }
+    
+    public void ValueAnimatorOfInt_Start(int restart, int repeatCount,  int Duration) {
+        valueAnimator.setRepeatMode(restart);
+        valueAnimator.setRepeatCount(repeatCount);        
+        valueAnimator.setDuration(Duration);
+        valueAnimator.start();
+    }
+    
     public ObjectAnimator startLinearInterpolator(View view, String event, int Duration, String effects, float startAt, float endAt, int RepeatMode, int RepeatCount) {
         ObjectAnimator anim = ObjectAnimator.ofFloat(view, effects, startAt, endAt);
         anim.setDuration(Duration);

@@ -81,6 +81,14 @@ public class xTableLayout extends AbsObjectWrapper<TableLayout> implements Commo
         _viewcolor = color;
     }
     
+     public void RemoveViewAt(int index) {
+        getObject().removeViewAt(index);
+    }
+    
+    public void RemoveView(View view) {
+        getObject().removeView(view);
+    }
+    
     public void AddRows(List items) {
         getObject().setStretchAllColumns(true);
         getObject().setShrinkAllColumns(true);

@@ -153,6 +153,14 @@ public class xGridLayout extends AbsObjectWrapper<GridView> implements Common.De
             return dummyView;
         }
     }
+    
+     public void RemoveViewAt(int index) {
+        getObject().removeViewAt(index);
+    }
+    
+    public void RemoveView(View view) {
+        getObject().removeView(view);
+    }
 //     nguyen cho phuoc duc nay hoa giai tat ca ta bua thu, bua meo, bua thang lan, bua tac ke, bua bong den
 }
 
