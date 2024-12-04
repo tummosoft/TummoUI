@@ -1,0 +1,88 @@
+﻿Build1=Default,b4a.example
+File1=Layout.bal
+FileGroup1=Default Group
+Group=Default Group
+Library1=core
+Library2=tummohelper
+Library3=tummoui
+Library4=xui
+Library5=tummoviews
+ManifestCode='This code will be applied to the manifest file during compilation.~\n~'You do not need to modify it in most cases.~\n~'See this link for for more information: https://www.b4x.com/forum/showthread.php?p=78136~\n~AddManifestText(~\n~<uses-sdk android:minSdkVersion="21" android:targetSdkVersion="34"/>~\n~<supports-screens android:largeScreens="true" ~\n~    android:normalScreens="true" ~\n~    android:smallScreens="true" ~\n~    android:anyDensity="true"/>)~\n~SetApplicationAttribute(android:icon, "@drawable/icon")~\n~SetApplicationAttribute(android:label, "$LABEL$")~\n~CreateResourceFromFile(Macro, Themes.LightTheme)~\n~'End of default text.~\n~
+Module1=Starter
+NumberOfFiles=1
+NumberOfLibraries=5
+NumberOfModules=1
+Version=13
+@EndOfDesignText@
+#Region  Project Attributes 
+	#ApplicationLabel: B4A Example
+	#VersionCode: 1
+	#VersionName: 
+	'SupportedOrientations possible values: unspecified, landscape or portrait.
+	#SupportedOrientations: unspecified
+	#CanInstallToExternalStorage: False
+#End Region
+
+#Region  Activity Attributes 
+	#FullScreen: False
+	#IncludeTitle: True
+#End Region
+
+Sub Process_Globals
+	'These global variables will be declared once when the application starts.
+	'These variables can be accessed from all modules.
+	Private xui As XUI
+End Sub
+
+Sub Globals
+	'These global variables will be redeclared each time the activity is created.
+	Private Button1 As Button
+	Private Button2 As Button
+	Private layoutAni As AnimationHelper
+	Private index As Int = 0
+	Dim linear_layout As xLinearLayout
+	Private top As Int = 0
+End Sub
+
+Sub Activity_Create(FirstTime As Boolean)
+	Activity.LoadLayout("Layout")
+	
+	linear_layout.initialize("linear", linear_layout.ROW_HORIZONTAL, linear_layout.COLUMN_TOP, linear_layout.GRAVITY_CENTER, 100%x, 100%y - 60dip)
+	
+	Activity.AddView(linear_layout, 0,0, 100%x, 100%y- 60dip)
+	layoutAni.initialize("layoutAni")
+	layoutAni.LayoutAnimator_initialize(linear_layout)	
+	layoutAni.LayoutAnimatorIn(layoutAni.CreateObjectAnimator(Null, "rotationY", Array As Float (0.0f,360.0f,0.0f)), "APPEARING") 'APPEARING, CHANGE_APPEARING, CHANGE_DISAPPEARING, CHANGING, DISAPPEARING
+	layoutAni.LayoutAnimatorOut(layoutAni.CreateObjectAnimator(Null, "rotation", Array As Float (0.0f,0.0f,90.0f)), "DISAPPEARING") 'APPEARING, CHANGE_APPEARING, CHANGE_DISAPPEARING, CHANGING, DISAPPEARING
+End Sub
+
+Sub Activity_Resume
+
+End Sub
+
+Sub Activity_Pause (UserClosed As Boolean)
+
+End Sub
+
+Sub Button1_Click
+	Dim btn1 As Button
+	btn1.Initialize("")
+	btn1.Text = "Item " & index
+	index = index + 1
+	linear_layout.AddView(btn1, 0, top, 0, 0, 120dip, 40dip)
+	top = top + 40dip
+End Sub
+
+Private Sub Button2_Click
+	index = index - 1
+	linear_layout.RemoveViewAt(index)
+	
+End Sub
+
+Private Sub startTransition(view As Object)
+	
+End Sub
+
+Private Sub endTransition(view As Object)
+	
+End Sub

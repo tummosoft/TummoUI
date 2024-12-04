@@ -1,0 +1,146 @@
+﻿Build1=Default,b4a.example
+File1=ho_guom.jpg
+File2=Layout.bal
+FileGroup1=Default Group
+FileGroup2=Default Group
+Group=Default Group
+Library1=appcompat
+Library2=core
+Library3=tummoui
+Library4=tummoviews
+Library5=xui
+Library6=tummohelper
+ManifestCode='This code will be applied to the manifest file during compilation.~\n~'You do not need to modify it in most cases.~\n~'See this link for for more information: https://www.b4x.com/forum/showthread.php?p=78136~\n~AddManifestText(~\n~<uses-sdk android:minSdkVersion="21" android:targetSdkVersion="34"/>~\n~<uses-permission~\n~    android:name="android.permission.INTERNET"/>~\n~<supports-screens android:largeScreens="true" ~\n~    android:normalScreens="true" ~\n~    android:smallScreens="true" ~\n~    android:anyDensity="true"/>)~\n~SetApplicationAttribute(android:icon, "@drawable/icon")~\n~SetApplicationAttribute(android:label, "$LABEL$")~\n~CreateResourceFromFile(Macro, Themes.LightTheme)~\n~'End of default text.~\n~
+Module1=Starter
+NumberOfFiles=2
+NumberOfLibraries=6
+NumberOfModules=1
+Version=13
+@EndOfDesignText@
+#Region  Project Attributes 
+	#ApplicationLabel: B4A Example
+	#VersionCode: 1
+	#VersionName: 
+	'SupportedOrientations possible values: unspecified, landscape or portrait.
+	#SupportedOrientations: unspecified
+	#CanInstallToExternalStorage: False
+#End Region
+
+#Region  Activity Attributes 
+	#FullScreen: False
+	#IncludeTitle: True
+#End Region
+
+#MultiDex: true
+
+#AdditionalJar: xui_lib.aar
+#AdditionalJar: viewpump-2.1.1.aar
+#AdditionalJar: calligraphy3-3.1.1.aar
+
+Sub Process_Globals
+	'These global variables will be declared once when the application starts.
+	'These variables can be accessed from all modules.
+	Private xui As XUI
+	Dim xSheetDialog As xBottomSheet
+End Sub
+
+Sub Globals
+	'These global variables will be redeclared each time the activity is created.
+End Sub
+
+Sub Activity_Create(FirstTime As Boolean)
+	Activity.LoadLayout("Layout")
+	Dim btn1 As xShadowButton
+	btn1.initialize("btn1")
+	btn1.Text = "btn1"
+	btn1.UnpressedColor = "#9cea1b"
+	btn1.TextColor = "#ffffff"
+	btn1.setPadding(5dip, 10dip, 5dip, 5dip)
+	btn1.Radius = 6dip	
+		
+	Activity.AddView(btn1, 20%x,10dip, 40dip, 40dip)
+	
+	Dim btn2 As xShadowButton
+	btn2.initialize("btn2")
+	btn2.Text = "btn2"
+	btn2.UnpressedColor = "#0075b4"
+	btn2.TextColor = "#ffffff"
+	btn2.Alpha = 40
+	btn2.PressedColor = "#f0ea20"
+	btn2.setPadding(5dip, 10dip, 5dip, 5dip)
+	btn2.ShapeType = 0
+	btn2.Gravity = Gravity.CENTER
+	btn2.Elevation = 0.2f
+	btn2.setShadowLayer(8.0f, 2.0f, 2.0f, "#494942")
+	Activity.AddView(btn2, 20%x, 60dip, 60dip, 60dip)
+	
+	Dim tuUtils As ResourcesHelper
+	tuUtils.initialize
+    
+	Dim logo As Int = tuUtils.getResourceId("icon","drawable")
+	
+	Dim clr As GradientHelper
+	clr.initialize(clr.Orientation_RIGHT_LEFT)
+	Dim radis() As Float  = Array As Float(90.0f,90.0f,90.0f,90.0f,90.0f,90.0f,90.0f,90.0f)
+	clr.Radius = radis
+	clr.setGradientCenter(5,5)
+	clr.Orientation = clr.Orientation_TL_BR
+	Dim cl() As String  = Array As String("#00F9E5","#6772FF","#4A54FF")
+	clr.Colors = cl
+	clr.setStroke(2dip, "#494942")
+	
+	
+	Dim btnRound As xShadowButton
+	btnRound.initialize("btnRound")
+	btnRound.Elevation = 1.6f	
+	btnRound.Radius = 60dip / 2
+	btnRound.BackgroundDrawable = clr
+	
+	Dim logo As Int = tuUtils.getResourceId("icon","drawable")	
+	Dim dh As DrawableHelper
+	dh.initialize("dh")	
+	btnRound.Foreground = dh.Bitmap2Drawable(LoadBitmap(File.DirAssets, "ho_guom.jpg"), 40dip, 40dip)
+	btnRound.ForegroundGravity = Gravity.CENTER_HORIZONTAL + Gravity.CENTER_VERTICAL
+				
+	Activity.AddView(btnRound, 20%x, 160dip, 60dip, 60dip)
+	
+	
+	Dim img3 As xShadowImageView
+	img3.initialize("btn2")		
+	img3.ImageBitmap = LoadBitmap(File.DirAssets, "ho_guom.jpg")
+	img3.Elevation = 0.6f
+	img3.CropToPadding = True
+	img3.ScaleType = "CENTER_INSIDE" '"MATRIX, CENTER_CROP,CENTER_INSIDE,FIT_CENTER,FIT_CENTER,FIT_END,FIT_START,FIT_XY
+			
+	Activity.AddView(img3, 20%x, 240dip, 60dip, 60dip)
+	
+	Dim img4 As xShadowImageView
+	img4.initialize("btn2")
+		
+	img4.ImageURI = "https://cdn.tuoitre.vn/zoom/456_285/471584752817336320/2024/12/3/nghi-tet2-17319175356721565073028-46-0-1296-2000-crop-17332237459741794590416.jpg"
+	img4.ScaleType = "MATRIX" '"MATRIX, CENTER_CROP,CENTER_INSIDE,FIT_CENTER,FIT_CENTER,FIT_END,FIT_START,FIT_XY
+			
+	Activity.AddView(img4, 20%x, 320dip, 60dip, 60dip)
+	
+	
+	
+	xSheetDialog.initialize("xSheetDialog")
+	Dim img1 As ImageView
+	img1.Initialize("")
+	img1.Bitmap = LoadBitmap(File.DirAssets, "ho_guom.jpg")
+	
+	xSheetDialog.addView(img1)
+End Sub
+
+Sub Activity_Resume
+
+End Sub
+
+Sub Activity_Pause (UserClosed As Boolean)
+
+End Sub
+
+Sub btnRound_Click(view As Object)
+	
+	xSheetDialog.Show
+End Sub

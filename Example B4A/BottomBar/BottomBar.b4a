@@ -1,0 +1,119 @@
+﻿Build1=Default,b4a.example
+File1=house.png
+File2=Layout.bal
+File3=xConstraintLayout.bal
+FileGroup1=Default Group
+FileGroup2=Default Group
+FileGroup3=Default Group
+Group=Default Group
+Library1=core
+Library2=javaobject
+Library3=tummoviews
+Library4=xui
+Library5=tummohelper
+ManifestCode='This code will be applied to the manifest file during compilation.~\n~'You do not need to modify it in most cases.~\n~'See this link for for more information: https://www.b4x.com/forum/showthread.php?p=78136~\n~AddManifestText(~\n~<uses-sdk android:minSdkVersion="29" android:targetSdkVersion="34"/>~\n~<supports-screens android:largeScreens="true" ~\n~    android:normalScreens="true" ~\n~    android:smallScreens="true" ~\n~    android:anyDensity="true"/>)~\n~SetApplicationAttribute(android:icon, "@drawable/icon")~\n~SetApplicationAttribute(android:label, "$LABEL$")
+Module1=Starter
+NumberOfFiles=3
+NumberOfLibraries=5
+NumberOfModules=1
+Version=13
+@EndOfDesignText@
+#Region  Project Attributes 
+	#ApplicationLabel: B4A Example
+	#VersionCode: 1
+	#VersionName: 
+	'SupportedOrientations possible values: unspecified, landscape or portrait.
+	#SupportedOrientations: unspecified
+	#CanInstallToExternalStorage: False
+#End Region
+
+#Region  Activity Attributes 
+	#FullScreen: False
+	#IncludeTitle: True
+#End Region
+
+#MultiDex: true
+
+'#Extends: android.support.v7.app.AppCompatActivity
+'#AdditionalRes: ../res
+
+Sub Process_Globals
+	'These global variables will be declared once when the application starts.
+	'These variables can be accessed from all modules.
+	Private xui As XUI
+End Sub
+
+Sub Globals
+	'These global variables will be redeclared each time the activity is created.
+End Sub
+
+Sub Activity_Create(FirstTime As Boolean)
+	Activity.LoadLayout("xConstraintLayout")
+	
+	Dim w As Int = 100%x / 4
+	Dim left As Int = (w - 15dip) / 2
+	
+	Dim tuUtils As ResourcesHelper
+	tuUtils.initialize
+	
+	Dim bottombar As xNavigationBar
+	bottombar.initialize("bottombar")
+	Dim iconhome As Int = tuUtils.getResourceId("home","drawable")
+	Dim iconhistory As Int = tuUtils.getResourceId("clock","drawable")
+	Dim iconfave As Int = tuUtils.getResourceId("fave","drawable")
+	Dim iconbook As Int = tuUtils.getResourceId("book","drawable")
+	Dim iconbg As Int = tuUtils.getResourceId("bg","drawable")
+	
+	Dim draw As DrawableHelper
+	draw.initialize("draw")
+	
+	Dim clr2 As GradientHelper
+	clr2.initialize(clr2.Orientation_BOTTOM_TOP)
+	clr2.setGradientCenter(5,5)
+	clr2.Orientation = clr2.Orientation_TL_BR
+	Dim cl2() As String  = Array As String("#FAC54B","#FED26C","#C85637")
+	clr2.Colors = cl2
+	bottombar.BackgroundDrawable = clr2
+	
+	For i=0 To 3
+		Dim buttonBar As xButtonImage
+		buttonBar.initialize("buttonBar")		
+		buttonBar.TagName = "Item " & i		
+		If (i = 0) Then
+			buttonBar.ImageResourceID = iconhome
+		else if (i = 1) Then
+			buttonBar.BackgroundDrawable = draw.getDrawable(iconhistory)
+		else if (i = 2) Then
+			buttonBar.BackgroundDrawable = draw.getDrawable(iconfave)
+		else if (i = 3) Then
+			buttonBar.BackgroundDrawable = draw.getDrawable(iconbook)
+		End If
+		
+		Dim pnlWrapper As Panel
+		pnlWrapper.Initialize("pnlWrapper")
+		pnlWrapper.AddView(buttonBar, left,5dip,15dip, 15dip)
+		pnlWrapper.Color = Colors.Transparent
+		
+		bottombar.AddView(pnlWrapper)
+		
+	Next
+	
+	bottombar.setPadding(0, 10dip, 0dip, 10dip)
+	'bottombar.setMargins(30dip, 0, 30dip, 0)
+	bottombar.Build()
+	
+	Activity.AddView(bottombar,0,100%y-35dip, 100%x, 35dip)
+End Sub
+
+Sub Activity_Resume
+
+End Sub
+
+Sub Activity_Pause (UserClosed As Boolean)
+
+End Sub
+
+Sub buttonBar_click(view As Object)
+	Dim v As xButtonImage = view
+	xui.MsgboxAsync("" & v.TagName, "B4X")
+End Sub

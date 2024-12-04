@@ -1,0 +1,94 @@
+﻿Build1=Default,b4a.example
+File1=Layout.bal
+FileGroup1=Default Group
+Group=Default Group
+Library1=core
+Library2=tummohelper
+Library3=tummoviews
+Library4=xui
+Library5=tummoui
+ManifestCode='This code will be applied to the manifest file during compilation.~\n~'You do not need to modify it in most cases.~\n~'See this link for for more information: https://www.b4x.com/forum/showthread.php?p=78136~\n~AddManifestText(~\n~<uses-sdk android:minSdkVersion="21" android:targetSdkVersion="34"/>~\n~<supports-screens android:largeScreens="true" ~\n~    android:normalScreens="true" ~\n~    android:smallScreens="true" ~\n~    android:anyDensity="true"/>)~\n~SetApplicationAttribute(android:icon, "@drawable/icon")~\n~SetApplicationAttribute(android:label, "$LABEL$")~\n~CreateResourceFromFile(Macro, Themes.LightTheme)~\n~'End of default text.~\n~
+Module1=Starter
+NumberOfFiles=1
+NumberOfLibraries=5
+NumberOfModules=1
+Version=13
+@EndOfDesignText@
+#Region  Project Attributes 
+	#ApplicationLabel: B4A Example
+	#VersionCode: 1
+	#VersionName: 
+	'SupportedOrientations possible values: unspecified, landscape or portrait.
+	#SupportedOrientations: unspecified
+	#CanInstallToExternalStorage: False
+#End Region
+
+#Region  Activity Attributes 
+	#FullScreen: False
+	#IncludeTitle: False
+#End Region
+
+Sub Process_Globals
+	'These global variables will be declared once when the application starts.
+	'These variables can be accessed from all modules.
+	Private xui As XUI
+End Sub
+
+Sub Globals
+	Dim ani As AnimationHelper
+	Private Label1 As Label
+	Private CheckBox1 As CheckBox
+	Private CheckBox2 As CheckBox
+	Private CheckBox5 As CheckBox
+	Private CheckBox6 As CheckBox
+	Private CheckBox3 As CheckBox
+	Private CheckBox4 As CheckBox
+	Private CheckBox7 As CheckBox
+	Private CheckBox8 As CheckBox
+End Sub
+
+Sub Activity_Create(FirstTime As Boolean)
+	Activity.LoadLayout("Layout")
+	ani.initialize("ani")
+	ani.ValueAnimatorOfInt(Array As Int(150,400))
+	ani.ValueAnimatorMethod = "Linear"
+	
+End Sub
+
+Sub Activity_Resume
+
+End Sub
+
+Sub Activity_Pause (UserClosed As Boolean)
+
+End Sub
+
+Sub Button1_Click
+	ani.ValueAnimatorOfInt_Start(0,0,500)
+End Sub
+
+Sub ani_OnAnimationUpdate(value As Float)
+	Label1.Top = value
+End Sub
+
+Sub ani_onAnimationStart()
+	Log("onAnimationStart")
+End Sub
+
+Sub ani_onAnimationEnd()
+	Log("onAnimationEnd")
+End Sub
+
+Sub ani_onAnimationRepeat()
+	
+End Sub
+
+Sub ani_onAnimationCancel()
+	
+End Sub
+
+Private Sub checkani_CheckedChange(Checked As Boolean)
+	Dim check As CheckBox = Sender
+	ani.ValueAnimatorMethod = check.Text
+	
+End Sub

@@ -1,0 +1,84 @@
+﻿Build1=Default,b4a.example
+File1=Layout.bal
+FileGroup1=Default Group
+Group=Default Group
+Library1=core
+Library2=tummohelper
+Library3=tummoviews
+Library4=xui
+Library5=tummoui
+ManifestCode='This code will be applied to the manifest file during compilation.~\n~'You do not need to modify it in most cases.~\n~'See this link for for more information: https://www.b4x.com/forum/showthread.php?p=78136~\n~AddManifestText(~\n~<uses-sdk android:minSdkVersion="21" android:targetSdkVersion="34"/>~\n~<supports-screens android:largeScreens="true" ~\n~    android:normalScreens="true" ~\n~    android:smallScreens="true" ~\n~    android:anyDensity="true"/>)~\n~SetApplicationAttribute(android:icon, "@drawable/icon")~\n~SetApplicationAttribute(android:label, "$LABEL$")~\n~CreateResourceFromFile(Macro, Themes.LightTheme)~\n~'End of default text.~\n~
+Module1=Starter
+NumberOfFiles=1
+NumberOfLibraries=5
+NumberOfModules=1
+Version=13
+@EndOfDesignText@
+#Region  Project Attributes 
+	#ApplicationLabel: B4A Example
+	#VersionCode: 1
+	#VersionName: 
+	'SupportedOrientations possible values: unspecified, landscape or portrait.
+	#SupportedOrientations: unspecified
+	#CanInstallToExternalStorage: False
+#End Region
+
+#Region  Activity Attributes 
+	#FullScreen: False
+	#IncludeTitle: True
+#End Region
+
+Sub Process_Globals
+	'These global variables will be declared once when the application starts.
+	'These variables can be accessed from all modules.
+	Private xui As XUI
+End Sub
+
+Sub Globals
+	'These global variables will be redeclared each time the activity is created.
+	Private ImageView1 As ImageView
+	Dim aniHelp As AnimationHelper
+End Sub
+
+Sub Activity_Create(FirstTime As Boolean)
+	Activity.LoadLayout("Layout")
+	
+	aniHelp.initialize("aniHelp")
+	aniHelp.AnimationDrawable_initialize(False)
+	
+	Dim tuUtils As ResourcesHelper
+	tuUtils.initialize
+    
+	
+	Dim p1 As Int = tuUtils.getResourceId("h1","drawable")
+	aniHelp.AnimationDrawable_addFrame(tuUtils.getDrawable(p1), 80)
+	Dim p2 As Int = tuUtils.getResourceId("h2","drawable")
+	aniHelp.AnimationDrawable_addFrame(tuUtils.getDrawable(p2), 80)
+	Dim p3 As Int = tuUtils.getResourceId("h3","drawable")
+	aniHelp.AnimationDrawable_addFrame(tuUtils.getDrawable(p3), 80)
+	Dim p4 As Int = tuUtils.getResourceId("h4","drawable")
+	aniHelp.AnimationDrawable_addFrame(tuUtils.getDrawable(p4), 80)
+	Dim p5 As Int = tuUtils.getResourceId("h5","drawable")
+	aniHelp.AnimationDrawable_addFrame(tuUtils.getDrawable(p5), 80)
+	Dim p6 As Int = tuUtils.getResourceId("h6","drawable")
+	aniHelp.AnimationDrawable_addFrame(tuUtils.getDrawable(p6), 80)
+	Dim p7 As Int = tuUtils.getResourceId("h7","drawable")
+	aniHelp.AnimationDrawable_addFrame(tuUtils.getDrawable(p7), 80)
+	Dim p8 As Int = tuUtils.getResourceId("h8","drawable")
+	aniHelp.AnimationDrawable_addFrame(tuUtils.getDrawable(p8), 80)
+		
+	ImageView1.Background = aniHelp.GetAnimationDrawable
+	
+End Sub
+
+Sub Activity_Resume
+
+End Sub
+
+Sub Activity_Pause (UserClosed As Boolean)
+
+End Sub
+
+Sub Button1_Click
+	aniHelp.AnimationDrawable_Start
+End Sub
