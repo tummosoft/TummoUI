@@ -152,7 +152,7 @@ import java.util.Map;
 @BA.Events(values = {"Click (view as Object)", "LongClick (view as Object)"})
 public class xImageView extends AbsObjectWrapper<ImageView> {
 
-     private static String eventname = "";
+    private static String eventname = "";
     private BA _ba;
     private boolean hasfocus = false;
     private String oldtext = "";

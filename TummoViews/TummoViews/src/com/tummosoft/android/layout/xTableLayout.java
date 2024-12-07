@@ -168,4 +168,10 @@ public class xTableLayout extends AbsObjectWrapper<TableLayout> implements Commo
     }
 
 }
-// Nguyen cho cong duc nay hoa giai tat ca bua meo, bua bong den den tu thang thay bua huong chu chi
+// Con xin hoi huong phuoc duc nay den toan the Chu thien, cac vua troi Tu Dai Thien Vuong
+// Nho chu vi hoa giai ta thuat cua thang Phong (con nuoi Ut Vuon Co);
+// Hoa giai ta thuat cua thang Ngoan, thang Ut Vuon Co, thang Hai;
+// Hoa giai ta thuat den tu thang Tung (5 Y);
+// Hoa giai ta thuat cua con Pham Thi Vui;
+// Hoa giai ta thuat den tu gia dinh 2 Chien
+// Hoa giai ta thuat den tu gia dinh thang Hung (8 Duc), thang Dieu (8 Duc), vo thang Hung, anh chi em ben vo thang Hung;

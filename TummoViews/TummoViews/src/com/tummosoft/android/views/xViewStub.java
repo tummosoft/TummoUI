@@ -157,7 +157,7 @@ public class xViewStub extends AbsObjectWrapper<ViewStub> {
         String _event = BAevent.toLowerCase();
         setObject(new ViewStub(ba.context));        
     }
-
+    
     public ViewStub GetView() {
         return getObject();
     }

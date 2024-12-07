@@ -161,6 +161,10 @@ public class xGridLayout extends AbsObjectWrapper<GridView> implements Common.De
     public void RemoveView(View view) {
         getObject().removeView(view);
     }
-//     nguyen cho phuoc duc nay hoa giai tat ca ta bua thu, bua meo, bua thang lan, bua tac ke, bua bong den
+
 }
 
+// Con xin hoi huong phuoc duc nay den toan the Chu thien, cac vua troi Tu Dai Thien Vuong
+// Nho chu vi hoa giai ta thuat cua thang Phong (con nuoi Ut Vuon Co);
+// Hoa giai ta thuat cua thang Ngoan, thang Ut Vuon Co;
+// Hoa giai ta thuat cua con Pham Thi Vui;

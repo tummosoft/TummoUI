@@ -150,16 +150,66 @@ import java.util.Locale;
 import java.util.Map;
 
 @BA.ShortName("xView")
-@BA.Events(values = {"Click()", "OnTouch(action as int),OnlongClick(v as View)"})
+@BA.Events(values = {"Click(view as Object)", "OnTouch(action as int),OnlongClick(v as Object)"})
 public class xView extends AbsObjectWrapper<View> {
+    private static String eventname = "";
+    private BA _ba;
+    
      public void initialize(BA ba, String BAevent) {
-        String _event = BAevent.toLowerCase();
-        setObject(new View(ba.context));        
+        eventname = BAevent.toLowerCase();
+        _ba = ba;
+                
+        setObject(new View(ba.context));  
+        getObject().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                _ba.raiseEventFromUI(xView.this, eventname + "_click", v);
+            }
+        });
+
+        getObject().setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent me) {
+                _ba.raiseEventFromUI(xView.this, eventname + "_touch", view);
+                return false;
+            }
+        });
+
+        getObject().setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                _ba.raiseEventFromUI(xView.this, eventname + "_longclick", view);
+                return false;
+            }
+        });   
     }
      
-     public void setView(View view) {
+    public void setView(View view) {
          setObject(view);
-     }
+          getObject().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                _ba.raiseEventFromUI(xView.this, eventname + "_click", v);
+            }
+        });
+
+        getObject().setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent me) {
+                _ba.raiseEventFromUI(xView.this, eventname + "_touch", view);
+                return false;
+            }
+        });
+
+        getObject().setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                _ba.raiseEventFromUI(xView.this, eventname + "_longclick", view);
+                return false;
+            }
+        });   
+         
+    }
 
     public View GetView() {
         
@@ -184,11 +234,26 @@ public class xView extends AbsObjectWrapper<View> {
     }
     
     public void setX(int value) {               
-        getObject().setX(value);
+        getObject().setX(value);        
+    }
+    
+    public void startAnimation(Animation anim) {               
+        getObject().startAnimation(anim);
     }
     
     public void setY(int value) {               
         getObject().setY(value);        
     }
     
+    public void setVisibility(String viewOption) {               
+        viewOption = viewOption.toUpperCase();
+        if (viewOption.contains("GONE")) {
+            getObject().setVisibility(View.GONE);
+        } else if (viewOption.contains("VISIBLE")) {
+            getObject().setVisibility(View.VISIBLE);
+        }
+        
+    }
+    
+   
 }
