@@ -1,11 +1,11 @@
 package com.tummosoft.android.utils;
 
 import android.animation.Animator;
+import android.animation.Animator.AnimatorListener;
 import android.animation.AnimatorSet;
 import android.animation.LayoutTransition;
 import android.animation.ObjectAnimator;
-import android.animation.TypeEvaluator;
-import android.animation.ValueAnimator;
+import android.animation.TimeInterpolator;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.drawable.AnimatedStateListDrawable;
@@ -34,11 +34,17 @@ import static com.tummosoft.android.utils.ViewHelper.Direction.BOTTOM_TO_TOP;
 import static com.tummosoft.android.utils.ViewHelper.Direction.LEFT_TO_RIGHT;
 import static com.tummosoft.android.utils.ViewHelper.Direction.RIGHT_TO_LEFT;
 import static com.tummosoft.android.utils.ViewHelper.Direction.TOP_TO_BOTTOM;
+import androidx.interpolator.view.animation.FastOutSlowInInterpolator;
 import android.animation.ValueAnimator;
 import android.content.DialogInterface.OnClickListener;
 import android.graphics.Matrix;
 import android.graphics.drawable.Drawable;
 import android.view.ViewGroup;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.AnimationSet;
+import android.view.animation.Interpolator;
+import android.view.animation.RotateAnimation;
+import android.view.animation.ScaleAnimation;
 import android.view.animation.Transformation;
 import android.widget.GridView;
 import android.widget.ImageView;
@@ -47,6 +53,9 @@ import android.widget.RelativeLayout;
 import android.widget.TableLayout;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import anywheresoftware.b4a.AbsObjectWrapper;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 @BA.ShortName("AnimationHelper")
 @BA.Events(values = {"applyTransformation(interpolatedTime as float, t as Transformation)", "onAnimationUpdate(angle as float),onAnimationStart(),onAnimationEnd(),onAnimationRepeat(),onAnimationCancel(),startTransition(view as Object),endTransition(view as Object)"})
@@ -59,6 +68,17 @@ public class AnimationHelper extends Animation {
     private int _width;
     private BA _ba;
     private int idx = 0;
+    public final int ANIMATION_ABSOLUTE = Animation.ABSOLUTE;
+    public final int ANIMATION_INFINITE = Animation.INFINITE;
+    public final int ANIMATION_RELATIVE_TO_PARENT = Animation.RELATIVE_TO_PARENT;
+    public final int ANIMATION_RELATIVE_TO_SELF = Animation.RELATIVE_TO_SELF;
+    public final int ANIMATION_RESTART = Animation.RESTART;
+    public final int ANIMATION_REVERSE = Animation.REVERSE;
+    public final int START_ON_FIRST_FRAME = Animation.START_ON_FIRST_FRAME;
+    public final int ZORDER_BOTTOM = Animation.ZORDER_BOTTOM;
+    public final int ZORDER_NORMAL = Animation.ZORDER_NORMAL;
+    public final int ZORDER_TOP = Animation.ZORDER_TOP;
+
     public final int MODE_INFINITE = ObjectAnimator.INFINITE;
     public final int MODE_RESTART = ObjectAnimator.RESTART;
     public final int MODE_REVERSE = ObjectAnimator.REVERSE;
@@ -66,14 +86,167 @@ public class AnimationHelper extends Animation {
     private ValueAnimator valueAnimator = null;
     private LayoutTransition transition = null;
     private AnimationDrawable drawable = null;
+    private TimeInterpolator timeinterpolator = null;
+    private Interpolator interpolator = null;
+    private AnimationSet collectAnimation = null;
 
     public void initialize(final BA ba, String event) {
         _ba = ba;
         baContext = _ba.context;
         _eventName = event.toLowerCase();
+        valueAnimator = new ValueAnimator();
+
     }
 
     private boolean isFrontVisible = true;
+
+    public TranslateAnimation CreateTranslateAnimation(int[] position, long Duration, Interpolator Polator, boolean FillAfter) {
+        TranslateAnimation animation = new TranslateAnimation(
+                position[0],
+                position[1],
+                position[2],
+                position[3]
+        );
+
+        animation.setDuration(Duration);
+        if (Polator != null) {
+            animation.setInterpolator(Polator);
+        }
+        animation.setFillAfter(FillAfter);
+
+        return animation;
+    }
+
+    public ScaleAnimation CreateScaleAnimation(float[] position, int centerX, int centerY, long Duration, xInterpolator Polator, boolean FillAfter) {
+        ScaleAnimation animation = new ScaleAnimation(
+                position[0],
+                position[1],
+                position[2],
+                position[3],
+                centerX,
+                position[4],
+                centerY,
+                position[5]
+        );
+
+        animation.setDuration(Duration);
+        if (Polator != null) {
+            animation.setInterpolator(Polator.getObject());
+        }
+        animation.setFillAfter(FillAfter);
+
+        return animation;
+    }
+    
+    public ObjectAnimator CreateObjectAnimatorOfFloat(View view, String propertyName, float... values) {
+        return ObjectAnimator.ofFloat(view, propertyName, values);
+    }
+
+    public ObjectAnimator CreateObjectAnimatorOfInt(View view, String propertyName, int... values) {
+        return ObjectAnimator.ofInt(view, propertyName, values);
+    }
+
+    public AlphaAnimation CreateAlphaAnimation(float fromAlpha, float toAlpha, long Duration, xInterpolator Polator, boolean FillAfter, int repeatCount, int repeatMode, boolean FillBefore) {
+        AlphaAnimation animation = new AlphaAnimation(
+                fromAlpha,
+                toAlpha
+        );
+
+        animation.setDuration(Duration);
+        if (Polator != null) {
+            animation.setInterpolator(Polator.getObject());
+        }
+        if (repeatCount != -1) {
+            animation.setRepeatCount(repeatCount);
+        }
+        if (repeatMode != -1) {
+            animation.setRepeatCount(repeatMode);
+        }
+
+        animation.setFillAfter(FillAfter);
+        animation.setFillBefore(FillBefore);
+
+        return animation;
+    }
+    
+     public RotateAnimation CreateRotateAnimation(xDegrees degress, xInterpolator Polator, long Duration, boolean FillAfter, int repeatCount, int repeatMode, boolean FillBefore) {
+        RotateAnimation animation = new RotateAnimation(degress.getFromDegrees(), degress.getToDegrees(), degress.getCenterX1(), degress.getCenterX2(), degress.getCenterY1(), degress.getCenterY2());
+
+        animation.setDuration(Duration);
+        if (Polator != null) {
+            animation.setInterpolator(Polator.getObject());
+        }
+        if (repeatCount != -1) {
+            animation.setRepeatCount(repeatCount);
+        }
+        if (repeatMode != -1) {
+            animation.setRepeatCount(repeatMode);
+        }
+
+        animation.setFillAfter(FillAfter);
+        animation.setFillBefore(FillBefore);
+
+        return animation;
+    }
+     
+      public TranslateAnimation CreateTranslateAnimation(xDegrees degress, xInterpolator Polator, long Duration, boolean FillAfter, int repeatCount, int repeatMode, boolean FillBefore) {
+        TranslateAnimation animation = new TranslateAnimation(Animation.ABSOLUTE, 0,
+                                                Animation.ABSOLUTE, 0,
+                                                Animation.ABSOLUTE, 0,
+                                                Animation.ABSOLUTE, 0);
+
+        animation.setDuration(Duration);
+        if (Polator != null) {
+            animation.setInterpolator(Polator.getObject());
+        }
+        if (repeatCount != -1) {
+            animation.setRepeatCount(repeatCount);
+        }
+        if (repeatMode != -1) {
+            animation.setRepeatCount(repeatMode);
+        }
+
+        animation.setFillAfter(FillAfter);
+        animation.setFillBefore(FillBefore);
+
+        return animation;
+    }
+    
+
+    public void AnimationSet_initialize() {
+        collectAnimation = new AnimationSet(true);
+    }
+
+    public void AnimationSet_addAnimation(Animation item) {
+        collectAnimation.addAnimation(item);        
+    }
+
+    public void AnimationSet_Reset() {
+        collectAnimation.reset();
+    }
+
+    public void AnimationSet_Start(View view) {
+        view.startAnimation(collectAnimation);
+    }
+    
+    private AnimatorSet collectAnimator;
+     public void AnimatorSet_initialize() {
+        collectAnimator = new AnimatorSet();
+    }
+
+    public void AnimatorSet_addAnimator(Object... items) {        
+        Collection<Animator> collection = new ArrayList<>();
+        
+        for (Object item : items) {
+           collection.add((Animator)item);
+        }
+        
+        collectAnimator.playTogether(collection);
+    }
+    
+    public void AnimatorSet_Start() {
+       collectAnimator.start();
+    }
 
     @Override
     protected void applyTransformation(float interpolatedTime, Transformation t) {
@@ -82,7 +255,7 @@ public class AnimationHelper extends Animation {
         _ba.raiseEventFromUI(this, _eventName.toLowerCase() + "_applytransformation", interpolatedTime, t1);
     }
 
-    public void SetAnimationEvent(String _event,  AnimationHelper anim, long Duration, boolean FillAfter) {
+    public void SetAnimationEvent(String _event, AnimationHelper anim, long Duration, boolean FillAfter) {
         anim.setDuration(Duration);
         anim.setFillAfter(FillAfter);
         anim.setAnimationListener(new AnimationListener() {
@@ -103,109 +276,6 @@ public class AnimationHelper extends Animation {
         });
     }
 
-    
-    // xTransformation class
-    // ***********************************
-    @BA.ShortName("xTransformation")
-    public static class xTransformation extends AbsObjectWrapper<Transformation> {
-
-        public void initialize(final BA ba, String event) {
-            setObject(new Transformation());
-        }
-
-        public void Clear() {
-            getObject().clear();
-        }
-
-        public float getAlpha() {
-            return getObject().getAlpha();
-        }
-
-        public Matrix getMatrix() {
-            return getObject().getMatrix();
-        }
-
-        public int getTransformationType() {
-            return getObject().getTransformationType();
-        }
-
-        public void setTransformationType(int value) {
-            getObject().setTransformationType(value);
-        }
-    }
-
-    // xMatrix class
-    // ***********************************
-    @BA.ShortName("xMatrix")
-    public static class xMatrix extends AbsObjectWrapper<Matrix> {
-
-        public void initialize(final BA ba, String event) {
-            setObject(new Matrix());
-        }
-
-        public void preTranslate(float dx, float dy) {
-            getObject().preTranslate(dx, dy);
-        }
-
-        public void postTranslate(float dx, float dy) {
-            getObject().postTranslate(dx, dy);
-        }
-
-        public void preSkew(float dx, float dy) {
-            getObject().preSkew(dx, dy);
-        }
-
-        public void mapPoints(float[] values) {
-            getObject().mapPoints(values);
-        }
-
-        public void mapRadius(float values) {
-            getObject().mapRadius(values);
-        }
-
-        public void setTranslate(float dx, float dy) {
-            getObject().setTranslate(dx, dy);
-        }
-
-        public void setRotate(float degree) {
-            getObject().setRotate(degree);
-        }
-
-        public void setRotate(float sx, float sy) {
-            getObject().setScale(sx, sy);
-        }
-
-        public void setSinCos(float sinValue, float cosValue) {
-            getObject().setSinCos(sinValue, cosValue);
-        }
-
-        public void setMatrix(Matrix matrix) {
-            getObject().set(matrix);
-        }
-
-        public void setMatrix(Matrix matrix1, Matrix matrix2) {
-            getObject().setConcat(matrix1, matrix2);
-        }
-
-        public void reset() {
-            getObject().reset();
-        }
-
-        public void mapVectors(float[] vecs) {
-            getObject().mapVectors(vecs);
-        }
-
-        public boolean isAffine() {
-            return getObject().isAffine();
-        }
-
-        public boolean isIdentity() {
-            return getObject().isIdentity();
-        }
-    }
-
-    // *********************************************************
-    // --- END CLASS ---
     public Animation getAnim(@AnimRes int resId) {
         return AnimationUtils.loadAnimation(baContext, resId);
     }
@@ -382,27 +452,6 @@ public class AnimationHelper extends Animation {
                 _ba.raiseEventFromUI(this, _eventName.toLowerCase() + "_onanimationrepeat", null);
             }
         });
-    }
-
-    public void setValueAnimatorMethod(String Interpolator) {
-        Interpolator = Interpolator.toLowerCase();
-        if (Interpolator.contains("linear")) {
-            valueAnimator.setInterpolator(new LinearInterpolator());
-        } else if (Interpolator.contains("accelerate")) {
-            valueAnimator.setInterpolator(new AccelerateInterpolator());
-        } else if (Interpolator.contains("decelerate")) {
-            valueAnimator.setInterpolator(new DecelerateInterpolator());
-        } else if (Interpolator.contains("acceleratedecelerate")) {
-            valueAnimator.setInterpolator(new AccelerateDecelerateInterpolator());
-        } else if (Interpolator.contains("anticipate")) {
-            valueAnimator.setInterpolator(new AnticipateInterpolator());
-        } else if (Interpolator.contains("bounce")) {
-            valueAnimator.setInterpolator(new BounceInterpolator());
-        } else if (Interpolator.contains("overshoot")) {
-            valueAnimator.setInterpolator(new OvershootInterpolator());
-        } else if (Interpolator.contains("anticipateovershoot")) {
-            valueAnimator.setInterpolator(new AnticipateOvershootInterpolator());
-        }
     }
 
     public void ValueAnimatorOfInt_Start(int restart, int repeatCount, int Duration) {
@@ -594,6 +643,7 @@ public class AnimationHelper extends Animation {
     public void startTranslateAnimation(View view, String event, int Duration, float deltaX, float deltaY, boolean keepPosition, int RepeatMode, int RepeatCount) {
         Animation anim = new TranslateAnimation(0, deltaX, 0, deltaY);
         anim.setDuration(Duration);
+        setInterpolator(new FastOutSlowInInterpolator());
         anim.setRepeatMode(RepeatMode);
         anim.setRepeatCount(RepeatCount);
         anim.setFillAfter(keepPosition);
@@ -618,14 +668,119 @@ public class AnimationHelper extends Animation {
         view.startAnimation(anim);
     }
 
-    public void setAnimatorOfFloat(View view, int Duration, String proper, float[] frame1, int RepeatMode, int RepeatCount) {
-        ObjectAnimator rotationAnim = ObjectAnimator.ofFloat(view, proper, frame1);
-        rotationAnim.setDuration(Duration);
-        rotationAnim.setRepeatMode(RepeatMode);
-        rotationAnim.setRepeatCount(RepeatCount);
-        rotationAnim.start();
-    }
-
+//    // Testing
+//    public void setTimeInterPolatorValue(String value) {
+//        value = value.toLowerCase();
+//        if (value.contains("linear")) {
+//            timeinterpolator = new LinearInterpolator();
+//        } else if (value.contains("accelerate")) {
+//            timeinterpolator = new AccelerateInterpolator();
+//        } else if (value.contains("decelerate")) {
+//            timeinterpolator = new DecelerateInterpolator();
+//        } else if (value.contains("accelerateDecelerate")) {
+//            timeinterpolator = new AccelerateDecelerateInterpolator();
+//        } else if (value.contains("bounce")) {
+//            timeinterpolator = new BounceInterpolator();
+//        } else if (value.contains("overshoot")) {
+//            timeinterpolator = new OvershootInterpolator();
+//        } else if (value.contains("anticipate")) {
+//            timeinterpolator = new AnticipateInterpolator();
+//        } else if (value.contains("anticipateOvershoot")) {
+//            timeinterpolator = new AnticipateOvershootInterpolator();
+//        }
+//
+//    }
+//    
+//    
+//    private int mRepeatMode = -1;
+//    
+//    public void setRepetModeValue(String value) {
+//        value = value.toUpperCase();
+//        if (value.contains("RESTART")) {
+//            mRepeatMode = Animation.RESTART;
+//        } else if (value.contains("REVERSE")) {
+//            mRepeatMode = Animation.REVERSE;        
+//        }
+//    }
+//    
+//    private int xRelativeValues = -1;
+//    private int yRelativeValues = -1;
+//    
+//    public void setRelativeValues(String value1, String value2) {
+//        xRelativeValues = convertRelative(value1.toUpperCase());
+//        yRelativeValues = convertRelative(value2.toUpperCase());
+//    }
+//    
+//    private int convertRelative(String value) {
+//        int result = 0;
+//         value = value.toUpperCase();
+//        if (value.contains("RELATIVE_TO_PARENT")) { //RELATIVE_TO_PARENT, RELATIVE_TO_SELF, START_ON_FIRST_FRAME, ZORDER_BOTTOM,ZORDER_NORMAL,ZORDER_TOP
+//            result = Animation.RELATIVE_TO_PARENT;
+//        } else if (value.contains("RELATIVE_TO_SELF")) {
+//            result = Animation.RELATIVE_TO_SELF;
+//        } else if (value.contains("START_ON_FIRST_FRAME")) {
+//            result = Animation.START_ON_FIRST_FRAME;
+//        } else if (value.contains("ZORDER_BOTTOM")) {
+//            result = Animation.ZORDER_BOTTOM;
+//        } else if (value.contains("ZORDER_NORMAL")) {
+//            result = Animation.ZORDER_NORMAL;
+//        } else if (value.contains("ZORDER_TOP")) {
+//            result = Animation.ZORDER_TOP;
+//        }
+//        
+//        return result;
+//    }
+//    
+//    int mRepeatCount = -1;
+//    public void setRepeatCountValue(int value) {
+//        mRepeatCount = value;
+//    }
+//     
+//    private Collection<Animator> collect = null;
+//    private AnimatorSet AnimatorCollections = null;
+//    public void AnimatorSet_initialize() {
+//        AnimatorCollections = new AnimatorSet();
+//        collect = new ArrayList<>();;
+//        AnimatorCollections.addListener(new AnimatorListener() {
+//            @Override
+//            public void onAnimationStart(Animator anmtr) {
+//                _ba.raiseEventFromUI(this, _eventName.toLowerCase() + "_onanimationstart", null);
+//            }
+//
+//            @Override
+//            public void onAnimationEnd(Animator anmtr) {
+//                _ba.raiseEventFromUI(this, _eventName.toLowerCase() + "_onanimationend", null);
+//            }
+//
+//            @Override
+//            public void onAnimationCancel(Animator anmtr) {                
+//                _ba.raiseEventFromUI(this, _eventName.toLowerCase() + "_onanimationcancel", null);
+//            }
+//
+//            @Override
+//            public void onAnimationRepeat(Animator anmtr) {                
+//                _ba.raiseEventFromUI(this, _eventName.toLowerCase() + "_onanimationrepeat", null);
+//            }
+//        });
+//    }
+//    
+//    
+//    public void AnimatorSet_Add(xObjectAnimator animator) {
+//        collect.add(animator.getObject());         
+//    }
+//         
+//    public void AnimatorSet_Start() {
+//        AnimatorCollections.playTogether(collect);
+//        AnimatorCollections.start();         
+//    }
+//     
+//    public ObjectAnimator CreateObjectAnimatorInt(View view, int Duration, Interpolator interpolator, String propertyName, int... values) {
+//        ObjectAnimator animatorObj = ObjectAnimator.ofInt(view, propertyName, values);     
+//        animatorObj.setDuration(Duration);
+//        animatorObj.setInterpolator(interpolator);
+//        return animatorObj;
+//    }
+//    
     public void startCollapse(int Duration, float TranslationY, View view) {
         AnimatorSet set = new AnimatorSet();
         ObjectAnimator translate = ObjectAnimator.ofFloat(view, "translationY", 0f, TranslationY);
@@ -634,6 +789,7 @@ public class AnimationHelper extends Animation {
         set.setInterpolator(new AccelerateDecelerateInterpolator());
         set.playTogether(translate, alpha);
         set.start();
+
     }
 
     public void startExpansion(int Duration, float TranslationY, View view) {
@@ -802,6 +958,11 @@ public class AnimationHelper extends Animation {
 }
 // Con xin hoi huong phuoc duc nay den toan the Chu thien, cac vua troi Tu Dai Thien Vuong
 // Nho chu vi hoa giai ta thuat cua thang Phong (con nuoi Ut Vuon Co);
+// Nho chu vi hoa giai ta thuat cua gia dinh thang 5 Tiet, thang Dung, thang Si, anh chi em ben vo;
+// Nho chu vi hoa giai ta thuat cua thay bua 3 Nhang;
+// Nho chu vi hoa giai ta thuat cua gia dinh Huu Ky (2 Chien), tat ca con gai va re cua Tran Van Chien, tat ca chau dau chau re cua Tran Van Chien;
 // Hoa giai ta thuat den tu gia dinh thang Hung (8 Duc), thang Dieu (8 Duc), vo thang Hung, anh chi em ben vo thang Hung;
-// Hoa giai ta thuat cua thang Ngoan, thang Ut Vuon Co;
+// Hoa giai ta thuat cua thang Tran Van Ngoan, thang Ut Vuon Co, thang Tran Van Hai tat ca nhung nguoi do thang Ngoan thue muon;
+// Hoa giai bua nhai, bua thang lan, bua tac ke cuar thang Tran Van Ngoan (con ut Vuon Co);
+// Hoa giai ta thuat cua con Pham Thi Vui, thang Tran Quang Vinh, ba Tran Thi Chia;
 //https://www.programcreek.com/java-api-examples/?code=myinnos%2FImageSliderWithSwipes%2FImageSliderWithSwipes-master%2Fimagesliderwithswipeslibrary%2Fsrc%2Fmain%2Fjava%2Fin%2Fmyinnos%2Fimagesliderwithswipeslibrary%2FTransformers%2FRotateDownTransformer.java#

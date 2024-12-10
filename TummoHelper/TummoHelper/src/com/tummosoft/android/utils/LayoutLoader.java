@@ -18,16 +18,18 @@ import anywheresoftware.b4a.BA.Hide;
 
 @Hide
 public class LayoutLoader {
+
     public static final String TAG = "LayoutLoader";
     private Constructor<?> xmlBlockCtor;
     private Method newParserMethod;
     private boolean ready;
-    public BA _ba;    
+    public BA _ba;
+
     public LayoutLoader initialize(final BA ba) {
         _ba = ba;
-        if(!ready) {
-            synchronized(this) {
-                if(!ready) {
+        if (!ready) {
+            synchronized (this) {
+                if (!ready) {
                     initializeImpl();
                     ready = true;
                 }
@@ -35,11 +37,11 @@ public class LayoutLoader {
         }
         return this;
     }
-    
+
     public LayoutLoader cleanup() {
-        if(ready) {
-            synchronized(this) {
-                if(ready) {
+        if (ready) {
+            synchronized (this) {
+                if (ready) {
                     xmlBlockCtor = null;
                     newParserMethod = null;
                     ready = false;
@@ -57,15 +59,15 @@ public class LayoutLoader {
 
             newParserMethod = cls.getDeclaredMethod("newParser");
             newParserMethod.setAccessible(true);
-        } catch(RuntimeException | ClassNotFoundException | NoSuchMethodException e) {
+        } catch (RuntimeException | ClassNotFoundException | NoSuchMethodException e) {
             BA.Log(e.getMessage());
         }
     }
-   
+
     public View load(InputStream input, ViewGroup root, boolean attachToRoot) {
         View rv = null;
         Context context = _ba.context;
-        if(ready && xmlBlockCtor != null && newParserMethod != null) {
+        if (ready && xmlBlockCtor != null && newParserMethod != null) {
             byte[] data = readAll(input);
             rv = load(data, root, attachToRoot);
         }
@@ -73,36 +75,35 @@ public class LayoutLoader {
         return rv;
     }
 
-     public ImageButton getImageButton(InputStream input, ViewGroup root, boolean attachToRoot) {
-      
+    public ImageButton getImageButton(InputStream input, ViewGroup root, boolean attachToRoot) {
+
         Context context = _ba.context;
-          ImageButton rv = new ImageButton(context);
-        if(ready && xmlBlockCtor != null && newParserMethod != null) {
+        ImageButton rv = new ImageButton(context);
+        if (ready && xmlBlockCtor != null && newParserMethod != null) {
             byte[] data = readAll(input);
-            rv = (ImageButton)load(data, root, attachToRoot);
+            rv = (ImageButton) load(data, root, attachToRoot);
         }
 
         return rv;
     }
-   
-    public View load(byte[] data, ViewGroup root, boolean attachToRoot) {        
-         Context context = _ba.context;
-         View rv = new View(context);
-        if(ready && xmlBlockCtor != null && newParserMethod != null && data != null) {
+
+    public View load(byte[] data, ViewGroup root, boolean attachToRoot) {
+        Context context = _ba.context;
+        View rv = new View(context);
+        if (ready && xmlBlockCtor != null && newParserMethod != null && data != null) {
             try {
                 Object xmlBlock = xmlBlockCtor.newInstance(data);
                 XmlResourceParser parser = (XmlResourceParser) newParserMethod.invoke(xmlBlock);
-                
+
                 LayoutInflater layoutInflater = LayoutInflater.from(context);
-                 rv = layoutInflater.inflate(parser, root, attachToRoot);
-                 
+                rv = layoutInflater.inflate(parser, root, attachToRoot);
+
                 //LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 //rv = inflater.inflate(parser, root, attachToRoot);
-                
                 //rv.buildLayer();
-            } catch(RuntimeException e) {
+            } catch (RuntimeException e) {
                 Log.e(TAG, "Failed loading layout", e);
-            } catch(Exception e) {
+            } catch (Exception e) {
                 Log.e(TAG, "Failed loading layout", e);
             }
         }
@@ -117,12 +118,12 @@ public class LayoutLoader {
 
         try {
             read = input.read(buffer, 0, buffer.length);
-            while(read >= 0) {
+            while (read >= 0) {
                 baos.write(buffer, 0, read);
                 read = input.read(buffer, 0, buffer.length);
             }
             rv = baos.toByteArray();
-        } catch(IOException e) {
+        } catch (IOException e) {
             Log.e(TAG, "Failed reading layout content", e);
         }
 

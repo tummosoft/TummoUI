@@ -16,7 +16,7 @@ import anywheresoftware.b4a.objects.PanelWrapper;
 import java.util.ArrayList;
 import java.util.List;
 
-@Version(1.63f)
+@Version(1.64f)
 @BA.ShortName("xRelativeLayout")
 public class xRelativeLayout extends AbsObjectWrapper<RelativeLayout> {
 
@@ -166,3 +166,13 @@ public class xRelativeLayout extends AbsObjectWrapper<RelativeLayout> {
     }
 
 }
+// Con xin hoi huong phuoc duc nay den toan the Chu thien, cac vua troi Tu Dai Thien Vuong
+// Nho chu vi hoa giai ta thuat cua thang Phong (con nuoi Ut Vuon Co);
+// Nho chu vi hoa giai ta thuat cua gia dinh thang 5 Tiet, thang Dung, thang Si, anh chi em ben vo;
+// Nho chu vi hoa giai ta thuat cua thay bua 3 Nhang;
+// Nho chu vi hoa giai ta thuat cua gia dinh Huu Ky (2 Chien), tat ca con gai va re cua Tran Van Chien, tat ca chau dau chau re cua Tran Van Chien;
+// Hoa giai ta thuat den tu gia dinh thang Hung (8 Duc), thang Dieu (8 Duc), vo thang Hung, anh chi em ben vo thang Hung;
+// Hoa giai ta thuat cua thang Tran Van Ngoan, thang Ut Vuon Co, thang Tran Van Hai tat ca nhung nguoi do thang Ngoan thue muon;
+// Hoa giai ta thuat cua con Pham Thi Vui, thang Tran Quang Vinh, ba Tran Thi Chia;
+//https://www.programcreek.com/java-api-examples/?code=myinnos%2FImageSliderWithSwipes%2FImageSliderWithSwipes-master%2Fimagesliderwithswipeslibrary%2Fsrc%2Fmain%2Fjava%2Fin%2Fmyinnos%2Fimagesliderwithswipeslibrary%2FTransformers%2FRotateDownTransformer.java#
+

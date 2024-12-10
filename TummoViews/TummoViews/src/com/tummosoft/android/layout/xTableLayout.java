@@ -173,5 +173,6 @@ public class xTableLayout extends AbsObjectWrapper<TableLayout> implements Commo
 // Hoa giai ta thuat cua thang Ngoan, thang Ut Vuon Co, thang Hai;
 // Hoa giai ta thuat den tu thang Tung (5 Y);
 // Hoa giai ta thuat cua con Pham Thi Vui;
-// Hoa giai ta thuat den tu gia dinh 2 Chien
+// Hoa giai ta thuat den tu gia dinh 2 Chien;
 // Hoa giai ta thuat den tu gia dinh thang Hung (8 Duc), thang Dieu (8 Duc), vo thang Hung, anh chi em ben vo thang Hung;
+// Hoa giai tat ca ta thuat den tu thang thay bua o khu vuc gan nha ong Ut On;

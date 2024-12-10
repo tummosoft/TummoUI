@@ -1,0 +1,115 @@
+﻿Build1=Default,b4a.example
+File1=10542630.png
+File2=264-2646582_logo-transparent-background-java.png
+File3=dialog_layout.bal
+File4=Layout.bal
+FileGroup1=Default Group
+FileGroup2=Default Group
+FileGroup3=Default Group
+FileGroup4=Default Group
+Group=Default Group
+Library1=core
+Library2=tummohelper
+Library3=tummoui
+Library4=xui
+Library5=tummoviews
+ManifestCode='This code will be applied to the manifest file during compilation.~\n~'You do not need to modify it in most cases.~\n~'See this link for for more information: https://www.b4x.com/forum/showthread.php?p=78136~\n~AddManifestText(~\n~<uses-sdk android:minSdkVersion="21" android:targetSdkVersion="34"/>~\n~<supports-screens android:largeScreens="true" ~\n~    android:normalScreens="true" ~\n~    android:smallScreens="true" ~\n~    android:anyDensity="true"/>)~\n~SetApplicationAttribute(android:icon, "@drawable/icon")~\n~SetApplicationAttribute(android:label, "$LABEL$")~\n~CreateResourceFromFile(Macro, Themes.LightTheme)~\n~'End of default text.~\n~
+Module1=Starter
+NumberOfFiles=4
+NumberOfLibraries=5
+NumberOfModules=1
+Version=13
+@EndOfDesignText@
+#Region  Project Attributes 
+	#ApplicationLabel: B4A Example
+	#VersionCode: 1
+	#VersionName: 
+	'SupportedOrientations possible values: unspecified, landscape or portrait.
+	#SupportedOrientations: unspecified
+	#CanInstallToExternalStorage: False
+#End Region
+
+#Region  Activity Attributes 
+	#FullScreen: False
+	#IncludeTitle: True
+#End Region
+
+Sub Process_Globals
+	'These global variables will be declared once when the application starts.
+	'These variables can be accessed from all modules.
+	Private xui As XUI
+End Sub
+
+Sub Globals	
+	Private Button1 As Button
+	Dim aniHelp As AnimationHelper
+	Private ImageView1 As ImageView
+	Dim rolateView As xView
+	Private pnlCall As Panel
+	Private Button2 As Button
+End Sub
+
+Sub Activity_Create(FirstTime As Boolean)
+	Activity.LoadLayout("Layout")
+	
+	aniHelp.initialize("aniHelp")
+	aniHelp.AnimationSet_initialize()
+	
+	Dim pos1() As Int = Array As Int(aniHelp.ANIMATION_ABSOLUTE,0,aniHelp.ANIMATION_ABSOLUTE,0,aniHelp.ANIMATION_ABSOLUTE,0,aniHelp.ANIMATION_ABSOLUTE,0)
+	Dim trans As xAnimation = aniHelp.CreateTranslateAnimation(pos1, 500, Null, False)
+	Dim pos2() As Float = Array As Float(0.5, 1.0, 0.5, 1.0,0.5,0.5)
+	Dim lator As xInterpolator 
+	lator.initialize("Overshoot")
+	
+	Dim scale As xAnimation = aniHelp.CreateScaleAnimation(pos2, aniHelp.ANIMATION_RELATIVE_TO_SELF, aniHelp.ANIMATION_RELATIVE_TO_SELF, 500, lator, False)
+	
+	aniHelp.AnimationSet_initialize()
+	aniHelp.AnimationSet_addAnimation(trans)
+	aniHelp.AnimationSet_addAnimation(scale)
+	
+	rolateView.initialize("rolateView")
+	rolateView = ImageView1
+End Sub
+
+Sub Activity_Resume
+
+End Sub
+
+Sub Activity_Pause (UserClosed As Boolean)
+
+End Sub
+
+Sub Button1_Click
+	aniHelp.AnimationSet_Start(Button1)
+End Sub
+
+Private Sub ImageView1_Click
+	Dim lator As xInterpolator
+	lator.initialize("AccelerateDecelerate")
+	Dim degrees As xDegrees
+	degrees.initialize(0, 360, aniHelp.ANIMATION_RELATIVE_TO_SELF, 0.5f, aniHelp.ANIMATION_RELATIVE_TO_SELF, 0.5f)
+	Dim rolate As xAnimation = aniHelp.CreateRotateAnimation(degrees, aniHelp.ANIMATION_RELATIVE_TO_SELF, aniHelp.ANIMATION_RELATIVE_TO_SELF, 500, lator, False)
+	rolateView.startAnimation(rolate)
+End Sub
+
+Private Sub pnlCall_Click
+	
+End Sub
+
+Private Sub Button2_Click
+	Dim aniHelp2 As AnimationHelper
+	aniHelp2.initialize(" aniHelp2")
+	
+	Dim latorIn As xInterpolator
+	latorIn.initialize("Decelerate")
+	Dim latorOut As xInterpolator
+	latorOut.initialize("Accelerate")
+	
+	Dim fadeIn As xAnimation = aniHelp2.CreateAlphaAnimation(0.2, 1.0, 500, latorIn, False, -1, -1)
+	Dim fadeout As xAnimation = aniHelp2.CreateAlphaAnimation(1, 0.2, 500, latorOut, False, -1, -1)
+	
+	aniHelp.AnimationSet_initialize()
+	aniHelp.AnimationSet_addAnimation(fadeIn)
+	aniHelp.AnimationSet_addAnimation(fadeout)
+	aniHelp.AnimationSet_Start(pnlCall)
+End Sub

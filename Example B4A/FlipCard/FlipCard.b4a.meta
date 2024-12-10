@@ -1,0 +1,12 @@
+﻿ModuleBookmarks0=
+ModuleBookmarks1=
+ModuleBookmarks2=
+ModuleBreakpoints0=
+ModuleBreakpoints1=
+ModuleBreakpoints2=
+ModuleClosedNodes0=2
+ModuleClosedNodes1=
+ModuleClosedNodes2=1
+NavigationStack=Main,anim_OnAnimationStart,58,0,CardFlipAnimation,GetAimation,24,0,CardFlipAnimation,Initialize,16,0,Main,anim_OnAnimationEnd,69,0,Main,Button1_Click,56,0,Visual Designer,Layout.bal,-100,3,Main,Activity_Create,42,6,CardFlipAnimation,anim_applyTransformation,43,6,CardFlipAnimation,Class_Globals,0,0,Main,Globals,21,2,Main,Process_Globals,14,0
+SelectedBuild=0
+VisibleModules=2,1

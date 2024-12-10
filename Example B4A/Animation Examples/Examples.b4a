@@ -1,0 +1,123 @@
+﻿Build1=Default,b4a.example
+File1=Layout.bal
+FileGroup1=Default Group
+Group=Default Group
+Library1=core
+Library2=tummohelper
+Library3=tummoui
+Library4=xui
+Library5=tummoviews
+ManifestCode='This code will be applied to the manifest file during compilation.~\n~'You do not need to modify it in most cases.~\n~'See this link for for more information: https://www.b4x.com/forum/showthread.php?p=78136~\n~AddManifestText(~\n~<uses-sdk android:minSdkVersion="21" android:targetSdkVersion="34"/>~\n~<supports-screens android:largeScreens="true" ~\n~    android:normalScreens="true" ~\n~    android:smallScreens="true" ~\n~    android:anyDensity="true"/>)~\n~SetApplicationAttribute(android:icon, "@drawable/icon")~\n~SetApplicationAttribute(android:label, "$LABEL$")~\n~CreateResourceFromFile(Macro, Themes.LightTheme)~\n~'End of default text.~\n~
+Module1=Starter
+NumberOfFiles=1
+NumberOfLibraries=5
+NumberOfModules=1
+Version=13
+@EndOfDesignText@
+#Region  Project Attributes 
+	#ApplicationLabel: B4A Example
+	#VersionCode: 1
+	#VersionName: 
+	'SupportedOrientations possible values: unspecified, landscape or portrait.
+	#SupportedOrientations: unspecified
+	#CanInstallToExternalStorage: False
+#End Region
+
+#Region  Activity Attributes 
+	#FullScreen: False
+	#IncludeTitle: True
+#End Region
+
+Sub Process_Globals
+	Private xui As XUI
+End Sub
+
+Sub Globals	
+	Private btnBounceAnimator As Button
+	Private aniHelper As AnimationHelper
+	Private lblTarger As Label
+	Private aniView As xView
+	Dim BounceAnimator As xObjectAnimator
+	Dim FlashAnimator As xObjectAnimator
+		
+	Private btnFlashAnimator As Button
+	Private btnPulseAnimator As Button
+	Private btnSlideInLeft As Button
+	Private btnSlideInRight As Button
+	Dim AlphaAnimator As xObjectAnimator
+	Dim translationXAnimator As xObjectAnimator
+	Dim translationYAnimator As xObjectAnimator
+End Sub
+
+Sub Activity_Create(FirstTime As Boolean)
+	Activity.LoadLayout("Layout")
+	aniHelper.initialize("aniHelper")
+	aniView = lblTarger
+	BounceAnimator.initialize("Animator")
+	BounceAnimator = aniHelper.CreateObjectAnimatorOfFloat(lblTarger, "translationY", Array As Float(0, 0, -30, 0, -15, 0, 0))
+	
+	FlashAnimator.initialize("Animator")
+	FlashAnimator =  aniHelper.CreateObjectAnimatorOfFloat(lblTarger, "alpha", Array As Float(1, 0, 1, 0, 1))
+	
+	Dim latorIn As xInterpolator
+	latorIn.initialize("Decelerate")
+	Dim latorOut As xInterpolator
+	latorOut.initialize("Accelerate")
+	
+	
+	' SlideInLeft
+	AlphaAnimator = aniHelper.CreateObjectAnimatorOfFloat(lblTarger, "alpha", Array As Float(0, 1))
+	translationXAnimator = aniHelper.CreateObjectAnimatorOfFloat(lblTarger, "translationX", Array As Float(-lblTarger.Width, 0))
+	
+End Sub
+
+Sub Activity_Resume
+
+End Sub
+
+Sub Activity_Pause (UserClosed As Boolean)
+
+End Sub
+
+Sub Animator_onAnimationStart(anmtr As xAnimator)
+	
+End Sub
+
+Sub Animator_onAnimationEnd(anmtr As xAnimator)
+	
+End Sub
+
+Sub Animator_onAnimationCancel(anmtr As xAnimator)
+	
+End Sub
+
+Sub Animator_onAnimationRepeat(anmtr As xAnimator)
+	
+End Sub
+
+
+Private Sub btnBounceAnimator_Click
+	BounceAnimator.Start
+End Sub
+
+Private Sub btnFlashAnimator_Click
+	FlashAnimator.Start
+End Sub
+
+Private Sub btnPulseAnimator_Click
+	
+End Sub
+
+Private Sub btnSlideInLeft_Click
+	aniHelper.AnimatorSet_initialize
+	aniHelper.AnimatorSet_addAnimator(Array As Object(AlphaAnimator.ObjectAnimator, translationXAnimator.ObjectAnimator))	
+	translationYAnimator= aniHelper.CreateObjectAnimatorOfFloat(lblTarger, "translationX", Array As Float(lblTarger.Width, 0))
+	aniHelper.AnimatorSet_Start
+End Sub
+
+Private Sub btnSlideInRight_Click
+	aniHelper.AnimatorSet_initialize
+	aniHelper.AnimatorSet_addAnimator(Array As Object(AlphaAnimator.ObjectAnimator, translationYAnimator.ObjectAnimator))
+	aniHelper.AnimatorSet_Start
+	
+End Sub

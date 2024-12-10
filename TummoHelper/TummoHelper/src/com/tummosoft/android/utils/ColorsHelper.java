@@ -12,12 +12,13 @@ import java.util.Random;
 
 @BA.ShortName("ColorsHelper")
 public class ColorsHelper {
+
     private static Context baContext;
 
     public void initialize(final BA ba) {
         baContext = ba.context;
     }
-    
+
     public static int setColorAlpha(@ColorInt int color, float alpha) {
         return setColorAlpha(color, alpha, true);
     }
@@ -52,22 +53,22 @@ public class ColorsHelper {
     public static ColorStateList textSelector(String normalColor, String pressedColor) {
         return new ColorStateList(
                 new int[][]{
-                        new int[]{android.R.attr.state_pressed},
-                        new int[]{android.R.attr.state_focused},
-                        new int[]{android.R.attr.state_activated},
-                        new int[]{android.R.attr.state_selected},
-                        new int[]{}
+                    new int[]{android.R.attr.state_pressed},
+                    new int[]{android.R.attr.state_focused},
+                    new int[]{android.R.attr.state_activated},
+                    new int[]{android.R.attr.state_selected},
+                    new int[]{}
                 },
                 new int[]{
-                        Color.parseColor(pressedColor),
-                        Color.parseColor(pressedColor),
-                        Color.parseColor(pressedColor),
-                        Color.parseColor(pressedColor),
-                        Color.parseColor(normalColor)
+                    Color.parseColor(pressedColor),
+                    Color.parseColor(pressedColor),
+                    Color.parseColor(pressedColor),
+                    Color.parseColor(pressedColor),
+                    Color.parseColor(normalColor)
                 }
         );
     }
-   
+
     public static String colorToString(@ColorInt int color) {
         return String.format("#%08X", color);
     }
@@ -75,11 +76,11 @@ public class ColorsHelper {
     public static int ColorStringToINT(String hexcolor) {
         return Color.parseColor(hexcolor);
     }
-    
+
     public static int darker(int color) {
         return darker(color, 0.8F);
     }
-       
+
     public static int darker(int color, float factor) {
         return Color.argb(Color.alpha(color), Math.max((int) (Color.red(color) * factor), 0),
                 Math.max((int) (Color.green(color) * factor), 0),
@@ -101,12 +102,11 @@ public class ColorsHelper {
         return isColorDark(color, 0.5F);
     }
 
-
     public static boolean isColorDark(@ColorInt int color, double factor) {
-        double darkness =
-                1
-                        - (0.299 * Color.red(color) + 0.587 * Color.green(color) + 0.114 * Color.blue(color))
-                        / 255;
+        double darkness
+                = 1
+                - (0.299 * Color.red(color) + 0.587 * Color.green(color) + 0.114 * Color.blue(color))
+                / 255;
         return darkness >= factor;
     }
 
@@ -115,6 +115,7 @@ public class ColorsHelper {
     }
 
     private static class RandomColor {
+
         int alpha;
         int lower;
         int upper;
@@ -128,7 +129,7 @@ public class ColorsHelper {
             setUpper(upper);
         }
 
-        public int getColor() {          
+        public int getColor() {
             int red = getLower() + new Random().nextInt(getUpper() - getLower() + 1);
             int green = getLower() + new Random().nextInt(getUpper() - getLower() + 1);
             int blue = getLower() + new Random().nextInt(getUpper() - getLower() + 1);
@@ -171,12 +172,11 @@ public class ColorsHelper {
             this.upper = upper;
         }
     }
-    
-     @BA.Hide
+
+    @BA.Hide
     public static boolean isRtl(@NonNull Context context) {
         return Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1
                 && baContext.getResources().getConfiguration().getLayoutDirection() == View.LAYOUT_DIRECTION_RTL;
     }
 
-   
 }

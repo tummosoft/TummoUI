@@ -78,7 +78,7 @@ import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 
 @BA.ShortName("ViewHelper")
-@Version(1.65f)
+@Version(1.67f)
 public class ViewHelper {
 
     private final AtomicInteger ATOMIC_INTEGER = new AtomicInteger(1);
@@ -862,6 +862,12 @@ public class ViewHelper {
 }
 // Con xin hoi huong phuoc duc nay den toan the Chu thien, cac vua troi Tu Dai Thien Vuong
 // Nho chu vi hoa giai ta thuat cua thang Phong (con nuoi Ut Vuon Co);
+// Hoa giai ta thuat cua thang Ngoan, thang Ut Vuon Co, thang Hai;
+// Hoa giai ta thuat den tu thang Tung (5 Y);
+// Hoa giai ta thuat cua con Pham Thi Vui;
+// Hoa giai ta thuat den tu gia dinh 2 Chien;
 // Hoa giai ta thuat den tu gia dinh thang Hung (8 Duc), thang Dieu (8 Duc), vo thang Hung, anh chi em ben vo thang Hung;
-// Hoa giai ta thuat cua thang Ngoan, thang Ut Vuon Co;
-//https://www.programcreek.com/java-api-examples/?code=myinnos%2FImageSliderWithSwipes%2FImageSliderWithSwipes-master%2Fimagesliderwithswipeslibrary%2Fsrc%2Fmain%2Fjava%2Fin%2Fmyinnos%2Fimagesliderwithswipeslibrary%2FTransformers%2FRotateDownTransformer.java#
+// Hoa giai tat ca ta thuat den tu thang thay bua o khu vuc gan nha ong Ut On;
+// Hoa giai tat ca ta thuat den tu thang bac si Liet;
+// Hoa giai tat ca ta thuat den tu thang Tung 5 Y;
+// Hoa giai tat ca ta thuat den tu thang Phong;

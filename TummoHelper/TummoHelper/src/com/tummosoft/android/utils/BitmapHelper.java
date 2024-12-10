@@ -37,7 +37,8 @@ import java.io.IOException;
 
 @BA.ShortName("BitmapHelper")
 public class BitmapHelper {
-     public Bitmap OpenImage(String filename) {
+
+    public Bitmap OpenImage(String filename) {
         Bitmap bmp = null;
         try {
             File.InputStreamWrapper inputStream = File.OpenInput(File.getDirAssets(), filename);
@@ -48,8 +49,8 @@ public class BitmapHelper {
         }
         return bmp;
     }
-     
-      public Bitmap toRound2(Bitmap src) {
+
+    public Bitmap toRound2(Bitmap src) {
         return toRound(src, false);
     }
 
@@ -122,7 +123,7 @@ public class BitmapHelper {
         paint.setColorFilter(filter);
         canvas.scale(scale, scale);
         canvas.drawBitmap(scaleBitmap, 0, 0, paint);
-        
+
         scaleBitmap = stackBlur(scaleBitmap, (int) radius, recycle);
         if (scale == 1) {
             return scaleBitmap;
@@ -520,8 +521,8 @@ public class BitmapHelper {
         }
         return BitmapFactory.decodeByteArray(bytes, 0, bytes.length, options);
     }
-    
-     public Bitmap bytes2Bitmap(byte[] bytes) {
+
+    public Bitmap bytes2Bitmap(byte[] bytes) {
         return (bytes == null || bytes.length == 0) ? null : BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
     }
 
@@ -557,7 +558,7 @@ public class BitmapHelper {
         }
         return BitmapFactory.decodeByteArray(data, offset, data.length);
     }
-    
+
     public Bitmap scale(Bitmap src, float scaleWidth, float scaleHeight, boolean recycle) {
         Matrix matrix = new Matrix();
         matrix.setScale(scaleWidth, scaleHeight);

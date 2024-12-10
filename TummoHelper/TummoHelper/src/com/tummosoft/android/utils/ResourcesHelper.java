@@ -140,11 +140,11 @@ public class ResourcesHelper {
     public int spToPx(final Context context, final float sp) {
         return Math.round(sp * context.getResources().getDisplayMetrics().scaledDensity);
     }
-    
-     public Bitmap getBitmapResources(int id) {
+
+    public Bitmap getBitmapResources(int id) {
         return BitmapFactory.decodeResource(_context.getResources(), id);
     }
-     
+
     public Typeface findFont(String fontPath, String defaultFontPath) {
         if (fontPath == null) {
             return Typeface.DEFAULT;
@@ -214,8 +214,6 @@ public class ResourcesHelper {
         return degree;
     }
 
-   
-
     private boolean isSpace(String s) {
         if (s == null) {
             return true;
@@ -227,7 +225,7 @@ public class ResourcesHelper {
         }
         return true;
     }
-    
+
     public Typeface findFont(Context context, String fontPath, String defaultFontPath) {
 
         if (fontPath == null) {
@@ -275,7 +273,7 @@ public class ResourcesHelper {
 
     public int getResourceId(String pVariableName, String pResourcename) {
         try {
-            int rsid = _context.getResources().getIdentifier(pVariableName, pResourcename, _context.getPackageName());            
+            int rsid = _context.getResources().getIdentifier(pVariableName, pResourcename, _context.getPackageName());
             return rsid;
         } catch (Exception e) {
             e.printStackTrace();
@@ -292,7 +290,7 @@ public class ResourcesHelper {
                 width, height, gravity);
         return result;
     }
-    
+
     public String OpenString(String filename) {
         String result = "";
         try {
@@ -306,15 +304,15 @@ public class ResourcesHelper {
     public String getString(@StringRes int resId) {
         return _context.getResources().getString(resId);
     }
-    
-    public Typeface getFont(@FontRes int resId) {        
-        return _context.getResources().getFont(resId);        
+
+    public Typeface getFont(@FontRes int resId) {
+        return _context.getResources().getFont(resId);
     }
-    
-    public Drawable getDrawable(@DrawableRes int resId) {        
+
+    public Drawable getDrawable(@DrawableRes int resId) {
         return _context.getResources().getDrawable(resId, null);
     }
-   
+
     public float getDimens(@DimenRes int resId) {
         return _context.getResources().getDimension(resId);
     }
@@ -356,11 +354,11 @@ public class ResourcesHelper {
         }
         return data;
     }
-    
+
     public int[] getIntArray(@ArrayRes int resId) {
         return _context.getResources().getIntArray(resId);
     }
-    
+
     public ListView getListView(@LayoutRes int resId, ViewGroup root, String event) {
         ListView textv = (ListView) ListView.inflate(_context, resId, root);
         setEvent(_ba, event, textv);
@@ -588,7 +586,5 @@ public class ResourcesHelper {
             }
         });
     }
-
-   
 
 }

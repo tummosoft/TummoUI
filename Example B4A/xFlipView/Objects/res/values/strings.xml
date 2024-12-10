@@ -1,6 +1,0 @@
-<resources>
-    <string name="app_name">FlipView</string>
-
-    <integer name="anim_length">500</integer>
-    <integer name="anim_length_half">250</integer>
-</resources>

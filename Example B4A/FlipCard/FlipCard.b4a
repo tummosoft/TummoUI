@@ -1,0 +1,115 @@
+﻿Build1=Default,b4a.example
+File1=8.png
+File2=9.png
+File3=back.png
+File4=front.png
+File5=Layout.bal
+FileGroup1=Default Group
+FileGroup2=Default Group
+FileGroup3=Default Group
+FileGroup4=Default Group
+FileGroup5=Default Group
+Group=Default Group
+Library1=core
+Library2=tummoui
+Library3=tummoviews
+Library4=xui
+Library5=tummohelper
+ManifestCode='This code will be applied to the manifest file during compilation.~\n~'You do not need to modify it in most cases.~\n~'See this link for for more information: https://www.b4x.com/forum/showthread.php?p=78136~\n~AddManifestText(~\n~<uses-sdk android:minSdkVersion="21" android:targetSdkVersion="34"/>~\n~<supports-screens android:largeScreens="true" ~\n~    android:normalScreens="true" ~\n~    android:smallScreens="true" ~\n~    android:anyDensity="true"/>)~\n~SetApplicationAttribute(android:icon, "@drawable/icon")~\n~SetApplicationAttribute(android:label, "$LABEL$")~\n~CreateResourceFromFile(Macro, Themes.LightTheme)~\n~'End of default text.~\n~
+Module1=CardFlipAnimation
+Module2=Starter
+NumberOfFiles=5
+NumberOfLibraries=5
+NumberOfModules=2
+Version=13
+@EndOfDesignText@
+#Region  Project Attributes 
+	#ApplicationLabel: B4A Example
+	#VersionCode: 1
+	#VersionName: 
+	'SupportedOrientations possible values: unspecified, landscape or portrait.
+	#SupportedOrientations: unspecified
+	#CanInstallToExternalStorage: False
+#End Region
+
+#Region  Activity Attributes 
+	#FullScreen: False
+	#IncludeTitle: True
+#End Region
+
+Sub Process_Globals
+	'These global variables will be declared once when the application starts.
+	'These variables can be accessed from all modules.
+	Private xui As XUI
+End Sub
+
+Sub Globals
+	Private flipcard As CardFlipAnimation
+	Private container As Panel	
+	Dim containerView As xView
+	Private cardBack As ImageView
+	Private cardFront As ImageView
+	Private isFrontVisible As Boolean = True
+	Private backOfCard As xView
+	Private frontOfCard As xView
+	Private anim As AnimationHelper
+	Private ImageView1 As ImageView
+	Private ImageView2 As ImageView
+	Private Panel1 As Panel
+	Private flipcard2 As CardFlipAnimation
+	Private backOfCard1 As xView
+	Private frontOfCard1 As xView
+End Sub
+
+Sub Activity_Create(FirstTime As Boolean)
+	Activity.LoadLayout("Layout")
+	
+	flipcard.initialize(container.Width, container.Height, True)
+		
+			
+	isFrontVisible = True
+	backOfCard = cardBack
+	frontOfCard = cardFront
+	
+	containerView = container
+	anim.initialize("anim")
+	anim.SetAnimationEvent("anim", flipcard.GetAimation, 300, True)
+End Sub
+
+Sub Activity_Resume
+
+End Sub
+
+Sub Activity_Pause (UserClosed As Boolean)
+
+End Sub
+
+Sub Button1_Click
+	
+End Sub
+
+
+Private Sub container_Click
+	containerView.startAnimation(flipcard.GetAimation)
+End Sub
+
+Sub anim_OnAnimationStart(view As Object)
+	
+End Sub
+
+Sub anim_OnAnimationEnd(view As Object)
+	If (isFrontVisible) Then
+		frontOfCard.Visibility = "GONE"
+		backOfCard.Visibility = "VISIBLE"
+		isFrontVisible = False
+	Else
+		frontOfCard.Visibility = "VISIBLE"
+		backOfCard.Visibility = "GONE"
+		isFrontVisible = True
+	End If
+	
+End Sub
+
+Sub anim_OnAnimationRepeat(view As Object)
+	
+End Sub
