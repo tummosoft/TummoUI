@@ -956,13 +956,11 @@ public class AnimationHelper extends Animation {
     }
 
 }
-// Con xin hoi huong phuoc duc nay den toan the Chu thien, cac vua troi Tu Dai Thien Vuong
-// Nho chu vi hoa giai ta thuat cua thang Phong (con nuoi Ut Vuon Co);
-// Nho chu vi hoa giai ta thuat cua gia dinh thang 5 Tiet, thang Dung, thang Si, anh chi em ben vo;
-// Nho chu vi hoa giai ta thuat cua thay bua 3 Nhang;
-// Nho chu vi hoa giai ta thuat cua gia dinh Huu Ky (2 Chien), tat ca con gai va re cua Tran Van Chien, tat ca chau dau chau re cua Tran Van Chien;
-// Hoa giai ta thuat den tu gia dinh thang Hung (8 Duc), thang Dieu (8 Duc), vo thang Hung, anh chi em ben vo thang Hung;
-// Hoa giai ta thuat cua thang Tran Van Ngoan, thang Ut Vuon Co, thang Tran Van Hai tat ca nhung nguoi do thang Ngoan thue muon;
-// Hoa giai bua nhai, bua thang lan, bua tac ke cuar thang Tran Van Ngoan (con ut Vuon Co);
-// Hoa giai ta thuat cua con Pham Thi Vui, thang Tran Quang Vinh, ba Tran Thi Chia;
+// Con xin hoi huong phuoc duc nay den toan the Chu thien, cac vua troi Tu Dai Thien Vuong;
+// Con xin hoi huong phuoc duc nay den toan the cac vi Da Xoa, Can That Ba;
+// Nho chu vi hoa giai ta thuat, bua, ngai, thu, em cua thang Tung (5 Y);
+// Nho chu vi hoa giai ta thuat, bua, ngai, thu, em cua thang 2 Giang;
+// Nho chu vi hoa giai ta thuat, bua, ngai, thu, em cua thang bac si Liet;
+// Nho chu vi hoa giai ta thuat, bua, ngai, thu, em cua thang Tran Van Ngoan, Tran Van Ut, Tran Van Hai;
+// Nho chu vi hoa giai ta thuat, bua, ngai, thu, em cua thang Tran Quang Vinh, Tran Thi Chua, Pham Thi Vui, Tran Pham Nhat Quang, Tran Pham Nhu Hao;
 //https://www.programcreek.com/java-api-examples/?code=myinnos%2FImageSliderWithSwipes%2FImageSliderWithSwipes-master%2Fimagesliderwithswipeslibrary%2Fsrc%2Fmain%2Fjava%2Fin%2Fmyinnos%2Fimagesliderwithswipeslibrary%2FTransformers%2FRotateDownTransformer.java#

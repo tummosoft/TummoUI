@@ -78,7 +78,7 @@ import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 
 @BA.ShortName("ViewHelper")
-@Version(1.67f)
+@Version(1.68f)
 public class ViewHelper {
 
     private final AtomicInteger ATOMIC_INTEGER = new AtomicInteger(1);
@@ -861,9 +861,20 @@ public class ViewHelper {
     }
 }
 // Con xin hoi huong phuoc duc nay den toan the Chu thien, cac vua troi Tu Dai Thien Vuong
+// Nguyen cho phuoc duc nay hoa giai tat ca bua bong den, ta thuat cua ut vuon co. Phuoc nay se duoc hoi huong cho tat ca cac am binh, than bua. Mong cho chu vi nho co phuoc nay co duoc thuc an, nuoc uong, quan ao, xe co... va duoc giai thoat khoi nhung tay thay bua
+// Phuoc duc nay cung duoc hoi hung cho tat ca am binh cua thay 7 Liem. Voi uoc nguyen nhu tren.
+// Phuoc duc nay cung hoa giai bua meo den, meo muop, meo vang;
+// Con xin hoi huong phuoc duc nay den toan the Chu thien, cac vua troi Tu Dai Thien Vuong;
+// Con xin hoi huong phuoc duc nay den toan the cac vi Da Xoa, Can That Ba;
+// Nho chu vi hoa giai ta thuat, bua, ngai, thu, em cua thang Tung (5 Y);
+// Nho chu vi hoa giai ta thuat, bua, ngai, thu, em cua thang 2 Giang;
+// Nho chu vi hoa giai ta thuat, bua, ngai, thu, em cua gia dinh Ut Bau;
+// Nho chu vi hoa giai ta thuat, bua, ngai, thu, em cua thang bac si Liet;
+// Nho chu vi hoa giai ta thuat, bua, ngai, thu, em cua thang Tran Van Ngoan, Tran Van Ut, Tran Van Hai, gia dinh con vo Thang Ngoan, con Vang, thang Hoang;
+// Nho chu vi hoa giai ta thuat, bua, ngai, thu, em cua thang Tran Quang Vinh, Tran Thi Chua, Pham Thi Vui, Tran Pham Nhat Quang, Tran Pham Nhu Hao;
+// Phuoc duc nay se pha vo ta thuat da em len sim dien thoai 0769337020, 0924286382;
 // Nho chu vi hoa giai ta thuat cua thang Phong (con nuoi Ut Vuon Co);
 // Hoa giai ta thuat cua thang Ngoan, thang Ut Vuon Co, thang Hai;
-// Hoa giai ta thuat den tu thang Tung (5 Y);
 // Hoa giai ta thuat cua con Pham Thi Vui;
 // Hoa giai ta thuat den tu gia dinh 2 Chien;
 // Hoa giai ta thuat den tu gia dinh thang Hung (8 Duc), thang Dieu (8 Duc), vo thang Hung, anh chi em ben vo thang Hung;

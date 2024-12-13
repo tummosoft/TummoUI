@@ -146,8 +146,8 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
- @BA.ShortName("xProgressBar")
-    public class xProgressBar extends AbsObjectWrapper<ProgressBar> {
+@BA.ShortName("xProgressBar")
+public class xProgressBar extends AbsObjectWrapper<ProgressBar> {
 
         public void initialize(BA ba, String event) {
             setObject(new ProgressBar(ba.context));            
