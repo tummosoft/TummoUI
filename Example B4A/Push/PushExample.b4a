@@ -1,0 +1,94 @@
+﻿Build1=Default,b4a.example
+File1=Layout.bal
+FileGroup1=Default Group
+Group=Default Group
+Library1=core
+Library2=javaobject
+Library3=phone
+Library4=tummohelper
+Library5=tummoui
+Library6=tummoviews
+Library7=xui
+Library8=runtimepermissions
+ManifestCode='This code will be applied to the manifest file during compilation.~\n~'You do not need to modify it in most cases.~\n~'See this link for for more information: https://www.b4x.com/forum/showthread.php?p=78136~\n~AddManifestText(~\n~<uses-sdk android:minSdkVersion="19" android:targetSdkVersion="31"/>~\n~<supports-screens android:largeScreens="true" ~\n~    android:normalScreens="true" ~\n~    android:smallScreens="true" ~\n~    android:anyDensity="true"/>)~\n~SetApplicationAttribute(android:icon, "@drawable/icon")~\n~SetApplicationAttribute(android:label, "$LABEL$")~\n~CreateResourceFromFile(Macro, Themes.LightTheme)~\n~'End of default text.~\n~
+Module1=Starter
+NumberOfFiles=1
+NumberOfLibraries=8
+NumberOfModules=1
+Version=13
+@EndOfDesignText@
+#Region  Project Attributes 
+	#ApplicationLabel: B4A Example
+	#VersionCode: 1
+	#VersionName: 
+	'SupportedOrientations possible values: unspecified, landscape or portrait.
+	#SupportedOrientations: unspecified
+	#CanInstallToExternalStorage: False
+#End Region
+
+#Region  Activity Attributes 
+	#FullScreen: False
+	#IncludeTitle: True
+#End Region
+
+#MultiDex: true
+#AdditionalJar: xPush.jar
+#AdditionalRes: ../res
+#AdditionalJar: constraintlayout-2.1.4.aar
+
+Sub Process_Globals	
+	Private xui As XUI
+End Sub
+
+Sub Globals
+	Dim tNotification As NotificationHelper
+	Private resHelper As ResourcesHelper
+	Dim gpressĐowloadView As xRemoteView
+End Sub
+
+Sub Activity_Create(FirstTime As Boolean)
+	Activity.LoadLayout("Layout")
+	
+	Dim ctx As JavaObject
+	ctx.InitializeContext
+	resHelper.initialize
+	
+	
+	Dim layout As Int = resHelper.getResourceId("xml", "notification")	
+	gpressĐowloadView.initialize("downloadgpress", layout)
+	
+	Dim textID As Int = resHelper.getResourceId("progressDownload","id")
+	gpressĐowloadView.setProgressBar(textID, 100, 12, False)
+	
+	tNotification.Initialize
+	
+	'
+End Sub
+
+Sub Activity_Resume
+
+End Sub
+
+Sub Activity_Pause (UserClosed As Boolean)
+
+End Sub
+'java.lang.ExceptionInInitializerError: 请先在全局Application中调用 XPush.init() 进行初始化！
+Sub Button1_Click
+	'PushUtils.CheckAndRequestNotificationPermission("Hello beautiful girl! Can I send you a push message?")
+	Dim icon As Int = resHelper.getResourceId("drawable", "icon")
+	'PushUtils.ChannelId = "Alarm"
+	'PushUtils.Id = 12541
+	'For i=0 To 100
+	
+	tNotification.Icon = "icon"	
+	tNotification.SetInfo3New("This is the title", "and this is the body.", "", "", gpressĐowloadView)
+	tNotification.Notify(3)
+	
+	'	Sleep(200)
+	'Next
+	
+	
+		
+
+End Sub
+

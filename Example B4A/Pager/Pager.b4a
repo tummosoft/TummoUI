@@ -1,0 +1,158 @@
+﻿Build1=Default,b4a.example
+File1=Layout.bal
+File2=pic_1.jpg
+File3=pic_2.jpg
+File4=pic_3.jpg
+File5=pic_4.jpg
+File6=pic_5.jpg
+File7=pic_6.jpg
+FileGroup1=Default Group
+FileGroup2=Default Group
+FileGroup3=Default Group
+FileGroup4=Default Group
+FileGroup5=Default Group
+FileGroup6=Default Group
+FileGroup7=Default Group
+Group=Default Group
+Library1=core
+Library2=tummohelper
+Library3=tummoui
+Library4=xui
+Library5=tummoviews
+ManifestCode='This code will be applied to the manifest file during compilation.~\n~'You do not need to modify it in most cases.~\n~'See this link for for more information: https://www.b4x.com/forum/showthread.php?p=78136~\n~AddManifestText(~\n~<uses-sdk android:minSdkVersion="21" android:targetSdkVersion="34"/>~\n~<supports-screens android:largeScreens="true" ~\n~    android:normalScreens="true" ~\n~    android:smallScreens="true" ~\n~    android:anyDensity="true"/>)~\n~SetApplicationAttribute(android:icon, "@drawable/icon")~\n~SetApplicationAttribute(android:label, "$LABEL$")~\n~CreateResourceFromFile(Macro, Themes.LightTheme)~\n~'End of default text.~\n~
+Module1=Starter
+NumberOfFiles=7
+NumberOfLibraries=5
+NumberOfModules=1
+Version=13
+@EndOfDesignText@
+#Region  Project Attributes 
+	#ApplicationLabel: B4A Example
+	#VersionCode: 1
+	#VersionName: 
+	'SupportedOrientations possible values: unspecified, landscape or portrait.
+	#SupportedOrientations: unspecified
+	#CanInstallToExternalStorage: False
+#End Region
+
+#MultiDex: true
+
+#Region  Activity Attributes 
+	#FullScreen: False
+	#IncludeTitle: False
+#End Region
+
+Sub Process_Globals	
+	Private xui As XUI
+End Sub
+
+Sub Globals
+	Dim pager As xPager	
+	Private pagerFactory As xPagerFactory
+	Private currentPage, mCurPage, mNextPage As Bitmap
+	Private mCurPageCanvas, mNextPageCanvas As Canvas
+	Private pages As List
+	Private musics As List
+	Private screenWidth As Int
+	Private screenHeight As Int
+	Private currentIndex As Int  = 0
+	Dim lastBitmap As Bitmap = Null
+	Private lastIndex As Int = 0
+	Private selectIndex As Int = 0
+	Dim count As Int = 5
+	
+	Dim lastX As Int 
+	Dim lastY As Int
+End Sub
+
+Sub Activity_Create(FirstTime As Boolean)
+	Activity.LoadLayout("Layout")
+	
+	pager.initialize("pager", 100%x, 100%y)
+	
+	pages.Initialize
+	pages.Add("pic_1.jpg")
+	pages.Add("pic_2.jpg")
+	pages.Add("pic_3.jpg")
+	pages.Add("pic_4.jpg")
+	pages.Add("pic_5.jpg")
+	pages.Add("pic_6.jpg")
+	
+	currentPage.Initialize(File.DirAssets, "pic_1.jpg")
+	mCurPage.Initialize(File.DirAssets, "pic_2.jpg")
+	mNextPage.Initialize(File.DirAssets, "pic_3.jpg")
+	
+	Dim bmp As Bitmap
+	bmp.InitializeMutable(100%x, 100%y)
+ 
+	mNextPageCanvas.Initialize2(bmp)
+	Dim rct As Rect
+	rct.Initialize(0, 0, 100%x, 100%y)
+	mNextPageCanvas.DrawBitmap(LoadBitmap(File.DirAssets, "pic_2.jpg"), Null, rct)
+	
+	mCurPageCanvas.Initialize2(bmp)
+	mCurPageCanvas.DrawBitmap(LoadBitmap(File.DirAssets, "pic_1.jpg"), Null, rct)
+	
+	pager.setBitmaps(mCurPage, mNextPage)
+	
+	pagerFactory.initialize("pagerFactory")
+		
+	Activity.AddView(pager, 0, 0,  100%x, 100%y)
+	
+End Sub
+
+Sub Activity_Resume
+	
+End Sub
+
+Sub Activity_Pause (UserClosed As Boolean)
+
+End Sub
+
+Sub loadImage(c As Canvas, index As Int)
+
+        Dim bmp As Bitmap = LoadBitmap(File.DirAssets, pages.get(index))
+		currentPage = bmp
+        pagerFactory.onDraw2(c, bmp)
+	pager.setBitmaps(currentPage, mNextPage)
+        pager.postInvalidate
+
+End Sub
+
+  
+Sub pager_onTouch(Action As Int, X As Float, Y As Float, MotionEvent As Object) As Boolean
+	Dim e As xMotionEvent = MotionEvent
+	Dim ret As Boolean = False
+	If (e.Action = e.ACTION_DOWN) Then
+		pager.calcCornerXY(e.X, e.Y)
+		lastBitmap = currentPage
+		lastIndex = currentIndex
+		pagerFactory.onDraw2(mCurPageCanvas, currentPage)
+		If (pager.DragToRight) Then
+			If (currentIndex = 0) Then
+				Return False
+			End If
+			pager.abortAnimation()
+			currentIndex = currentIndex - 1
+			Log(currentIndex)
+		Else
+			If (currentIndex + 1) = count Then
+				Return False
+			End If
+			pager.abortAnimation()
+			currentIndex = currentIndex + 1
+			loadImage(mNextPageCanvas, currentIndex)
+		End If
+	else If (e.Action = e.ACTION_UP) Then
+		If (pager.canDragOver = False) Then
+			currentIndex = lastIndex
+			currentPage = lastBitmap                       
+		End If
+	End If
+	
+	ret = pager.doTouchEvent(e)
+	Return ret
+
+End Sub
+
+  
